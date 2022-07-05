@@ -11,9 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.0.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-draft": "^1.0.4",
     "nodemon": "^2.0.18"
+  },
+  "devDependencies": {
+    "prisma": "^4.0.0"
   }
 }

@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Vendor {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+
+}
+
+model Profile {
+  id             Int       @id @default(autoincrement())
+  name           String
+  address        String
+  description    String
+  type           String
+  profilePicture String    @default("https://i.imgur.com/aeW3aDj.png%22")
+  Details        Details[]
+}
+
+model Details {
+  id          Int     @id @default(autoincrement())
+  profile     Profile @relation(fields: [profileId], references: [id])
+  description String
+  petType     String
+  area        Area    @relation(fields: [areaId], references: [id])
+
+  profileId Int
+  areaId    Int
+}
+
+model Area {
+  id    Int     @id @default(autoincrement())
+  north Boolean @default(false)
+  south Boolean @default(false)
+  east  Boolean @default(false)
+  west  Boolean @default(false)
+
+  Details Details[]
+}

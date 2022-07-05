@@ -1,1 +1,0 @@
-# GA_CAPSTONE_Petler

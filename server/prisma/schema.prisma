@@ -24,6 +24,8 @@ model Profile {
   description String
   type        String
   profilePic  String    @default("https://i.imgur.com/aeW3aDj.png%22")
+  start       String
+  end         String
   details     Details[]
   booking     Booking[]
   Reviews     Reviews[]
@@ -93,8 +95,6 @@ model UserProfile {
   description String
   pets        Pets[]
   image       String
-  start       String
-  end         String
   booking     Booking[]
   reviews     Reviews[]
   userId      Int       @unique

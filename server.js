@@ -14,11 +14,13 @@ const PORT = process.env.PORT ?? 4000
 
 const vendorController = require("./controllers/vendorController");
 
+
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use("/api/vendors", vendorController);
 // app.use(cors())
+app.use("/api/user", require("./controllers/user_Controller"))
 
 // express init
 app.get("/api/", (req, res) => {

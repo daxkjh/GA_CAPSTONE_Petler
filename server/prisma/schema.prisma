@@ -47,9 +47,10 @@ model DetailsOnArea {
   area       Area     @relation(fields: [areaId], references: [id])
   assignedAt DateTime @default(now())
   assignedBy String
-  detailsId Int
-  areaId    Int
-  @@id([detailsId,areaId])
+  detailsId  Int
+  areaId     Int
+
+  @@id([detailsId, areaId])
 }
 
 model PetSize {
@@ -92,6 +93,8 @@ model UserProfile {
   description String
   pets        Pets[]
   image       String
+  start       String
+  end         String
   booking     Booking[]
   reviews     Reviews[]
   userId      Int       @unique
@@ -118,12 +121,12 @@ model Post {
 }
 
 model Booking {
-  id      Int         @id @default(autoincrement())
-  profile Profile     @relation(fields: [profileId], references: [id])
-  user    UserProfile @relation(fields: [userProfileId], references: [id])
-  service Service     @relation(fields: [serviceId], references: [id])
-  dateTime DateTime
-  status  String
+  id            Int         @id @default(autoincrement())
+  profile       Profile     @relation(fields: [profileId], references: [id])
+  user          UserProfile @relation(fields: [userProfileId], references: [id])
+  service       Service     @relation(fields: [serviceId], references: [id])
+  dateTime      DateTime
+  status        String
   profileId     Int
   userProfileId Int
   serviceId     Int

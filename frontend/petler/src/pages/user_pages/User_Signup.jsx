@@ -1,4 +1,5 @@
-const axios = require('axios');
+
+import axios from 'axios';
 
 const User_SignUp = ()=>{
 

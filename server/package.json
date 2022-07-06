@@ -19,5 +19,8 @@
   },
   "devDependencies": {
     "prisma": "^4.0.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   }
 }

@@ -2,19 +2,19 @@ const express = require('express')
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    res.send("checking!!!!!")
+    res.send("checking")
 })
 
 router.post("/", (req, res) => {
     res.send("post check!!!")
 })
 
-router.put("/", (req, res) => {
-    res.send("update checkkkkkk")
+router.put("/:id", (req, res) => {
+    res.send("update check")
 })
 
 router.delete("/:id", (req, res) => {
-    res.send("Yo! delte!")
+    res.send("Yo! delete!")
 })
 
 

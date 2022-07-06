@@ -11,11 +11,12 @@ const app = express();
 
 const PORT = process.env.PORT ?? 4000
 
-const vendorController = require("../controllers/vendorController");
+const vendorController = require("./controllers/vendorController");
 
 // middleware
 app.use(express.json());
-app.use("/api/vendors", vendorController)
+app.use(express.urlencoded({extended:true}));
+app.use("/api/vendors", vendorController);
 
 // express init
 app.get("/api/", (req, res) => {
@@ -24,5 +25,5 @@ app.get("/api/", (req, res) => {
 
 // express init
 app.listen(PORT, () => {
-    console.log(`server is runnning on port: ${PORT}`);
+    console.log(`server is running on port: ${PORT}`);
 })

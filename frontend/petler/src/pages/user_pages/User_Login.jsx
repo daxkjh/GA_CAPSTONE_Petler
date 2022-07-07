@@ -1,7 +1,14 @@
 const User_Login = ()=>{
+
+const handleSubmit=(e)=>{
+e.preventDefault()
+
+}
     return(
         <div><h1>User Login Page</h1>
-        <form action="" method="post"></form>
+        <form onSubmit={handleSubmit}>
+
+        </form>
     
     
     </div>

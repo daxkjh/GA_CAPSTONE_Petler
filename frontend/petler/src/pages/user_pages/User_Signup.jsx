@@ -1,28 +1,120 @@
-// const axios = require('axios');
-// sorry Dax, this↑ was creating error so I commented it out. 
-//I think you can use the following instead of this↑
-// import axios from 'axios';
-const User_SignUp = ()=>{
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-    
+export const validEmail = new RegExp(
+    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+ );
+ export const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
 
+const User_SignUp = () => {
+  // SET STATES
+  const [usersData, setUsersData] = useState({});
+  const [passwordCheck, setPasswordCheck] = useState(false);
+  const [errorPasswordMessage, setErrorPasswordMessage] = useState("");
+  const [uniqueEmail, setUniqueEmail] = useState(true);
+  const [submit, setSubmit] = useState({
+    email: "",
+    password: "",
+  });
 
-    return(
-        <div>
-            <h1>User Sign Up Page</h1>
-            <form action="post">
-                <fieldset>
-                    <legend>Sign Up</legend>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" />
-                    <label htmlFor="pw">Password</label>
-                    <input type="password" name="pw" id="pw" />
-                    <label htmlFor="cpw">Confirm Password</label>
-                    <input type="password" name="cpw" id="cpw" />
-                    <button type="submit">Sign Up</button>
-                </fieldset>
-            </form>
-        </div>
-    )
-}
-export default User_SignUp
+  // HOOKS
+  const navigate = useNavigate();
+
+  // Draw all USERS DATA for email check
+  useEffect(() => {
+    axios
+      .get("/api/user/")
+      .then(function (response) {
+        setUsersData(response);
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  const emailCheck = (email) => {
+    const arr = [];
+    for (const obj of usersData?.data) {
+      if (obj.email === email) {
+        arr.push(true);
+      }
+    }
+    return setUniqueEmail(!arr.includes(true));
+  };
+
+  //Submite form to Create NEW USER
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      axios
+        .post("/api/user/", submit)
+        .then((response) => console.log(response))
+        .then(() => alert("User Created Success!"))
+        .then(() => navigate("/home"));
+    } catch (error) {
+      alert(`status: Error, ${error}`);
+    }
+  };
+  //CONTROLLED FORM EMAIL INPUT
+  const handleChange_email = (e) => {
+    setSubmit({ ...submit, email: e.target.value });
+    emailCheck(e.target.value);
+  };
+
+  // // CONTROLLED FORM PASSWORD INPUT
+  //     const handleChange_password=(e)=>{
+
+  //     }
+
+  // CONTROLLED FORM CONFIRM PASSWORD INPUT
+  const handleChange_confirmPassword = (e) => {
+    if (e.target.value && e.target.value === submit.password) {
+      setPasswordCheck(true)
+    } else {
+        setPasswordCheck(false)
+    }
+
+     if (e.target.value.indexOf(/[w*]/) === -1 && e.target.value !== submit.password) {
+      setErrorPasswordMessage("Password does not match");
+    } else { setErrorPasswordMessage("")}
+  };
+
+  return (
+    <div>
+      <h1>User Sign Up Page</h1>
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>Sign Up</legend>
+          <label htmlFor="email">Email</label>
+          <input
+            onChange={handleChange_email}
+            type="email"
+            name="email"
+            id="email"
+          />
+          <span>{submit.email && !uniqueEmail ? "Email taken" : null}</span><br></br>
+          <label htmlFor="pw">Password</label>
+          <input
+            onChange={(e) => setSubmit({ ...submit, password: e.target.value })}
+            type="password"
+            name="pw"
+            id="pw"
+          /><br></br>
+          <label htmlFor="cpw">Confirm Password</label>
+          <input
+            onChange={handleChange_confirmPassword}
+            type="password"
+            name="cpw"
+            id="cpw"
+          />
+          <span>{ passwordCheck && uniqueEmail && submit.email && submit.password ? <h1>&#x2714;</h1> : null}</span>
+          <span>{errorPasswordMessage}</span><br></br>
+          <button type="submit">Sign Up</button>
+        </fieldset>
+      </form>
+    </div>
+  );
+};
+export default User_SignUp;

@@ -69,7 +69,9 @@ const isAuth = (req, res, next) => {
 router.post("/profile", async (req, res) => {
   const profile  = req.body;
   try {
-    const vendorProflie = await prisma.details.create({ data: profile });
+    const vendorProflie = await prisma.profile.create( { data: profile }
+
+  );
     res.send(vendorProflie)
   } catch (error) {
     res.send(error)

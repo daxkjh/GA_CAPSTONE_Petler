@@ -11,10 +11,11 @@ datasource db {
 }
 
 model Vendor {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  password String
-  
+  id        String  @id @default(uuid())
+  email     String  @unique
+  password  String
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId Int
 }
 
 model Profile {
@@ -27,48 +28,51 @@ model Profile {
   start       String
   end         String
   details     Details[]
-  booking     Booking[]
-  Reviews     Reviews[]
-  Post        Post[]
-  Service     Service[]
+  bookings    Bookings[]
+  reviews     Reviews[]
+  posts       Posts[]
+  services     Services[]
+  vendor      Vendor[]
 }
 
 model Details {
-  id            Int             @id @default(autoincrement())
-  profile       Profile         @relation(fields: [profileId], references: [id])
-  description   String
-  petType       String
-  petSize       PetSize[]
-  profileId     Int
-  areaId        Int
-  DetailsOnArea DetailsOnArea[]
+  id          Int       @id @default(autoincrement())
+  profile     Profile   @relation(fields: [profileId], references: [id])
+  description String
+  petType     String
+  petSize     PetSize[]
+  profileId   Int
+  area        Area[]
+  // areaId      Int
+  // detailsOnArea DetailsOnArea[]
 }
 
-model DetailsOnArea {
-  detail     Details  @relation(fields: [detailsId], references: [id])
-  area       Area     @relation(fields: [areaId], references: [id])
-  assignedAt DateTime @default(now())
-  assignedBy String
-  detailsId  Int
-  areaId     Int
+// model DetailsOnArea {
+//   detail     Details  @relation(fields: [detailsId], references: [id])
+//   area       Area     @relation(fields: [areaId], references: [id])
+//   assignedAt DateTime @default(now())
+//   assignedBy String
+//   detailsId  Int
+//   areaId     Int
 
-  @@id([detailsId, areaId])
-}
+//   @@id([detailsId, areaId])
+// }
 
 model PetSize {
   id        Int     @id @default(autoincrement())
   weight    String
-  detail    Details @relation(fields: [detailsId], references: [id])
+  details    Details @relation(fields: [detailsId], references: [id])
   detailsId Int
 }
 
 model Area {
-  id            Int             @id @default(autoincrement())
-  north         Boolean         @default(false)
-  south         Boolean         @default(false)
-  east          Boolean         @default(false)
-  west          Boolean         @default(false)
-  DetailsOnArea DetailsOnArea[]
+  id      Int       @id @default(autoincrement())
+  north   Boolean   @default(false)
+  south   Boolean   @default(false)
+  east    Boolean   @default(false)
+  west    Boolean   @default(false)
+  // detailsOnArea DetailsOnArea[]
+  details Details[]
 }
 
 model Reviews {
@@ -82,10 +86,10 @@ model Reviews {
 }
 
 model User {
-  id      Int          @id @default(autoincrement())
-  email   String       @unique
+  id       Int          @id @default(autoincrement())
+  email    String       @unique
   password String
-  profile UserProfile?
+  profile  UserProfile?
 }
 
 model UserProfile {
@@ -96,7 +100,7 @@ model UserProfile {
   description String
   pets        Pets[]
   image       String
-  booking     Booking[]
+  booking     Bookings[]
   reviews     Reviews[]
   userId      Int       @unique
 }
@@ -113,7 +117,7 @@ model Pets {
   userProfileId Int
 }
 
-model Post {
+model Posts {
   id        Int     @id @default(autoincrement())
   image     String
   message   String
@@ -121,23 +125,23 @@ model Post {
   profileId Int
 }
 
-model Booking {
+model Bookings {
   id            Int         @id @default(autoincrement())
   profile       Profile     @relation(fields: [profileId], references: [id])
   user          UserProfile @relation(fields: [userProfileId], references: [id])
-  service       Service     @relation(fields: [serviceId], references: [id])
+  services       Services    @relation(fields: [servicesId], references: [id])
   dateTime      DateTime
   status        String
   profileId     Int
   userProfileId Int
-  serviceId     Int
+  servicesId     Int
 }
 
-model Service {
+model Services {
   id        Int       @id @default(autoincrement())
   title     String
   price     Int
   vendor    Profile   @relation(fields: [profileId], references: [id])
-  booking   Booking[]
+  bookings   Bookings[]
   profileId Int
 }

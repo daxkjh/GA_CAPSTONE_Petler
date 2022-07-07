@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+// const { PrismaClient } = require("@prisma/client");
+// const prisma = new PrismaClient();
+const prisma = require("../server");
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const saltRounds = 10
@@ -14,10 +15,10 @@ router.get("/", async (req, res) => {
 
 //sign up
 router.post("/signup", async (req, res) => {
+  const vendorData = { email: req.body.email, 
+    password: await bcrypt.hash(req.body.password, saltRounds) }
+    console.log(vendorData)
   try {
-    const vendorData = { email: req.body.email, 
-      password: await bcrypt.hash(req.body.password, saltRounds) }
-    // console.log(vendorData)   
     const vendor = await prisma.vendor.create({ data: vendorData });
     res.send({ status: "success", data: vendor })
   } catch (error) {
@@ -70,7 +71,6 @@ router.post("/profile", async (req, res) => {
   const profile  = req.body;
   try {
     const vendorProflie = await prisma.profile.create( { data: profile }
-
   );
     res.send(vendorProflie)
   } catch (error) {

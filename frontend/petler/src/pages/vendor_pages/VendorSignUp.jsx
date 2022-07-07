@@ -13,11 +13,11 @@ function VendorSignUp() {
     const signupData = {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value,}
-      // console.log(signupData)
+      console.log(signupData)
     axios.post( "/api/vendors/signup", signupData)
       .then(res => console.log(res))
       .catch(error => console.log("error", error));
-      navigate('/home')
+      navigate('/vendor/home')
     }
         
   return (

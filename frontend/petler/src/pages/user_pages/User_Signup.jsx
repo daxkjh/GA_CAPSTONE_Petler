@@ -52,7 +52,7 @@ const User_SignUp = () => {
         .post("/api/user/", submit)
         .then((response) => console.log(response))
         .then(() => alert("User Created Success!"))
-        .then(() => navigate("/home"));
+        .then(() => navigate("/owner/login"));
     } catch (error) {
       alert(`status: Error, ${error}`);
     }

@@ -32,9 +32,6 @@ router.post("/", async (req, res) => {
       email: req.body.email,
       password: await bcrypt.hash(req.body.password, saltRounds),
     };
-    console.log(req.body);
-    console.log(data.email);
-    console.log(data.password);
     const user = await prisma.user.create({data:data});
     res
       .status(200)
@@ -89,5 +86,45 @@ router.delete("/:id", async (req, res) => {
       await prisma.$disconnect();
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

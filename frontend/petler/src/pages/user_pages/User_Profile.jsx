@@ -1,14 +1,14 @@
 import { useState,useEffect } from "react"
 
 
-const User_All = ()=>{
+const User_Profile = ()=>{
 
 
     return (
         <div>
-            
+            <h1>User Profile</h1>
         </div>
     )
 }
 
-export default User_All
+export default User_Profile

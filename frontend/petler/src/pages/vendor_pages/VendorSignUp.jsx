@@ -30,19 +30,19 @@ function VendorSignUp() {
               type="email"
               placeholder="email"
             />
-     <label htmlFor="password">Password</label>
+     <label htmlFor="password">password</label>
       <input
               required
               name="password"
               type="password"
               placeholder="password"
               />
-      <label htmlFor="password2"> Confirm password</label>
+      <label htmlFor="password2"> confirm password</label>
       <input
               required
               name="password2"
               type="password2"
-              placeholder="Confirm password"
+              placeholder="confirm password"
               />
       <button>submit</button>
       </form>

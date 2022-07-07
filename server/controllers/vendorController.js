@@ -43,8 +43,7 @@ router.post("/login", async (req, res) => {
   }
  })
 
-
-//
+// Auth
 const isAuth = (req, res, next) => {
   const auth = req.headers.authorization;
   console.log(auth)
@@ -64,6 +63,21 @@ const isAuth = (req, res, next) => {
     res.status(401).send({ status: "error", msg: "No access" });
   }
 };
+
+// vendor profile create
+
+router.post("/profile", async (req, res) => {
+  const profile  = req.body;
+  try {
+    const vendorProflie = await prisma.profile.create( { data: profile }
+
+  );
+    res.send(vendorProflie)
+  } catch (error) {
+    res.send(error)
+    // res.send({ status: "failed", data: error })
+  }  
+});
 
 // Secret Route
 router.get("/secret", isAuth, (req, res) => {

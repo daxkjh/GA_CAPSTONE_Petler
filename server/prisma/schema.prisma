@@ -11,35 +11,37 @@ datasource db {
 }
 
 model Vendor {
-  id        String  @id @default(uuid())
-  email     String  @unique
-  password  String
-  profile   Profile @relation(fields: [profileId], references: [id])
-  profileId Int
+  id       String   @id @default(uuid())
+  email    String   @unique
+  password String
+  profile  Profile?
+
 }
 
 model Profile {
-  id          Int       @id @default(autoincrement())
-  name        String
-  address     String
-  description String
-  type        String
-  profilePic  String    @default("https://i.imgur.com/aeW3aDj.png%22")
-  start       String
-  end         String
+  id          Int        @id @default(autoincrement())
+  name        String?
+  address     String?
+  phone       String?
+  description String?
+  type        String?
+  profilePic  String     @default("https://i.imgur.com/aeW3aDj.png%22")
+  start       String?
+  end         String?
   details     Details[]
   bookings    Bookings[]
   reviews     Reviews[]
   posts       Posts[]
-  services     Services[]
-  vendor      Vendor[]
+  services    Services[]
+  vendor      Vendor     @relation(fields: [vendorId], references: [id])
+  vendorId    String     @unique
 }
 
 model Details {
   id          Int       @id @default(autoincrement())
   profile     Profile   @relation(fields: [profileId], references: [id])
-  description String
-  petType     String
+  description String?
+  petType     String?
   petSize     PetSize[]
   profileId   Int
   area        Area[]
@@ -60,8 +62,8 @@ model Details {
 
 model PetSize {
   id        Int     @id @default(autoincrement())
-  weight    String
-  details    Details @relation(fields: [detailsId], references: [id])
+  weight    String?
+  details   Details @relation(fields: [detailsId], references: [id])
   detailsId Int
 }
 
@@ -77,8 +79,8 @@ model Area {
 
 model Reviews {
   id            Int         @id @default(autoincrement())
-  paws          Int
-  comment       String
+  paws          Int?
+  comment       String?
   profile       Profile     @relation(fields: [profileId], references: [id])
   userProfile   UserProfile @relation(fields: [userProfileId], references: [id])
   profileId     Int
@@ -93,34 +95,34 @@ model User {
 }
 
 model UserProfile {
-  id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [userId], references: [id])
-  name        String
-  address     String
-  description String
+  id          Int        @id @default(autoincrement())
+  user        User       @relation(fields: [userId], references: [id])
+  name        String?
+  address     String?
+  description String?
   pets        Pets[]
-  image       String
+  image       String?
   booking     Bookings[]
   reviews     Reviews[]
-  userId      Int       @unique
+  userId      Int        @unique
 }
 
 model Pets {
   id            Int         @id @default(autoincrement())
-  name          String
-  type          String
-  breed         String
-  birth         DateTime
-  image         String
-  sterilized    Boolean
+  name          String?
+  type          String?
+  breed         String?
+  birth         DateTime?
+  image         String?
+  sterilized    Boolean?
   owner         UserProfile @relation(fields: [userProfileId], references: [id])
   userProfileId Int
 }
 
 model Posts {
   id        Int     @id @default(autoincrement())
-  image     String
-  message   String
+  image     String?
+  message   String?
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId Int
 }
@@ -129,19 +131,19 @@ model Bookings {
   id            Int         @id @default(autoincrement())
   profile       Profile     @relation(fields: [profileId], references: [id])
   user          UserProfile @relation(fields: [userProfileId], references: [id])
-  services       Services    @relation(fields: [servicesId], references: [id])
-  dateTime      DateTime
-  status        String
+  services      Services    @relation(fields: [servicesId], references: [id])
+  dateTime      DateTime?
+  status        String?
   profileId     Int
   userProfileId Int
-  servicesId     Int
+  servicesId    Int
 }
 
 model Services {
-  id        Int       @id @default(autoincrement())
-  title     String
-  price     Int
-  vendor    Profile   @relation(fields: [profileId], references: [id])
-  bookings   Bookings[]
+  id        Int        @id @default(autoincrement())
+  title     String?
+  price     Int?
+  vendor    Profile    @relation(fields: [profileId], references: [id])
+  bookings  Bookings[]
   profileId Int
 }

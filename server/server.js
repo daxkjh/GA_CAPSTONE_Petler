@@ -6,8 +6,8 @@ const prisma = new PrismaClient();
 const express = require("express");
 require('dotenv').config()
 // const cors = require('cors')
-
-// express init
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const app = express();
 
 const PORT = process.env.PORT ?? 4000

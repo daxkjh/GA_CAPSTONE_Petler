@@ -1,5 +1,7 @@
-const axios = require('axios');
-
+// const axios = require('axios');
+// sorry Dax, this↑ was creating error so I commented it out. 
+//I think you can use the following instead of this↑
+// import axios from 'axios';
 const User_SignUp = ()=>{
 
     

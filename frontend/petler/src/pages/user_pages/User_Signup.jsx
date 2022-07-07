@@ -1,72 +1,120 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-import axios from 'axios';
+export const validEmail = new RegExp(
+    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+ );
+ export const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
 
-const User_SignUp = ()=>{
-    const[usersData, setUsersData] = useState({})
-    const[submit,setSubmit] = useState({
-        email : "",
-        password : "",
-    })
-    const[passwordCheck, setPasswordCheck] = useState("")
+const User_SignUp = () => {
+  // SET STATES
+  const [usersData, setUsersData] = useState({});
+  const [passwordCheck, setPasswordCheck] = useState(false);
+  const [errorPasswordMessage, setErrorPasswordMessage] = useState("");
+  const [uniqueEmail, setUniqueEmail] = useState(true);
+  const [submit, setSubmit] = useState({
+    email: "",
+    password: "",
+  });
 
+  // HOOKS
+  const navigate = useNavigate();
 
-// Draw all USERS DATA for email check
-    useEffect(()=>{
-        axios.get('/api/user/')
-  .then(function (response) {
-    setSubmit(response)
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-},[])
+  // Draw all USERS DATA for email check
+  useEffect(() => {
+    axios
+      .get("/api/user/")
+      .then(function (response) {
+        setUsersData(response);
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
-
-
-
-
-
-    const handleSubmit = async(e)=>{
-        e.preventDefault()
-        try {
-            await axios.post()
-        } catch (error) {
-            alert(`status: Error, ${error}`)
-        }
-
+  const emailCheck = (email) => {
+    const arr = [];
+    for (const obj of usersData?.data) {
+      if (obj.email === email) {
+        arr.push(true);
+      }
     }
-//CONTROLLED FORM EMAIL INPUT
-    const handleChange_email=(e)=>{
-        
+    return setUniqueEmail(!arr.includes(true));
+  };
+
+  //Submite form to Create NEW USER
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      axios
+        .post("/api/user/", submit)
+        .then((response) => console.log(response))
+        .then(() => alert("User Created Success!"))
+        .then(() => navigate("/home"));
+    } catch (error) {
+      alert(`status: Error, ${error}`);
     }
-// CONTROLLED FORM PASSWORD INPUT
-    const handleChange_password=(e)=>{
+  };
+  //CONTROLLED FORM EMAIL INPUT
+  const handleChange_email = (e) => {
+    setSubmit({ ...submit, email: e.target.value });
+    emailCheck(e.target.value);
+  };
 
+  // // CONTROLLED FORM PASSWORD INPUT
+  //     const handleChange_password=(e)=>{
+
+  //     }
+
+  // CONTROLLED FORM CONFIRM PASSWORD INPUT
+  const handleChange_confirmPassword = (e) => {
+    if (e.target.value && e.target.value === submit.password) {
+      setPasswordCheck(true)
+    } else {
+        setPasswordCheck(false)
     }
 
-// CONTROLLED FORM CONFIRM PASSWORD INPUT
-    const handleChange_confirmPassword=(e)=>{
+     if (e.target.value.indexOf(/[w*]/) === -1 && e.target.value !== submit.password) {
+      setErrorPasswordMessage("Password does not match");
+    } else { setErrorPasswordMessage("")}
+  };
 
-    }
-
-    return(
-        <div>
-            <h1>User Sign Up Page</h1>
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <legend>Sign Up</legend>
-                    <label htmlFor="email">Email</label>
-                    <input onChange={handleChange_email} type="email" name="email" id="email" />
-                    <label htmlFor="pw">Password</label>
-                    <input onChange={handleChange_password} type="password" name="pw" id="pw" />
-                    <label htmlFor="cpw">Confirm Password</label>
-                    <input onChange={handleChange_confirmPassword} type="password" name="cpw" id="cpw" /><span>{(passwordCheck && passwordCheck===submit.password)?<h1>ok</h1>:null}</span>
-                    <button type="submit">Sign Up</button>
-                </fieldset>
-            </form>
-        </div>
-    )
-}
-export default User_SignUp
+  return (
+    <div>
+      <h1>User Sign Up Page</h1>
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <legend>Sign Up</legend>
+          <label htmlFor="email">Email</label>
+          <input
+            onChange={handleChange_email}
+            type="email"
+            name="email"
+            id="email"
+          />
+          <span>{submit.email && !uniqueEmail ? "Email taken" : null}</span><br></br>
+          <label htmlFor="pw">Password</label>
+          <input
+            onChange={(e) => setSubmit({ ...submit, password: e.target.value })}
+            type="password"
+            name="pw"
+            id="pw"
+          /><br></br>
+          <label htmlFor="cpw">Confirm Password</label>
+          <input
+            onChange={handleChange_confirmPassword}
+            type="password"
+            name="cpw"
+            id="cpw"
+          />
+          <span>{ passwordCheck && uniqueEmail && submit.email && submit.password ? <h1>&#x2714;</h1> : null}</span>
+          <span>{errorPasswordMessage}</span><br></br>
+          <button type="submit">Sign Up</button>
+        </fieldset>
+      </form>
+    </div>
+  );
+};
+export default User_SignUp;

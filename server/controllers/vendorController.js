@@ -20,11 +20,12 @@ router.post("/signup", async (req, res) => {
     console.log(vendorData)
   try {
     const vendor = await prisma.vendor.create({ data: vendorData });
+    const vendorId = await prisma.profile.create({ data: {vendorId: vendor.id} });
     res.send({ status: "success", data: vendor })
   } catch (error) {
     res.send({ status: "failed", data: error })
   }  
-});
+}); 
 
 // login
 router.post("/login", async (req, res) => {
@@ -65,18 +66,40 @@ const isAuth = (req, res, next) => {
   }
 };
 
-// vendor profile create
-
-router.post("/profile", async (req, res) => {
+// vendor profile update
+router.put("/profile/:id", async (req, res) => {
+  const { id } = req.params;
   const profile  = req.body;
+  console.log(id)
   try {
-    const vendorProflie = await prisma.profile.create( { data: profile }
-  );
+    const vendorProflie = await prisma.profile.update({ 
+      where: { vendorId: id },
+      data: profile
+  })
     res.send(vendorProflie)
   } catch (error) {
-    res.send(error)
-    // res.send({ status: "failed", data: error })
+     res.send({ status: "failed", data: error })
   }  
+});
+
+// vendor acount delete
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteProfile = await prisma.profile.delete({
+      where: {
+        vendorId: id,
+      }
+    })
+    const deleteVendor = await prisma.vendor.delete({
+      where: {
+        id: id,
+      }
+    })
+    res.send(deleteVendor);
+  } catch (error) {
+    res.send({status: "failed ", data: "something went wrong"})
+  }
 });
 
 // Secret Route
@@ -102,47 +125,6 @@ router.get("/secret", isAuth, (req, res) => {
 //   }
 // });
 
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  num = parseInt(id);
-  const data = req.body;
-  // console.log(num);
-  async function main() {
-    const vendor = await prisma.vendor.update({
-      where: {
-        id: num,
-      },
-      data,
-    });
-    console.log(vendor);
-  }
-  main()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
-});
 
-router.delete("/:id", async (req, res) => {
-  const { id } = req.params;
-  num = parseInt(id);
-  async function main() {
-    const deleteVendor = await prisma.vendor.delete({
-      where: {
-        id: num,
-      },
-    });
-    res.send(deleteVendor);
-  }
-  main()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
-});
 
 module.exports = router;

@@ -3,10 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import './App.css'
 import Home from "./pages/Home"
 import Layout from "./pages/Layout"
-import VendorSignUp from "./pages/VendorSignUp"
-import Login from "./pages/Login"
+import VendorSignUp from "./pages/vendor_pages/VendorSignUp"
+import VendorLogin from "./pages//vendor_pages/VendorLogin"
 import User_Login from './pages/user_pages/User_Login'
 import User_SignUp from './pages/user_pages/User_Signup'
+import { atom } from 'jotai'
+
+export const vendorAtom = atom({})
 
 function App() {
 
@@ -15,11 +18,9 @@ function App() {
             <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />} >
-            <Route path="home" element={<Home />} />
-            <Route path="/signup" element={<VendorSignUp />} />
-            <Route path="/login" element={<Login />} />
-
-
+            <Route path="/vendor/home" element={<Home />} />
+            <Route path="/vendor/signup" element={<VendorSignUp />} />
+            <Route path="/vendor/login" element={<VendorLogin />} />
 
 
 

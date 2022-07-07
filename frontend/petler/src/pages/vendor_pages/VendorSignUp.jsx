@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 function VendorSignUp() {
 
 
@@ -12,8 +13,8 @@ function VendorSignUp() {
     const signupData = {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value,}
-      console.log(signupData)
-    axios.post( "/api/vendors/",signupData)
+      // console.log(signupData)
+    axios.post( "/api/vendors/signup", signupData)
       .then(res => console.log(res))
       .catch(error => console.log("error", error));
       navigate('/home')
@@ -35,6 +36,13 @@ function VendorSignUp() {
               name="password"
               type="password"
               placeholder="password"
+              />
+      <label htmlFor="password2"> Confirm password</label>
+      <input
+              required
+              name="password2"
+              type="password2"
+              placeholder="Confirm password"
               />
       <button>submit</button>
       </form>

@@ -1,6 +1,7 @@
 const { json } = require("body-parser");
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
+module.exports = prisma
 
 // express init
 const express = require("express");

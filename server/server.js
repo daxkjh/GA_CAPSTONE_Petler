@@ -23,6 +23,10 @@ app.use("/api/vendors", vendorController);
 app.use("/api/user", require("./controllers/user_Controller"))
 app.use("api/userprofile", require("./controllers/userProfile_Controller"))
 
+
+
+
+
 // express init
 app.get("/api/", (req, res) => {
     res.send("welcome to Petler");

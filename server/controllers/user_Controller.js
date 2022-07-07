@@ -28,11 +28,12 @@ router.get("/:id", async (req, res) => {
 // ### CREATE User
 router.post("/", async (req, res) => {
   try {
-    const data = {
+    
+    const user = await prisma.user.create({data:{
       email: req.body.email,
       password: await bcrypt.hash(req.body.password, saltRounds),
-    };
-    const user = await prisma.user.create({data:data});
+    }});
+    const profile = await prisma.userProfile.create({data:{userId: user.id}})
     res
       .status(200)
       .json({ status: "success", msg: "User Created", data: user });

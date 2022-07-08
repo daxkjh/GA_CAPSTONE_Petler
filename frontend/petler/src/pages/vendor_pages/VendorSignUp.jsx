@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function VendorSignUp() {
+  const [emailTaken, setEmailTaken] = useState(false)
 
 
   const navigate = useNavigate();
@@ -13,11 +14,16 @@ function VendorSignUp() {
     const signupData = {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value,}
-      console.log(signupData)
+      // console.log(signupData)
     axios.post( "/api/vendors/signup", signupData)
-      .then(res => console.log(res))
+      .then(res => {
+        if (res.status === 200) {
+          navigate('/vendor/login')
+        }
+      })
       .catch(error => console.log("error", error));
-      navigate('/vendor/editprofile/:id')
+      setEmailTaken(true)
+      
     }
         
   return (
@@ -29,7 +35,10 @@ function VendorSignUp() {
               name="email"
               type="email"
               placeholder="email"
+              onChange={()=> setEmailTaken(false)}
             />
+            {emailTaken? <p>this email is taken</p> : null }
+            
      <label htmlFor="password">password</label>
       <input
               required

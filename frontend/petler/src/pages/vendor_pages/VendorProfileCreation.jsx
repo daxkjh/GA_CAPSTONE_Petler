@@ -18,8 +18,7 @@ function VendorProfileCreation() {
           profilePic: event.target.elements.profilePic.value,          
           start: event.target.elements.start.value,
           end: event.target.elements.end.value,
-        //   might need to change
-          description: event.target.elements.description.value,          
+          svcdsc: event.target.elements.description.value,          
           petType: event.target.elements.petType.value,
           petSize: event.target.elements.petSize.value,   
           area: event.target.elements.area.value,       
@@ -87,11 +86,11 @@ function VendorProfileCreation() {
             type="end" 
             placeholder="end time" />
         <br />
-        <label htmlFor="profilePic">about your service</label>
+        <label htmlFor="about your service">about your service</label>
         <input 
-            name="description" 
-            type="description" 
-            placeholder="description" />
+            name="svcdsc" 
+            type="svcdsc" 
+            placeholder="about your service" />
         <br />
         <label htmlFor="Accepted pet type">accepted pet type</label>
         <input 

@@ -21,9 +21,9 @@ router.post("/signup", async (req, res) => {
   try {
     const vendor = await prisma.vendor.create({ data: vendorData });
     const vendorId = await prisma.profile.create({ data: {vendorId: vendor.id} });
-    res.send({ status: "success", data: vendor })
+    res.status(200).json({ status: "success", data: vendor })
   } catch (error) {
-    res.send({ status: "failed", data: error })
+    res.status(400).json({ status: "failed", data: error })
   }  
 }); 
 

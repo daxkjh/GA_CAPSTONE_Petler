@@ -1,11 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-// import { useAtom } from "jotai";
-// import { userAtom } from '../../App';
+
 import { useState } from 'react';
 
-// export const userAtom = atom({})
+
 
 function User_Login() {
 //   const [user, setUser] = useAtom(userAtom);
@@ -23,6 +22,7 @@ const navigate = useNavigate();
       .then((response)=> 
       {const token = response.data.accessToken;
         localStorage.setItem("token", token);
+        console.log(token)
         // setAuthToken(token);
         if (token) {
           console.log(response)

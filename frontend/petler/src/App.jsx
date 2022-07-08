@@ -8,12 +8,12 @@ import VendorLogin from "./pages//vendor_pages/VendorLogin"
 import User_Login from './pages/user_pages/User_Login'
 import User_SignUp from './pages/user_pages/User_Signup'
 import User_Profile from "./pages/user_pages/User_Profile"
-import { atom } from 'jotai'
+import { atom, useAtom } from 'jotai'
 import VendorProfile from './pages/vendor_pages/VendorProfile'
 import VendorProfileCreation from './pages/vendor_pages/VendorProfileCreation'
 
 export const vendorAtom = atom({})
-
+const userAtom = atom('hello')
 
 function App() {
 

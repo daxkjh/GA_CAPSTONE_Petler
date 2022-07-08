@@ -9,7 +9,7 @@ export const validEmail = new RegExp(
 
 const User_SignUp = () => {
   // SET STATES
-  const [usersData, setUsersData] = useState({});
+  const [usersData, setUsersData] = useState([]);
   const [passwordCheck, setPasswordCheck] = useState(false);
   const [errorPasswordMessage, setErrorPasswordMessage] = useState("");
   const [uniqueEmail, setUniqueEmail] = useState(true);
@@ -36,14 +36,18 @@ const User_SignUp = () => {
 
   const emailCheck = (email) => {
     const arr = [];
+    // if (usersData.length>0) {
     for (const obj of usersData?.data) {
       if (obj.email === email) {
         arr.push(true);
       }
     }
     return setUniqueEmail(!arr.includes(true));
-  };
-
+  }
+//  else {
+//   return setUniqueEmail(true)
+// }
+  // }
   //Submite form to Create NEW USER
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +56,7 @@ const User_SignUp = () => {
         .post("/api/user/", submit)
         .then((response) => console.log(response))
         .then(() => alert("User Created Success!"))
-        .then(() => navigate("/owner/login"));
+        .then(() => navigate("/user/login"));
     } catch (error) {
       alert(`status: Error, ${error}`);
     }

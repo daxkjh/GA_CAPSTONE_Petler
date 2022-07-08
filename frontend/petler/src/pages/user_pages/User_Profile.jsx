@@ -3,12 +3,17 @@ import axios from "axios";
 
 const User_Profile = ()=>{
 
-    axios.get( "/api/vendors/signup", {header: {
+    axios.get( "/api/user/", {headers: { Authorization:localStorage.getItem('jwtToken') } })
         
-    }})
+ 
     .then(res => console.log(res))
     .catch(error => console.log("error", error));
     navigate('/user/login')
+
+    axios.post('http://yourendpoint',data,{ headers: { Authorization:localStorage.getItem('jwtToken') } })
+    .then(response=> console.log(response))
+    .catch(error => console.log(error));
+};
   
 
     return (

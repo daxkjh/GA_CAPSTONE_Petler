@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 function VendorLogin() {
   const [vendor, setVendor] = useAtom(vendorAtom);
-  const [invalid, setInvalid ] = useState(false)
+  const [invalid, setInvalid ] = useState(false);
 const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -17,15 +17,17 @@ const navigate = useNavigate();
     email: event.target.elements.email.value,
     password: event.target.elements.password.value } 
 
-    axios.post( "/api/vendors/login", loginData)
+    axios.post("/api/vendors/login", loginData)
       .then((response)=> 
       {const token = response.data.accessToken;
         localStorage.setItem("token", token);
         // setAuthToken(token);
         if (token) {
-          console.log(response)
-          setVendor(response.data);
-          navigate("/vendor/home");}
+          console.log("れす",response.data.data)
+          setVendor(response.data.data);
+          console.log("ここ", vendor)
+          // navigate("/vendor/home")
+          ;}
         else {
           setInvalid(true);
           console.log(response.data);}

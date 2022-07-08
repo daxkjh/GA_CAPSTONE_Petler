@@ -1,7 +1,22 @@
-import React from 'react'
+import { useEffect} from 'react'
 import jwtDecode from "jwt-decode";
+import axios from 'axios';
+import { useState } from 'react';
+
 
 function VendorProfile() {
+ const [vendorData, setVendorData] = useState({});
+
+  useEffect(()=> {
+    axios.get("/api/vendors/profile/:id")
+    .then(res => {
+      setVendorData(res)
+      console.log(vendorData)
+    })
+    .catch(error => console.log(error))
+  }, [])
+
+
   return (
     <div>
       This is a vendor profile page

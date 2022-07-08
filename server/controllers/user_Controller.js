@@ -16,20 +16,20 @@ router.get("/", async (req, res) => {
 });
 
 // ## READ All User Profile
-// router.get("/profile", async (req, res) => {
-//   try {
-//     const userProfiles = await prisma.userProfile.findMany({});
-//     res.send(userProfiles);
-//   } catch (error) {
-//     res.json({
-//       status: "failed",
-//       message: "Unable to fetch user profile data",
-//     });
-//   }
-// });
+router.get("/profile/", async (req, res) => {
+  try {
+    const userProfiles = await prisma.userProfile.findMany({});
+    res.send(userProfiles);
+  } catch (error) {
+    res.json({
+      status: "failed",
+      message: "Unable to fetch user profile data",
+    });
+  }
+});
 
 //Show User
-router.get("/profile/:id", async (req, res) => {
+router.get("/profile/:id/", async (req, res) => {
   try {
     const { id } = req.params;
    
@@ -37,7 +37,7 @@ router.get("/profile/:id", async (req, res) => {
     const user = await prisma.user.findUnique({ 
       where: { id : id } });
       console.log(user)
-    res.send({data: user});
+    res.status(200).send({data: user});
   } catch (error) {
     res.status(400).send(error);
   }

@@ -48,7 +48,7 @@ router.get("/profile/:id/", async (req, res) => {
     const user = await prisma.user.findUnique({ 
       where: { id : id } });
       console.log(user)
-    res.status(200).send({data: user});
+    res.status(200).send(user);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -73,6 +73,28 @@ router.post("/", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+//USER PROFILE
+
+router.put("/editprofile", async (req,res)=>{
+  try {
+    const user = await prisma.userProfile.update({
+      where :{ userId: "cd2f2f36-e9ac-4175-a44d-a84b6f575cb3" },
+      data: {
+        name: "test",
+        address: "test address",
+        description: "test description",
+        image: "someurl.com",
+      }
+    })
+  } catch (error) {
+    res.status(400).send(error)
+  }
+  
+
+
+})
+
 
 // ### USER LOGIN
 router.post("/login", async (req, res) => {

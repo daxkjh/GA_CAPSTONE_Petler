@@ -6,7 +6,7 @@ import Home from "./pages/Home"
 import Layout from "./pages/Layout"
 import VendorSignUp from "./pages/vendor_pages/VendorSignUp"
 import VendorLogin from "./pages//vendor_pages/VendorLogin"
-import User_Login from './pages/user_pages/User_Login'
+import User_Login, { loginAtom } from './pages/user_pages/User_Login'
 import User_SignUp from './pages/user_pages/User_Signup'
 import User_Profile from "./pages/user_pages/User_Profile"
 import { atom, useAtom, Provider } from 'jotai'
@@ -15,26 +15,28 @@ import VendorProfileCreation from './pages/vendor_pages/VendorProfileCreation'
 import User_Home from './pages/user_pages/User_Home'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
+// import { loginAtom } from './pages/user_pages/User_Login'
 
 export const vendorAtom = atom({})
-const userAtom = atom({})
+export const userAtom = atom({})
 
 function App() {
 const [user, setUser] = useAtom(userAtom)
+const [test, setTest] = useAtom(loginAtom)
 
 useEffect(()=>{
 if(localStorage.getItem("token")){
-    // console.log(user)
+    console.log("app-side user",user)
 axios
 .get(`/api/user/profile/${jwtDecode(localStorage.getItem("token")).id}`, {
   headers: { Authorization: localStorage.getItem("token") },
 })
 .then((res) => {
   console.log("RES",res)
-return setUser(res.data)})
+setUser(res.data)})
 .catch((error) => console.log("error", error));
 }
-},[])
+},[test])
 
 
 
@@ -67,4 +69,5 @@ return setUser(res.data)})
   )
 }
 
-export default ()=>(<Provider><App/></Provider>)
+// export default ()=>(<Provider><App/></Provider>)
+export default App

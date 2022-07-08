@@ -35,7 +35,7 @@ useEffect(()=>{
 if(token){
   const decodedToken = jwtDecode(token)
   const current_time = Date.now() / 1000
-  console.log("decoded TOKEN",decodedToken)
+  // console.log("decoded TOKEN",decodedToken)
   if (decodedToken.exp<current_time) {
       console.log("expired")
    alert("Your Token has expired")
@@ -49,13 +49,11 @@ axios
   headers: { Authorization: token },
 })
 .then((res) => {
-  console.log("RES",res)
+  // console.log("RES",res)
 setUser(res.data)})
 .catch((error) => console.log("error", error));
 }}
 },[test])
-
-
 
   return (
     <div className="App">

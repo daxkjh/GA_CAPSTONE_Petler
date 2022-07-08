@@ -1,14 +1,14 @@
 import { useState,useEffect } from "react"
+import axios from "axios";
 
-useatom
 const User_Profile = ()=>{
 
-    axios.post( "/api/vendors/signup", {header: {
-        authorization: token
+    axios.get( "/api/vendors/signup", {header: {
+        
     }})
     .then(res => console.log(res))
     .catch(error => console.log("error", error));
-    navigate('/vendor/home')
+    navigate('/user/login')
   
 
     return (

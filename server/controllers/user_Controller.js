@@ -26,10 +26,10 @@ router.get("/profile", async (req, res) => {
 });
 
 //Show User
-router.get("/:id", async (req, res) => {
+router.get("/profile/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await prisma.user.findUnique({ where: { id: id } });
+    const user = await prisma.user.findUnique({ where: { id: id }, });
     res.send(user)
   } catch (error) {
     res.status(400).send(error);
@@ -74,7 +74,7 @@ router.post("/login", async (req,res)=>{
   }
 })
 
-// ### UPDATE User
+// ### UPDATE User WIP
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   num = parseInt(id);
@@ -98,7 +98,7 @@ router.put("/:id", async (req, res) => {
     });
 });
 
-// ### DELETE User
+// ### DELETE User WIP
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;

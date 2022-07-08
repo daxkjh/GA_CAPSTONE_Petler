@@ -31,9 +31,9 @@ function App() {
 
 
 {/* #########      User routes         #############*/}
-            <Route path="/owner/profile" element={<User_Profile/>}/>
-            <Route path="/owner/signup" element={<User_SignUp/>}/>
-            <Route path="/owner/login" element={<User_Login/>}/>
+            <Route path="/user/profile" element={<User_Profile/>}/>
+            <Route path="/user/signup" element={<User_SignUp/>}/>
+            <Route path="/user/login" element={<User_Login/>}/>
             {/* <Route path="/owner/all"  */}
             
 

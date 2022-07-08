@@ -37,8 +37,8 @@ router.post("/login", async (req, res) => {
     res.send({status: "failed", data: "Username not found"})
   } else {
     if (bcrypt.compareSync(password, vendorLogin.password )) {
-      const accessToken = jwt.sign({email, role:"vendor"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
-      res.json({ accessToken: accessToken})
+      const accessToken = jwt.sign({vendorLogin, role:"vendor"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
+      res.json({ accessToken: accessToken, vendor: vendorLogin })
     } else {
       res.send({ status: "failed", data: "Incorrect email or Password" });
     }

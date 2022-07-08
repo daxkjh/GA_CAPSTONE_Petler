@@ -15,6 +15,17 @@ router.get("/", async (req, res) => {
   }
 });
 
+//####### USER SIGNING UP EMAIL CHECK #########
+router.get("/signingup", async (req, res) => {
+  try {
+    const users = await prisma.user.findMany({ select : {id: false,email: true, password:false}});
+    console.log(users)
+    res.status(200).send(users);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 // ## READ All User Profile
 router.get("/profile/", async (req, res) => {
   try {

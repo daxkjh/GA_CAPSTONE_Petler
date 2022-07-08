@@ -24,10 +24,10 @@ const User_SignUp = () => {
   // Draw all USERS DATA for email check
   useEffect(() => {
     axios
-      .get("/api/user/")
+      .get("/api/user/signingup")
       .then(function (response) {
         setUsersData(response);
-        console.log(response);
+        console.log("response",response);
       })
       .catch(function (error) {
         console.log(error);

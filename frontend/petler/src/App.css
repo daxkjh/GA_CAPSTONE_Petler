@@ -8,6 +8,8 @@
   min-height: 70px;
   margin: auto;
   padding: auto;
+  border-style: solid;
+  border-color: black;
 }
 
 .navBarText { 

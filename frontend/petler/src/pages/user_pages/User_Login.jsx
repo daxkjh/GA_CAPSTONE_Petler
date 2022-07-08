@@ -27,7 +27,7 @@ const navigate = useNavigate();
         if (token) {
           console.log(response)
         //  setUser(response.data);
-          navigate("/user/profile");}
+          navigate("/user/home");}
         else {
           setInvalid(true);
           console.log(response.data);}

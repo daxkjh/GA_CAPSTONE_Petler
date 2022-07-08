@@ -1,14 +1,18 @@
 import { useEffect} from 'react'
 import jwtDecode from "jwt-decode";
 import axios from 'axios';
-import { use } from '../../../../../server/controllers/user_Controller';
+import { useState } from 'react';
+
 
 function VendorProfile() {
-  // const []
+ const [vendorData, setVendorData] = useState({});
 
   useEffect(()=> {
     axios.get("/api/vendors/profile/:id")
-    .then(res => console.log(res))
+    .then(res => {
+      setVendorData(res)
+      console.log(vendorData)
+    })
     .catch(error => console.log(error))
   }, [])
 

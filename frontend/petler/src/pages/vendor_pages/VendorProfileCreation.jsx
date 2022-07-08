@@ -6,10 +6,10 @@ import jwtDecode from "jwt-decode";
 function VendorProfileCreation() {
 
     const navigate = useNavigate();
-    const access = jwtDecode(localStorage.getItem("token"))
-    const vendorId = access.vendorLogin.id
+    // const access = jwtDecode(localStorage.getItem("token"))
+    // const vendorId = access.vendorLogin.id
 
-    console.log("はよーはよー",vendorId)
+    // console.log("はよーはよー",vendorId)
 
     const handleSubmit = (event) => { 
         event.preventDefault();

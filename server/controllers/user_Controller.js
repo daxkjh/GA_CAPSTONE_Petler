@@ -54,7 +54,7 @@ router.post("/", async (req, res) => {
 });
 
 // ### USER LOGIN
-router.post("/login", async(req,res)=>{
+router.post("/login", async (req,res)=>{
   try {
     const user = await prisma.user.findUnique({where:{email:req.body.email}})
     if(!user){
@@ -64,8 +64,9 @@ router.post("/login", async(req,res)=>{
       if (!match){
         res.status(404).json({message:"Email or Password Incorrect"})
       } else {
-        const accessToken = jwt.sign({user, role:"user"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
-        res.json(accessToken)
+        const id = user.id
+        const accessToken = await jwt.sign({id, role:"user"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
+        res.json({accessToken:accessToken})
       }
     }
   } catch (error) {

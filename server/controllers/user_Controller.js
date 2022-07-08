@@ -15,21 +15,32 @@ router.get("/", async (req, res) => {
   }
 });
 
+//####### USER SIGNING UP EMAIL CHECK #########
+router.get("/signingup", async (req, res) => {
+  try {
+    const users = await prisma.user.findMany({ select : {id: false,email: true, password:false}});
+    console.log(users)
+    res.status(200).send(users);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 // ## READ All User Profile
-// router.get("/profile", async (req, res) => {
-//   try {
-//     const userProfiles = await prisma.userProfile.findMany({});
-//     res.send(userProfiles);
-//   } catch (error) {
-//     res.json({
-//       status: "failed",
-//       message: "Unable to fetch user profile data",
-//     });
-//   }
-// });
+router.get("/profile/", async (req, res) => {
+  try {
+    const userProfiles = await prisma.userProfile.findMany({});
+    res.send(userProfiles);
+  } catch (error) {
+    res.json({
+      status: "failed",
+      message: "Unable to fetch user profile data",
+    });
+  }
+});
 
 //Show User
-router.get("/profile/:id", async (req, res) => {
+router.get("/profile/:id/", async (req, res) => {
   try {
     const { id } = req.params;
    
@@ -37,7 +48,7 @@ router.get("/profile/:id", async (req, res) => {
     const user = await prisma.user.findUnique({ 
       where: { id : id } });
       console.log(user)
-    res.send({data: user});
+    res.status(200).send(user);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -62,6 +73,28 @@ router.post("/", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+//USER PROFILE
+
+router.put("/editprofile", async (req,res)=>{
+  try {
+    const user = await prisma.userProfile.update({
+      where :{ userId: "cd2f2f36-e9ac-4175-a44d-a84b6f575cb3" },
+      data: {
+        name: "test",
+        address: "test address",
+        description: "test description",
+        image: "someurl.com",
+      }
+    })
+  } catch (error) {
+    res.status(400).send(error)
+  }
+  
+
+
+})
+
 
 // ### USER LOGIN
 router.post("/login", async (req, res) => {

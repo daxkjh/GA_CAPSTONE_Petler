@@ -4,7 +4,8 @@ const router = express.Router();
 // const prisma = new PrismaClient();
 const prisma = require("../server");
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+const { PrismaClient } = require("@prisma/client");
 const saltRounds = 10
 
 //get for test
@@ -82,9 +83,17 @@ router.get("/profile/:id", async (req, res) => {
   try {
     const vendorProfile = await prisma.profile.findUnique({
       where: {
-        vendorId: id,
-      }
+          vendorId: id,
+      },
+      include: {
+        details: true, 
+        bookings: true,
+        reviews: true,
+        posts: true,
+        services: true,
+      },
     })
+    
     res.send(vendorProfile)
   } catch (error) {
     res.send({status:401, error:error })
@@ -94,16 +103,36 @@ router.get("/profile/:id", async (req, res) => {
 // vendor profile update
 router.put("/profile/:id", async (req, res) => {
   const { id } = req.params;
-  const profile  = req.body;
-  console.log(id)
+  const profile  = {
+    name: req.body.name,
+    address: req.body.address,
+    phone: req.body.phone,
+    intro: req.body.intro,          
+    type: req.body.type,
+    profilePic: req.body.profilePic,          
+    start: req.body.start,
+    end: req.body.end,
+    details: { 
+      create: {
+      svcdsc: req.body.svcdsc,          
+      petType: req.body.petType,
+      petSize: {create: 
+        {weight: req.body.petSize
+        }},   
+      area: {create: {
+        north: true
+      }}
+    }}
+  }
+  console.log(profile)
   try {
     const vendorProflie = await prisma.profile.update({ 
       where: { vendorId: id },
       data: profile
   })
-    res.send(vendorProflie)
+    res.status(200).json({data: vendorProflie})
   } catch (error) {
-     res.send({ status: "failed", data: error })
+     res.status(400).json({ status: "failed", data: error })
   }  
 });
 

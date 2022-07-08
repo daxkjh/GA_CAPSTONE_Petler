@@ -6,30 +6,36 @@ import jwtDecode from "jwt-decode";
 function VendorProfileCreation() {
 
     const navigate = useNavigate();
+    const access = jwtDecode(localStorage.getItem("token"))
+    const vendorId = access.vendorLogin.id
+
+    console.log("はよーはよー",vendorId)
 
     const handleSubmit = (event) => { 
-        console.log("Submit")
         event.preventDefault();
         const profileData = {
           name: event.target.elements.name.value,
           address: event.target.elements.address.value,
           phone: event.target.elements.phone.value,
-          description: event.target.elements.description.value,          
+          intro: event.target.elements.intro.value,          
           type: event.target.elements.type.value,
           profilePic: event.target.elements.profilePic.value,          
           start: event.target.elements.start.value,
           end: event.target.elements.end.value,
-        //   might need to change
-          description: event.target.elements.description.value,          
+          svcdsc: event.target.elements.svcdsc.value,          
           petType: event.target.elements.petType.value,
           petSize: event.target.elements.petSize.value,   
           area: event.target.elements.area.value,       
         }
           console.log(profileData)
-        axios.post( "/api/vendors/profile/:id", profileData)
-          .then(res => console.log(res))
+        axios.put( `/api/vendors/profile/${vendorId}`, profileData)
+          .then(res => {
+            if (res.status === 200){
+              navigate('/vendor/profile/:id')
+            }})
+          
           .catch(error => console.log("error", error));
-          navigate('/vendor/home')
+           
         }
 
   return (
@@ -55,11 +61,11 @@ function VendorProfileCreation() {
             type="phone" 
             placeholder="phone" />
         <br />
-        <label htmlFor="description">description</label>
+        <label htmlFor="intro">introduce yourself</label>
         <input 
-            name="description" 
-            type="description" 
-            placeholder="description" />
+            name="intro" 
+            type="intro" 
+            placeholder="intro" />
         <br />
         <label htmlFor="type of service">type of service</label>
         <input 
@@ -88,11 +94,11 @@ function VendorProfileCreation() {
             type="end" 
             placeholder="end time" />
         <br />
-        <label htmlFor="profilePic">about your service</label>
+        <label htmlFor="about your service">about your service</label>
         <input 
-            name="description" 
-            type="description" 
-            placeholder="description" />
+            name="svcdsc" 
+            type="svcdsc" 
+            placeholder="about your service" />
         <br />
         <label htmlFor="Accepted pet type">accepted pet type</label>
         <input 

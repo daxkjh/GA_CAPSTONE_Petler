@@ -88,7 +88,7 @@ model Reviews {
 }
 
 model User {
-  id       Int          @id @default(autoincrement())
+  id       String       @id @default(uuid())
   email    String       @unique
   password String
   profile  UserProfile?
@@ -104,7 +104,7 @@ model UserProfile {
   image       String?
   booking     Bookings[]
   reviews     Reviews[]
-  userId      Int        @unique
+  userId      String        @unique
 }
 
 model Pets {

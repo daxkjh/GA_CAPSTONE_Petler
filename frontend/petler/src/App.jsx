@@ -9,6 +9,7 @@ import User_Login from './pages/user_pages/User_Login'
 import User_SignUp from './pages/user_pages/User_Signup'
 import User_Profile from "./pages/user_pages/User_Profile"
 import { atom } from 'jotai'
+import VendorProfile from './pages/vendor_pages/VendorProfile'
 
 export const vendorAtom = atom({})
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/vendor/home" element={<Home />} />
             <Route path="/vendor/signup" element={<VendorSignUp />} />
             <Route path="/vendor/login" element={<VendorLogin />} />
+            <Route path="/vendor/profile/:id" element={<VendorProfile />} />
 
 
 

@@ -66,6 +66,31 @@ const isAuth = (req, res, next) => {
   }
 };
 
+// vendor profile show all for testing
+router.get("/profile", async (req, res) => {
+  try {
+    const allProfile = await prisma.profile.findMany()
+    res.send(allProfile)
+  } catch (error) {
+    res.send({status:401, error:error })
+  }
+})
+
+// vendor profile show 
+router.get("/profile/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const vendorProfile = await prisma.profile.findUnique({
+      where: {
+        vendorId: id,
+      }
+    })
+    res.send(vendorProfile)
+  } catch (error) {
+    res.send({status:401, error:error })
+  }
+})
+
 // vendor profile update
 router.put("/profile/:id", async (req, res) => {
   const { id } = req.params;

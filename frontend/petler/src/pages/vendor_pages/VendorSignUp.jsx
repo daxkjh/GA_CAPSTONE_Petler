@@ -17,7 +17,7 @@ function VendorSignUp() {
     axios.post( "/api/vendors/signup", signupData)
       .then(res => console.log(res))
       .catch(error => console.log("error", error));
-      navigate('/vendor/home')
+      navigate('/vendor/editprofile/:id')
     }
         
   return (

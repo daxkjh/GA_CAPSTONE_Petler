@@ -14,37 +14,37 @@ model Vendor {
   id       String   @id @default(uuid())
   email    String   @unique
   password String
-  profile  Profile? 
+  profile  Profile?
 
 }
 
 model Profile {
-  id          Int        @id @default(autoincrement())
-  name        String?
-  address     String?
-  phone       String?
-  description String?
-  type        String?
-  profilePic  String     @default("https://i.imgur.com/aeW3aDj.png%22")
-  start       String?
-  end         String?
-  details     Details[]
-  bookings    Bookings[]
-  reviews     Reviews[]
-  posts       Posts[]
-  services    Services[]
-  vendor      Vendor     @relation(fields: [vendorId], references: [id])
-  vendorId    String     @unique
+  id         Int        @id @default(autoincrement())
+  name       String?
+  address    String?
+  phone      String?
+  intro      String?
+  type       String?
+  profilePic String     @default("https://i.imgur.com/aeW3aDj.png%22")
+  start      String?
+  end        String?
+  details    Details[]
+  bookings   Bookings[]
+  reviews    Reviews[]
+  posts      Posts[]
+  services   Services[]
+  vendor     Vendor     @relation(fields: [vendorId], references: [id])
+  vendorId   String     @unique
 }
 
 model Details {
-  id          Int       @id @default(autoincrement())
-  profile     Profile   @relation(fields: [profileId], references: [id])
-  description String?
-  petType     String?
-  petSize     PetSize[]
-  profileId   Int
-  area        Area[]
+  id        Int       @id @default(autoincrement())
+  profile   Profile   @relation(fields: [profileId], references: [id])
+  svcdsc    String?
+  petType   String?
+  petSize   PetSize[]
+  profileId Int
+  area      Area[]
   // areaId      Int
   // detailsOnArea DetailsOnArea[]
 }
@@ -147,4 +147,3 @@ model Services {
   bookings  Bookings[]
   profileId Int
 }
-

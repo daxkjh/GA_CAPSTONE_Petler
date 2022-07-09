@@ -61,7 +61,7 @@ axios
            
         <Routes>
           <Route path="/" element={<Layout />} >
-            <Route path="/vendor/home" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/vendor/signup" element={<VendorSignUp />} />
             <Route path="/vendor/login" element={<VendorLogin />} />
             <Route path="/vendor/profile/:id" element={<VendorProfile />} />
@@ -73,7 +73,6 @@ axios
             <Route path="/user/profile" element={<User_Profile/>}/>
             <Route path="/user/signup" element={<User_SignUp/>}/>
             <Route path="/user/login" element={<User_Login/>}/>
-            <Route path="/user/home" element={<User_Home/>}/>
             {/* <Route path="/owner/all"  */}
             
 {/**#########       Guest Home Page         ############# */}

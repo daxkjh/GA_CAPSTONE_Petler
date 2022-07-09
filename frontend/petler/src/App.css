@@ -34,3 +34,11 @@ textarea {
   resize: vertical;
   min-height: 2rem;
 }
+.pwchange:hover {
+  text-decoration: underline;
+}
+
+.managebiz {
+  border: solid;
+}
+

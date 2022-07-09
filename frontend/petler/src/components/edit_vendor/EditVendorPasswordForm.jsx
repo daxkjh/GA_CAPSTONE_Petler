@@ -4,7 +4,7 @@ import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
 
 
-const EditVendorPasswordForm = ()=>{
+const EditVendorPasswordForm = ( {setPWChange} )=>{
     const [cfmpw, setCFMPW] = useState(true)
     const [user, setUser] = useAtom(userAtom)
 
@@ -37,7 +37,7 @@ const EditVendorPasswordForm = ()=>{
     return (
         <div className="passwordchangeformcontainer">
             <form onSubmit={handleSubmit}>
-                <fieldset>
+                {/* <fieldset> */}
                     <legend>Change Password</legend>
                     {/* <label htmlFor="oldpw">Old Password</label>
                     <input type="text" name="oldpw" id="oldpw" placeholder="enter old password"/><br></br> */}
@@ -46,8 +46,9 @@ const EditVendorPasswordForm = ()=>{
                     <label htmlFor="cfmpw">Confirm New Password</label>
                     <input type="text" name="cfmpw" id="cfmpw" placeholder="re-enter new password"/><span>{(cfmpw)? null : "Password does not match"}</span><br></br>
                     <button>Submit</button>
-                </fieldset>
+                {/* </fieldset> */}
             </form>
+            <button onClick={() => setPWChange(false)}>cancel</button>
         </div>
     )
 }

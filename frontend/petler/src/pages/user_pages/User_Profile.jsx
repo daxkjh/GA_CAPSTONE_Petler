@@ -8,7 +8,7 @@ import { userAtom } from "../../App";
 
 const User_Profile = () => {
   const [user,setUser] = useAtom(userAtom)
-console.log("USER", user)
+  console.log("USER", user)
 
   return (
     <div>

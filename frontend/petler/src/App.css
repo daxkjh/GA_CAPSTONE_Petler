@@ -30,3 +30,7 @@
   border: solid;
 }
 
+textarea {
+  resize: vertical;
+  min-height: 2rem;
+}

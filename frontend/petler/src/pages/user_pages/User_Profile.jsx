@@ -3,6 +3,8 @@ import axios from "axios";
 import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
 import jwtDecode from "jwt-decode";
+import EditUserPasswordForm from "../../components/edit_user/EditUserPasswordForm";
+import EditUserProfileForm from "../../components/edit_user/EditUserProfileForm";
 
 
 
@@ -17,6 +19,8 @@ const User_Profile = () => {
     <div>
          <h1>Welcome Back! </h1>
          <h2>{user.email}</h2>
+         <EditUserPasswordForm/>
+         <EditUserProfileForm/>
     </div>
   );
 };

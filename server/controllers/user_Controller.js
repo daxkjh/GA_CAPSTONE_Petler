@@ -83,26 +83,43 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+
 //USER PROFILE
 
-router.put("/editprofile", async (req,res)=>{
+router.put("/editprofile/:id", async (req,res)=>{
+  const {id} = req.params
   try {
     const user = await prisma.userProfile.update({
-      where :{ userId: "cd2f2f36-e9ac-4175-a44d-a84b6f575cb3" },
+      where :{ userId: id },
       data: {
-        name: "test",
-        address: "test address",
-        description: "test description",
-        image: "someurl.com",
+        name: req.body.name,
+        address: req.body.address,
+        description: req.body.description,
+        image: req.body.image,
       }
     })
+    res.status(200).json({status:"Success", msg:"Profile Updated!"})
   } catch (error) {
-    res.status(400).send(error)
+    res.status(400).json({status:"Failed", msg:"Updated Failed!", error: error})
   }
   
-
-
 })
+
+
+// ### UPDATE User Password
+router.put("/:id", async (req,res)=>{
+  const {id} = req.params
+  const newPassword = await bcrypt.hash(req.body.password,saltRounds)
+  try {
+   const vendor = await prisma.user.update({
+     where:{ id: id },
+    data:{ password: newPassword}})
+   res.status(200).json({message:"Password Updated"})
+  } catch (error) {
+   res.status(400).json({status:"error", message : error})
+  }
+ })
 
 
 // ### USER LOGIN
@@ -134,28 +151,28 @@ router.post("/login", async (req, res) => {
 });
 
 // ### UPDATE User WIP
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  num = parseInt(id);
-  const data = req.body;
-  console.log(num);
-  async function main() {
-    const updateUser = await prisma.user.update({
-      where: {
-        id: num,
-      },
-      data,
-    });
-    console.log(vendor);
-  }
-  main()
-    .catch((e) => {
-      throw e;
-    })
-    .finally(async () => {
-      await prisma.$disconnect();
-    });
-});
+// router.put("/:id", async (req, res) => {
+//   const { id } = req.params;
+//   num = parseInt(id);
+//   const data = req.body;
+//   console.log(num);
+//   async function main() {
+//     const updateUser = await prisma.user.update({
+//       where: {
+//         id: num,
+//       },
+//       data,
+//     });
+//     console.log(vendor);
+//   }
+//   main()
+//     .catch((e) => {
+//       throw e;
+//     })
+//     .finally(async () => {
+//       await prisma.$disconnect();
+//     });
+// });
 
 // ### DELETE User WIP
 

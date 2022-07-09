@@ -33,10 +33,11 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body
   const vendorLogin = await prisma.vendor.findUnique({ where: { email: email } });
   // console.log(vendorLogin)
-   if (vendorLogin === null ) {
+   if (!vendorLogin) {
     res.send({status: "failed", data: "Username not found"})
   } else {
-    if (bcrypt.compareSync(password, vendorLogin.password )) {
+    const match = await bcrypt.compare(password, vendorLogin.password)
+    if (match) {
       const accessToken = jwt.sign({vendorLogin, role:"vendor"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
       res.status(200).json({ accessToken: accessToken, data: vendorLogin })
     } else {

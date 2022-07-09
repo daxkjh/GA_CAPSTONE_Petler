@@ -49,7 +49,6 @@ model Details {
   // areaId    Int
 }
 
-
 model PetSize {
   id        Int     @id @default(autoincrement())
   xs        Boolean @default(false)

@@ -26,6 +26,9 @@ router.post("/signup", async (req, res) => {
     const vendorProfile = await prisma.profile.create({
       data: { vendorId: vendor.id },
     });
+    const vendorProfileDetails= await prisma.details.create({data: {profileId: vendorProfile.id}});
+    const vendorProfileDetailsPetSize=await prisma.petSize.create({data:{detailsId:vendorProfileDetails.id}})
+    const vendorProfileDetailsArea = await prisma.area.create({data:{detailsId:vendorProfileDetails.id}})
     res.status(200).json({ status: "success", data: vendor });
   } catch (error) {
     res.status(400).json({ status: "failed", data: error });
@@ -197,14 +200,14 @@ router.put("/profile/:id", async (req, res) => {
         end: req.body.end,
         details: {
           update: {
-            where: { id:1 },
-            data: {
+        //     // where: { id:2 },
+        //     data: {
               svcdsc: req.body.svcdsc,
               petType: req.body.petType,
               petSize: {
                 update: {
-                  where: { id: 1 },
-                  data: {
+              // //     where: { id: 1 },
+              // //     data: {
                     xs: xs,
                     s: s,
                     m: m,
@@ -212,11 +215,11 @@ router.put("/profile/:id", async (req, res) => {
                     xl: xl,
                   },
                 },
-              },
+              
               area: {
                 update: {
-                  where: { id:1 },
-                  data: {
+        // //       //     where: { id:1 },
+        // //       //     data: {
                     north: req.body.north,
                     south: req.body.south,
                     east: req.body.east,
@@ -224,12 +227,12 @@ router.put("/profile/:id", async (req, res) => {
                   },
                 },
               },
-            },
-          },
+        //     },
+      //     },
         },
       },
     });
-    res.status(200).json({ status: "success", data: vendor });
+    res.status(200).json({ status: "success", data: "ok" });
   } catch (error) {
     res.status(400).json({ status: "failed", data: error });
   }

@@ -24,7 +24,7 @@ const navigate = useNavigate();
         // setAuthToken(token);
         if (token) {
           setVendor(response.data.data);
-          // navigate("/vendor/home")
+          navigate("/vendor/home")
           ;}
         else {
           setInvalid(true);

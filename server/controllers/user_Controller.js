@@ -112,11 +112,12 @@ router.post("/login", async (req, res) => {
       where: { email: req.body.email },
     });
     if (!user) {
-      res.status(404).json({ message: "Email or Password Incorrect" });
+      res.status(404).json({ message: "No User Found" });
     } else {
-      const match = bcrypt.compare(user.password, req.body.password);
+      const match = await bcrypt.compare(req.body.password, user.password);
+      console.log(match)
       if (!match) {
-        res.status(404).json({ message: "Email or Password Incorrect" });
+        res.status(404).json({ message: "Password Incorrect" });
       } else {
         const id = user.id;
         const accessToken = await jwt.sign(

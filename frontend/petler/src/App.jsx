@@ -6,7 +6,7 @@ import Home from "./pages/Home"
 import Layout from "./pages/Layout"
 import VendorSignUp from "./pages/vendor_pages/VendorSignUp"
 import VendorLogin from "./pages//vendor_pages/VendorLogin"
-import User_Login, { loginAtom } from './pages/user_pages/User_Login'
+import User_Login, { refreshAtom } from './pages/user_pages/User_Login'
 import User_SignUp from './pages/user_pages/User_Signup'
 import User_Profile from "./pages/user_pages/User_Profile"
 import { atom, useAtom, Provider } from 'jotai'
@@ -28,7 +28,7 @@ export const userAtom = atom({})
 function App() {
   const navigate = useNavigate()
 const [user, setUser] = useAtom(userAtom)
-const [test, setTest] = useAtom(loginAtom)
+const [refresh, setRefresh] = useAtom(refreshAtom)
 
 useEffect(()=>{
   const token = localStorage.getItem("token")
@@ -52,7 +52,7 @@ axios
 setUser(res.data)})
 .catch((error) => console.log("error", error));
 }}
-},[test])
+},[refresh])
 
   return (
     <div className="App">

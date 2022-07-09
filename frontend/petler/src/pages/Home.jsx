@@ -1,9 +1,9 @@
 import React from 'react'
 import { useAtom } from 'jotai';
-import { vendorAtom } from '../App.jsx';
+// import { vendorAtom } from '../App.jsx';
 
 function Home() {
-  const [vendor, setVendor] = useAtom(vendorAtom);
+  // const [vendor, setVendor] = useAtom(vendorAtom);
   console.log("home", vendor)
   
   return (

@@ -2,16 +2,14 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { atom,useAtom } from 'jotai';
-
 import { useState } from 'react';
-
-export const loginAtom = atom(false)
+export const refreshAtom = atom(false)
 
 
 function User_Login() {
 //   const [user, setUser] = useAtom(userAtom);
   const [invalid, setInvalid ] = useState(false)
-  const [test, setTest] = useAtom(loginAtom)
+  const [refresh, setRefresh] = useAtom(refreshAtom)
   
 const navigate = useNavigate();
 
@@ -30,7 +28,7 @@ const navigate = useNavigate();
         if (token) {
           console.log(response)
         //  setUser(response.data);
-        setTest(!test);
+        setRefresh(!refresh);
           navigate("/user/home");}
         else {
           setInvalid(true);

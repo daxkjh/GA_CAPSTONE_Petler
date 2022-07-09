@@ -15,7 +15,7 @@ function VendorSignUp() {
       email: event.target.elements.email.value,
       password: event.target.elements.password.value,}
       // console.log(signupData)
-    axios.post( "/api/vendors/signup", signupData)
+    axios.post( "/api/vendor/signup", signupData)
       .then(res => {
         if (res.status === 200) {
           navigate('/vendor/login')

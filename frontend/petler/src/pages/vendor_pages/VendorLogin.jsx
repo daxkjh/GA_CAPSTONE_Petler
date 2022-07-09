@@ -17,7 +17,7 @@ const navigate = useNavigate();
     email: event.target.elements.email.value,
     password: event.target.elements.password.value } 
 
-    axios.post("/api/vendors/login", loginData)
+    axios.post("/api/vendor/login", loginData)
       .then((response) => {
         {const token = response.data.accessToken;
         localStorage.setItem("token", token);

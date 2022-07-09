@@ -1,7 +1,20 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { atom, useAtom, Provider } from "jotai";
+import { userAtom } from '../App';
+import jwtDecode from 'jwt-decode';
 
 function Navbar() {
+  const [user,setUser] = useAtom(userAtom)
+
+  const handleLogout =()=>{
+    localStorage.clear()
+    window.location.reload()
+    alert("Logging Out")
+  }
+
+  // const decodedToken = jwtDecode(localStorage.getItem("token"))
+
   return (
     <div className='navBar'>
      <span><h1 style={{display:"inline-block"}}>DEV Bar</h1></span> 
@@ -14,6 +27,9 @@ function Navbar() {
       <Link className='navBarText' to="/user/signup">u-Signup</Link>
       <Link className='navBarText' to="/user/login">u-Login</Link>
       <Link className='navBarText' to="/user/profile/">u-Profile</Link>
+      <button onClick={handleLogout}>LogOut</button>
+      <span style={{fontWeight:"bold"}}>{(localStorage.getItem("token"))?`${jwtDecode(localStorage.getItem("token")).role}`:"No Login"}</span>
+      
     </div>
   )
 }

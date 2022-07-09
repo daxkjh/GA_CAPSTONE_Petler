@@ -25,7 +25,7 @@ function VendorLogin() {
         {const token = response.data.accessToken;
         localStorage.setItem("token", token);
         if (token) {
-          navigate("/vendor/home")
+          navigate("/home")
           setRefresh(prev=> !prev);
           ;}
         else {

@@ -106,7 +106,10 @@ router.get("/profile/:id", async (req, res) => {
           vendorId: id,
       },
       include: {
-        details: true, 
+        details: { 
+          include: {
+          petSize: true,
+          area: true }},
         bookings: true,
         reviews: true,
         posts: true,
@@ -123,6 +126,38 @@ router.get("/profile/:id", async (req, res) => {
 // vendor profile update
 router.put("/profile/:id", async (req, res) => {
   const { id } = req.params;
+
+  let xs = "";
+  let s = "";
+  let m = "";
+  let l = "";
+  let xl = "";
+
+  if (req.body.xs === "on") {
+    xs = true
+  } else {
+    xs = false
+  };
+  if (req.body.xs === "on") {
+    s = true
+  } else {
+    s = false
+  }; 
+  if (req.body.xs === "on") {
+    m = true
+  } else {
+    m = false
+  }; 
+  if (req.body.xs === "on") {
+    l = true
+  } else {
+    l = false
+  };
+  if (req.body.xs === "on") {
+    xl = true
+  } else {
+    xl = false
+  };
   const profile  = {
     name: req.body.name,
     address: req.body.address,
@@ -133,24 +168,30 @@ router.put("/profile/:id", async (req, res) => {
     start: req.body.start,
     end: req.body.end,
     details: { 
-      create: {
-      svcdsc: req.body.svcdsc,          
-      petType: req.body.petType,
-      petSize: {create: 
-        {xs: true,
-          s: true,
-          m: true,
-          l: true,
-          xl: true
-        }},   
-      area: {create: {
-        north: true,
-        south: true,
-        east: true,
-        west: true
-      }}
-    }}
-  }
+          update : {where: profileId: 20 }, {data: {
+            svcdsc: req.body.svcdsc,          
+            petType: req.body.petType,}
+          //   petSize: { create: {
+          //     xs: xs,
+          //     s: s,
+          //     m: m,
+          //     l: l,
+          //     xl: xl
+          // }},   
+          //   petSize: { create: {
+          //     xs: xs,
+          //     s: s,
+          //     m: m,
+          //     l: l,
+          //     xl: xl
+          // }}, 
+          // area: { update: {where:{id: 7} , data: {
+      //   north: true,
+      //   south: true,
+      //   east: true,
+      //   west: true
+      // }}}
+        }}}
   console.log(profile)
   try {
     const vendorProflie = await prisma.profile.update({ 

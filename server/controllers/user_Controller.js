@@ -129,7 +129,7 @@ router.post("/login", async (req, res) => {
       }
     }
   } catch (error) {
-    res.send(error);
+    res.status(400).json({status: "error"});
   }
 });
 

@@ -30,19 +30,25 @@ router.post("/signup", async (req, res) => {
 
 // login
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body
-  const vendorLogin = await prisma.vendor.findUnique({ where: { email: email } });
-  // console.log(vendorLogin)
-   if (!vendorLogin) {
-    res.send({status: "failed", data: "Username not found"})
-  } else {
-    const match = await bcrypt.compare(password, vendorLogin.password)
-    if (match) {
-      const accessToken = jwt.sign({vendorLogin, role:"vendor"}, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
-      res.status(200).json({ accessToken: accessToken, data: vendorLogin })
+  try {
+    const { email, password } = req.body
+    const vendorLogin = await prisma.vendor.findUnique({ where: { email: email } });
+    // console.log(vendorLogin)
+     if (!vendorLogin) {
+      res.status(400).json({status: "failed", data: "Username not found"})
     } else {
-      res.send({ status: "failed", data: "Incorrect email or Password" });
+      const match = await bcrypt.compare(password, vendorLogin.password)
+      if (match) {
+        const id = vendorLogin.id
+        const accessToken = jwt.sign({id, role:"vendor"}, 
+        process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
+        res.status(200).json({ accessToken: accessToken })
+      } else {
+        res.status(400).json({ status: "failed", data: "Incorrect email or Password" });
+      }
     }
+  } catch (error) {
+    res.status(400).json({status: "error"});
   }
  })
 

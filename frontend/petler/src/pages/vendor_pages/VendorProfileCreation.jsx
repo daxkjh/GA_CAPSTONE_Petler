@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import jwtDecode from "jwt-decode";
 
@@ -10,7 +10,8 @@ function VendorProfileCreation() {
     // const vendorId = access.vendorLogin.id
 
     // console.log("はよーはよー",vendorId)
-
+    const id = useParams();
+    console.log(id)
     const handleSubmit = (event) => { 
         event.preventDefault();
         const profileData = {
@@ -28,10 +29,11 @@ function VendorProfileCreation() {
           area: event.target.elements.area.value,       
         }
           console.log(profileData)
-        axios.put( `/api/vendor/profile/${vendorId}`, profileData)
+        axios.put( `/api/vendor/profile/${id.id}`, profileData)
           .then(res => {
             if (res.status === 200){
-              navigate('/vendor/profile/:id')
+              console.log(res.data)
+               navigate(`/vendor/profile/${id.id}`)
             }})
           
           .catch(error => console.log("error", error));
@@ -106,18 +108,49 @@ function VendorProfileCreation() {
             type="petType" 
             placeholder="petType" />
         <br />
-        <label htmlFor="Accepted pet size">accepted pet size</label>
+        <div><p>accepted pet size</p>
+        <label htmlFor="Accepted pet size">1-5kg</label>
         <input 
+        type="checkbox" 
+            name="petSize"  />
+        <label htmlFor="Accepted pet size">5-10kg</label>
+        <input 
+        type="checkbox" 
             name="petSize" 
-            type="petSize" 
             placeholder="petSize" />
-        <br />
-        <label htmlFor="operation area">operation area</label>
+        <label htmlFor="Accepted pet size">10-20kg</label>
         <input 
-            name="area" 
-            type="area" 
-            placeholder="area" />
+        type="checkbox" 
+            name="petSize" />
+        <label htmlFor="Accepted pet size">20-40kg</label>
+        <input 
+        type="checkbox" 
+            name="petSize" />
+        <label htmlFor="Accepted pet size">over 40kg</label>
+        <input 
+        type="checkbox" 
+            name="petSize" />
+        <br />
+        </div>
+        <div><p>operation area</p>
+        <label htmlFor="Accepted pet size">north</label>
+        <input 
+        type="checkbox" 
+            name="area" />
+        <label htmlFor="Accepted pet size">south</label>
+        <input 
+        type="checkbox" 
+            name="area" />
+        <label htmlFor="Accepted pet size">west</label>
+        <input 
+        type="checkbox" 
+            name="area"  />
+        <label htmlFor="Accepted pet size">east</label>
+        <input 
+        type="checkbox" 
+            name="area"  />
        <br />
+       </div>
         <button>submit</button>
       </form>
     </div>

@@ -30,3 +30,11 @@
   border: solid;
 }
 
+.pwchange:hover {
+  text-decoration: underline;
+}
+
+.managebiz {
+  border: solid;
+}
+

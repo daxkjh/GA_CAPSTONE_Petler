@@ -10,6 +10,7 @@ function VendorProfile() {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom)
   const [vendor, setVendor] = useState();
+  const [PWChange, setPWChange] = useState(false);
 
   const id = useParams();
 
@@ -34,13 +35,17 @@ function VendorProfile() {
         <p> service type: {user.type}</p>
         <p> {vendor?.data.address} </p>
         <p> {vendor?.data.phone} </p>
+        <p className="pwchange" onClick={()=> setPWChange(true)}> change password</p>
       </div>
       <div className="managebiz">
         <h3>manage business information</h3>
         <p>operation hours</p>
         <p>{vendor?.data.start}~{vendor?.data.end}</p>
+        <p>pet type: {vendor?.data.petType}</p>
+        <p></p>
       </div>
-      <EditVendorPasswordForm/>
+      {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
+      
     </div>
   )
 }

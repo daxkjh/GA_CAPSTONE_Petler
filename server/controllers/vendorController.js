@@ -21,7 +21,7 @@ router.post("/signup", async (req, res) => {
     console.log(vendorData)
   try {
     const vendor = await prisma.vendor.create({ data: vendorData });
-    const vendorId = await prisma.profile.create({ data: {vendorId: vendor.id} });
+    const vendorProfile = await prisma.profile.create({ data: {vendorId: vendor.id} });
     res.status(200).json({ status: "success", data: vendor })
   } catch (error) {
     res.status(400).json({ status: "failed", data: error })
@@ -137,10 +137,17 @@ router.put("/profile/:id", async (req, res) => {
       svcdsc: req.body.svcdsc,          
       petType: req.body.petType,
       petSize: {create: 
-        {weight: req.body.petSize
+        {xs: true,
+          s: true,
+          m: true,
+          l: true,
+          xl: true
         }},   
       area: {create: {
-        north: true
+        north: true,
+        south: true,
+        east: true,
+        west: true
       }}
     }}
   }
@@ -150,17 +157,15 @@ router.put("/profile/:id", async (req, res) => {
       where: { vendorId: id },
       data: profile
   })
-    res.status(200).json({data: vendorProflie})
+    res.status(200).json({status: "success", data: vendorProflie})
   } catch (error) {
      res.status(400).json({ status: "failed", data: error })
   }  
 });
 
 
-
-
 // vendor acount delete
-router.delete("/:id", async (req, res) => {
+router.delete("/profile/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const deleteProfile = await prisma.profile.delete({
@@ -173,7 +178,7 @@ router.delete("/:id", async (req, res) => {
         id: id,
       }
     })
-    res.send(deleteVendor);
+    res.status(200).json({status: "user deleted ",data: deleteVendor});
   } catch (error) {
     res.send({status: "failed ", data: "something went wrong"})
   }

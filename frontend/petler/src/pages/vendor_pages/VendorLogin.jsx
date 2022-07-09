@@ -2,13 +2,15 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { useAtom } from "jotai";
-import { vendorAtom } from '../../App';
+import { userAtom } from '../../App';
+import { loginAtom } from '../user_pages/User_Login';
 import { useState } from 'react';
 
 
 function VendorLogin() {
-  const [vendor, setVendor] = useAtom(vendorAtom);
   const [invalid, setInvalid ] = useState(false);
+  // const [user, setUser] = useAtom(userAtom);
+  const [test, setTest] = useAtom(loginAtom);
 const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -17,13 +19,12 @@ const navigate = useNavigate();
     email: event.target.elements.email.value,
     password: event.target.elements.password.value } 
 
-    axios.post("/api/vendors/login", loginData)
+    axios.post("/api/vendor/login", loginData)
       .then((response) => {
         {const token = response.data.accessToken;
         localStorage.setItem("token", token);
-        // setAuthToken(token);
         if (token) {
-          setVendor(response.data.data);
+          setTest(!test);
            navigate("/vendor/home")
           ;}
         else {

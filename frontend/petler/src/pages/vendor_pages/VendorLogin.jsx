@@ -2,12 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { useAtom } from "jotai";
-import { vendorAtom } from '../../App';
+import { userAtom } from '../../App';
 import { useState } from 'react';
 
 
 function VendorLogin() {
-  const [vendor, setVendor] = useAtom(vendorAtom);
+  const [user, setUser] = useAtom(userAtom);
   const [invalid, setInvalid ] = useState(false);
 const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const navigate = useNavigate();
         localStorage.setItem("token", token);
         // setAuthToken(token);
         if (token) {
-          setVendor(response.data.data);
+          setUser(response.data.data);
           navigate("/vendor/home")
           ;}
         else {

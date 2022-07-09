@@ -11,6 +11,8 @@ const User_Profile = () => {
   const [user,setUser] = useAtom(userAtom)
   console.log("USER", user)
 
+  
+
   return (
     <div>
          <h1>Welcome Back! </h1>

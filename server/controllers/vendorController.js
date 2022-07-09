@@ -28,6 +28,20 @@ router.post("/signup", async (req, res) => {
   }  
 }); 
 
+//Vendor PASSWORD Change
+router.put("/signup/:id", async (req,res)=>{
+  const {id} = req.params
+  const newPassword = await bcrypt.hash(req.body.password,saltRounds)
+  try {
+   const vendor = await prisma.vendor.update({
+     where:{ id: id },
+    data:{ password: newPassword}})
+   res.status(200).json({message:"Password Updated"})
+  } catch (error) {
+   res.status(400).json({status:"error", message: error})
+  }
+ })
+
 // login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body
@@ -136,18 +150,7 @@ router.put("/profile/:id", async (req, res) => {
 });
 
 
-//Vendor PASSWORD Change
-router.put("/passwordchange/:id", async (req,res)=>{
- const {id} = req.params
- try {
-  const vendor = await prisma.vendor.update({
-    where:{id:id},
-  data:{password:await bcrypt.hash(req.body.password,saltRounds)}})
-  
- } catch (error) {
-  res.status(400).json({status:"error", message: error})
- }
-})
+
 
 // vendor acount delete
 router.delete("/:id", async (req, res) => {

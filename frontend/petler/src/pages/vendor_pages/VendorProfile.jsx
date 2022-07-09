@@ -2,21 +2,23 @@ import { useEffect} from 'react'
 import jwtDecode from "jwt-decode";
 import axios from 'axios';
 import { useState } from 'react';
-import { vendorAtom } from '../../App'
+import { userAtom } from '../../App';
 import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPasswordForm';
+import { useAtom } from 'jotai';
 
 
 function VendorProfile() {
- const [vendorData, setVendorData] = useState({});
+  const [user, setUser] = useAtom(userAtom)
+//  const [vendorData, setVendorData] = useState({});
 
-  useEffect(()=> {
-    axios.get("/api/vendor/profile/:id")
-    .then(res => {
-      setVendorData(res)
-      console.log(vendorData)
-    })
-    .catch(error => console.log(error))
-  }, [])
+  // useEffect(()=> {
+  //   axios.get("/api/vendor/profile/:id")
+  //   .then(res => {
+  //     setVendorData(res)
+  //     console.log(vendorData)
+  //   })
+  //   .catch(error => console.log(error))
+  // }, [])
 
 
   return (

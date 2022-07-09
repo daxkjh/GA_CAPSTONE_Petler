@@ -47,12 +47,12 @@ axios
 .get(`/api/${decodedToken.role}/profile/${decodedToken.id}`, {
   headers: { Authorization: token },
 })
-.then((res) => {
-  // console.log("RES",res)
-setUser(res.data)})
+.then((res) => setUser(res.data))
 .catch((error) => console.log("error", error));
 }}
 },[refresh])
+
+// advantage
 
   return (
     <div className="App">

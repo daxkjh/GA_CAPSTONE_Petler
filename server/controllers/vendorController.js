@@ -197,13 +197,13 @@ router.put("/profile/:id", async (req, res) => {
         end: req.body.end,
         details: {
           update: {
-            where: { profileId: vendor.profile.id },
+            where: { id:1 },
             data: {
               svcdsc: req.body.svcdsc,
               petType: req.body.petType,
               petSize: {
                 update: {
-                  where: { detailsId: vendor.profile.details.id },
+                  where: { id: 1 },
                   data: {
                     xs: xs,
                     s: s,
@@ -215,7 +215,7 @@ router.put("/profile/:id", async (req, res) => {
               },
               area: {
                 update: {
-                  where: { detailsId: 1 },
+                  where: { id:1 },
                   data: {
                     north: req.body.north,
                     south: req.body.south,

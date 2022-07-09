@@ -45,8 +45,8 @@ model Details {
   petSize   PetSize?
   profileId Int      @unique
   area      Area?
-  petSizeId Int
-  areaId    Int
+  // petSizeId Int
+  // areaId    Int
 }
 
 

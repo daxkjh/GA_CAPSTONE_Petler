@@ -13,7 +13,7 @@ console.log("USER", user)
   return (
     <div>
          <h1>Welcome Back! </h1>
-         <h2></h2>
+         <h2>{user.email}</h2>
     </div>
   );
 };

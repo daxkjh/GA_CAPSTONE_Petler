@@ -62,7 +62,11 @@ model Details {
 
 model PetSize {
   id        Int     @id @default(autoincrement())
-  weight    String?
+  xs        Boolean @default(false)
+  s         Boolean @default(false)
+  m         Boolean @default(false)
+  l         Boolean @default(false)
+  xl        Boolean @default(false)
   details   Details @relation(fields: [detailsId], references: [id])
   detailsId Int
 }
@@ -104,7 +108,7 @@ model UserProfile {
   image       String?
   booking     Bookings[]
   reviews     Reviews[]
-  userId      String        @unique
+  userId      String     @unique
 }
 
 model Pets {
@@ -115,6 +119,7 @@ model Pets {
   birth         DateTime?
   image         String?
   sterilized    Boolean?
+  size          String?
   owner         UserProfile @relation(fields: [userProfileId], references: [id])
   userProfileId Int
 }

@@ -43,7 +43,6 @@ if(token){
     navigate("/user/login")
      } else { navigate("/vendor/login") }
   } else {
- 
 axios
 .get(`/api/user/profile/${decodedToken.id}`, {
   headers: { Authorization: token },

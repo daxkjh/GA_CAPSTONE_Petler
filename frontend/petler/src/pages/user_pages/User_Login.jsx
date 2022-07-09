@@ -24,7 +24,6 @@ const navigate = useNavigate();
       {const token = response.data.accessToken;
         localStorage.setItem("token", token);
         console.log(token)
-        // setAuthToken(token);
         if (token) {
           console.log(response)
         //  setUser(response.data);

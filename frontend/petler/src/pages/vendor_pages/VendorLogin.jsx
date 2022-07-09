@@ -1,15 +1,18 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import { useAtom } from "jotai";
 import { userAtom } from '../../App';
+import { atom, useAtom } from "jotai";
+import { loginAtom } from '../user_pages/User_Login';
 import { useState } from 'react';
 
+export const vendorAtom = atom({});
 
 function VendorLogin() {
   const [user, setUser] = useAtom(userAtom);
   const [invalid, setInvalid ] = useState(false);
-const navigate = useNavigate();
+  const [refresh, setRefresh] = useAtom(refreshAtom);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,10 +24,9 @@ const navigate = useNavigate();
       .then((response) => {
         {const token = response.data.accessToken;
         localStorage.setItem("token", token);
-        // setAuthToken(token);
         if (token) {
-          setUser(response.data.data);
           navigate("/vendor/home")
+          setRefresh(prev=> !prev);
           ;}
         else {
           setInvalid(true);

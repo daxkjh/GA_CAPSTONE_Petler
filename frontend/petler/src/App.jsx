@@ -42,7 +42,8 @@ if(token){
    if(decodedToken.role ==="user"){
     navigate("/user/login")
      } else { navigate("/vendor/login") }
-  } else {
+  } 
+  else {
 axios
 .get(`/api/${decodedToken.role}/profile/${decodedToken.id}`, {
   headers: { Authorization: token },

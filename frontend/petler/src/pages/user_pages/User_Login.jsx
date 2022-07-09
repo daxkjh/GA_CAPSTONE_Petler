@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { atom,useAtom } from 'jotai';
 import { useState } from 'react';
-export const refreshAtom = atom(false)
+import { refreshAtom } from '../../App'
 
 
 function User_Login() {

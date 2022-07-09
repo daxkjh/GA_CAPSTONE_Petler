@@ -113,8 +113,8 @@ router.get("/profile/:id", async (req, res) => {
         services: true,
       },
     })
-    res.status(200).send({data: vendorProfile})
-    console.log("web",vendorProfile)
+    res.status(200).json({status: "success", data: vendorProfile})
+    console.log(vendorProfile)
   } catch (error) {
     res.send({status:401, error:error })
   }

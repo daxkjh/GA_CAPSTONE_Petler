@@ -13,6 +13,7 @@ const EditVendorPasswordForm = ()=>{
     // }
 
 
+    // console.log("heyya!", id)
     const handleSubmit=(e)=>{
         e.preventDefault()
         // console.log(e.target.elements.oldpw.value)
@@ -23,7 +24,7 @@ const EditVendorPasswordForm = ()=>{
         } else {
             setCFMPW(true)
             console.log("USERID",user)
-            axios.put(`/api/vendor/signup/${user.id}/`,{
+            axios.put(`/api/vendor/signup/${user?.data?.vendorId}/`,{
                 password : e.target.elements.newpw.value
             })
             .then((res)=> {

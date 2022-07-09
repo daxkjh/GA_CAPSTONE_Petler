@@ -17,7 +17,7 @@ function Navbar() {
 
 
   const userId = user?.data?.vendorId
-  console.log("user", userId)
+  // console.log("user", userId)
   
   return (
     <div className='navBar'>
@@ -32,7 +32,9 @@ function Navbar() {
       <Link className='navBarText' to="/user/login">u-Login</Link>
       <Link className='navBarText' to="/user/profile/">u-Profile</Link>
       <button onClick={handleLogout}>LogOut</button>
-      <span style={{fontWeight:"bold"}}>{(localStorage.getItem("token"))?`${jwtDecode(localStorage.getItem("token")).role}`:"No Login"}</span>
+      <span style={{fontWeight:"bold"}}>
+        {(localStorage.getItem("token"))?`${jwtDecode(localStorage.getItem("token")).role}`:"No Login"}
+      </span>
       
     </div>
   )

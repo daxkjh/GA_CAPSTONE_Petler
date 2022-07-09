@@ -6,7 +6,7 @@ import Home from "./pages/Home"
 import Layout from "./pages/Layout"
 import VendorSignUp from "./pages/vendor_pages/VendorSignUp"
 import VendorLogin from "./pages//vendor_pages/VendorLogin"
-import User_Login, { refreshAtom } from './pages/user_pages/User_Login'
+import User_Login from './pages/user_pages/User_Login'
 import User_SignUp from './pages/user_pages/User_Signup'
 import User_Profile from "./pages/user_pages/User_Profile"
 import { atom, useAtom, Provider } from 'jotai'
@@ -24,6 +24,7 @@ const SECRET_KEY = import.meta.env.SECRET
 
 export const vendorAtom = atom({})
 export const userAtom = atom({})
+export const refreshAtom = atom(false)
 
 function App() {
   const navigate = useNavigate()

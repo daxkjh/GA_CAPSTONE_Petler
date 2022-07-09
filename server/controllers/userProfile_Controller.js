@@ -17,8 +17,6 @@ router.post("/pet/:id", async (req, res) => {
     } catch (error) {
         res.send(error)
     }
-
-    
 });
 
 

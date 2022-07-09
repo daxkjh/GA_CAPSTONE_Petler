@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { userAtom } from '../../App';
 import { atom, useAtom } from "jotai";
-import { loginAtom } from '../user_pages/User_Login';
+import { refreshAtom } from '../../App';
 import { useState } from 'react';
 
 export const vendorAtom = atom({});

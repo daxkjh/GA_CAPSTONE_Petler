@@ -2,6 +2,7 @@ import { useEffect} from 'react'
 import jwtDecode from "jwt-decode";
 import axios from 'axios';
 import { useState } from 'react';
+import { vendorAtom } from '../../App'
 
 
 function VendorProfile() {

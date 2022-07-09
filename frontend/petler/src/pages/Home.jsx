@@ -1,10 +1,11 @@
-import { useAtom } from 'jotai';
 import React from 'react'
-import { vendorAtom } from '../App';
+import { useAtom } from 'jotai';
+import { vendorAtom } from '../App.jsx';
 
 function Home() {
   const [vendor, setVendor] = useAtom(vendorAtom);
-  console.log("home", vendorAtom)
+  console.log("home", vendor)
+  
   return (
     <div>
       This is home

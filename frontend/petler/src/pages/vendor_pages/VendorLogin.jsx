@@ -18,23 +18,22 @@ const navigate = useNavigate();
     password: event.target.elements.password.value } 
 
     axios.post("/api/vendors/login", loginData)
-      .then((response)=> 
-      {const token = response.data.accessToken;
+      .then((response) => {
+        {const token = response.data.accessToken;
         localStorage.setItem("token", token);
         // setAuthToken(token);
         if (token) {
-          console.log("れす",response.data.data)
           setVendor(response.data.data);
-          console.log("ここ", vendor)
           // navigate("/vendor/home")
           ;}
         else {
           setInvalid(true);
           console.log(response.data);}
-      })
+      }})
       .catch(error => console.log("error", error));
-  }
+    }
 
+    // console.log("ここ", vendor)
   return (
 <div>
      <form onSubmit={handleSubmit} >

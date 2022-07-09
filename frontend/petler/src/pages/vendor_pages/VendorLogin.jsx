@@ -2,12 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { useAtom } from "jotai";
-import { vendorAtom } from '../../App';
+import { userAtom } from '../../App';
 import { useState } from 'react';
 
 
 function VendorLogin() {
-  const [vendor, setVendor] = useAtom(vendorAtom);
+  const [user, setUser] = useAtom(userAtom);
   const [invalid, setInvalid ] = useState(false);
 const navigate = useNavigate();
 
@@ -17,14 +17,14 @@ const navigate = useNavigate();
     email: event.target.elements.email.value,
     password: event.target.elements.password.value } 
 
-    axios.post("/api/vendors/login", loginData)
+    axios.post("/api/vendor/login", loginData)
       .then((response) => {
         {const token = response.data.accessToken;
         localStorage.setItem("token", token);
         // setAuthToken(token);
         if (token) {
-          setVendor(response.data.data);
-           navigate("/vendor/home")
+          setUser(response.data.data);
+          navigate("/vendor/home")
           ;}
         else {
           setInvalid(true);

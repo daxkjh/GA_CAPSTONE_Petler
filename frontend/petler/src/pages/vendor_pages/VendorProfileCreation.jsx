@@ -28,7 +28,7 @@ function VendorProfileCreation() {
           area: event.target.elements.area.value,       
         }
           console.log(profileData)
-        axios.put( `/api/vendors/profile/${vendorId}`, profileData)
+        axios.put( `/api/vendor/profile/${vendorId}`, profileData)
           .then(res => {
             if (res.status === 200){
               navigate('/vendor/profile/:id')

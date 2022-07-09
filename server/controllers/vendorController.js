@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
         const id = vendorLogin.id
         const accessToken = jwt.sign({id, role:"vendor"}, 
         process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1h",})
-        res.status(200).json({ accessToken: accessToken })
+        res.status(200).send({ accessToken: accessToken, data: vendorLogin.id })
       } else {
         res.status(400).json({ status: "failed", data: "Incorrect email or Password" });
       }
@@ -99,8 +99,8 @@ router.get("/profile/:id", async (req, res) => {
         services: true,
       },
     })
-    
-    res.send(vendorProfile)
+    res.status(200).send({data: vendorProfile})
+    console.log("web",vendorProfile)
   } catch (error) {
     res.send({status:401, error:error })
   }

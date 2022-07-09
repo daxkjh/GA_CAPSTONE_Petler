@@ -1,30 +1,31 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import { useAtom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { userAtom } from '../../App';
 import { loginAtom } from '../user_pages/User_Login';
 import { useState } from 'react';
 
+export const vendorAtom = atom({});
 
 function VendorLogin() {
   const [invalid, setInvalid ] = useState(false);
-  // const [user, setUser] = useAtom(userAtom);
+  const [user, setUser] = useAtom(userAtom);
   const [test, setTest] = useAtom(loginAtom);
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const loginData = {
     email: event.target.elements.email.value,
     password: event.target.elements.password.value } 
-
     axios.post("/api/vendor/login", loginData)
       .then((response) => {
         {const token = response.data.accessToken;
         localStorage.setItem("token", token);
+        setUser(response.data)
         if (token) {
-          setTest(!test);
+          setTest(prev=> !prev);
            navigate("/vendor/home")
           ;}
         else {

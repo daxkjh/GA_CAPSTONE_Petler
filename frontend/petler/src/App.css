@@ -25,4 +25,8 @@
   text-decoration: underline;
 }
 
+.vendorinfo {
+  max-width: 500px;
+  border: solid;
+}
 

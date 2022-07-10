@@ -24,7 +24,8 @@ function Navbar() {
       <Link className='navBarText' to="/home">Home</Link>
       <Link className='navBarText' to="/vendor/signup">v-Signup</Link>
       <Link className='navBarText' to="/vendor/login">v-Login</Link>
-      <Link className='navBarText' to={`/vendor/profile/${vId}`}>v-Profile</Link>
+      <Link className='navBarText' to={`/vendor/manageprofile/${vId}`}>v-Profile</Link>
+      <Link className='navBarText' to={`/vendor/profile/${vId}`}>v-profileshow</Link>
       <Link className='navBarText' to={`/vendor/editprofile/${vId}`}>v-Edit</Link>
       <Link className='navBarText' to="/user/signup">u-Signup</Link>
       <Link className='navBarText' to="/user/login">u-Login</Link>

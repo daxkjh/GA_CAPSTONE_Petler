@@ -200,7 +200,7 @@ router.put("/profile/:id", async (req, res) => {
         end: req.body.end,
         details: {
           update: {
-        //     // where: { id:2 },
+        //     // where: { id:2 }, //one to many
         //     data: {
               svcdsc: req.body.svcdsc,
               petType: req.body.petType,

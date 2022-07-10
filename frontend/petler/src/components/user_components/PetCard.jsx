@@ -1,10 +1,13 @@
 import { useState } from "react"
 
 
-const PetCard = ({data, toggleForm})=>{
+const PetCard = ({data, toggleForm, setSelectedPet})=>{
     const [state,setState]=useState(true)
 
-  
+  const handleClick = ()=>{
+    setSelectedPet(data)
+    toggleForm("editpet")
+  }
 
 
 if (data){
@@ -26,7 +29,7 @@ const petSize = { xs :"1 - 5 KG", s : "5 - 10 KG", m : "10 - 20 KG", l : "20 - 4
                     <li>{petSize[data?.size]}</li>
                     <li>{data?.sterilized? "Sterilized" : "Not Sterilized"}</li>
                 </ul>
-                <button onClick={()=>toggleForm("editpet")}>Edit Pet</button>
+                <button onClick={handleClick}>Edit Pet</button>
                </div> }
                 
             </div>

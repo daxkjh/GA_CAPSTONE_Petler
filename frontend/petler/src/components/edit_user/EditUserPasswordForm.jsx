@@ -30,7 +30,7 @@ const EditUserPasswordForm = ({toggleForm})=>{
 
     return (
         <div className="passwordchangeformcontainer">
-            <button value="password" onClick={toggleForm}>Close</button>
+            <button onClick={()=>toggleForm("password")}>Close</button>
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Change Password</legend>

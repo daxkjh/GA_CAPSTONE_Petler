@@ -111,3 +111,11 @@ textarea {
 .vendorcard:hover {
   cursor: pointer;
 }
+
+.petcontainer{
+  display: inline-block;
+  width: 15rem;
+  height: 20rem;
+  margin: 1rem;
+  border: 1px black solid;
+}

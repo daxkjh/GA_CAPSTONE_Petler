@@ -7,9 +7,9 @@ import { refreshAtom } from "../../App";
 
 const EditUserProfileForm = ({toggleForm})=>{
     const [user, setUser] = useAtom(userAtom)
-    const [name, setName] = useState(user?.profile?.name)
-    const [address, setAddress] = useState(user?.profile?.address)
-    const [desc, setDesc]  = useState(user?.profile?.description)
+    const [name, setName] = useState(user?.data?.profile?.name)
+    const [address, setAddress] = useState(user?.data?.profile?.address)
+    const [desc, setDesc]  = useState(user?.data?.profile?.description)
     const [img, setImg] = useState("https://i.imgur.com/aeW3aDj.png")
     const [refresh, setRefresh] = useAtom(refreshAtom)
 
@@ -48,7 +48,7 @@ const EditUserProfileForm = ({toggleForm})=>{
 
     return (
         <div className="profilechangeformcontainer">
-            <button onClick={toggleForm} value="profile">Close</button>
+            <button onClick={()=>toggleForm("profile")}>Close</button>
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Edit Profile</legend>

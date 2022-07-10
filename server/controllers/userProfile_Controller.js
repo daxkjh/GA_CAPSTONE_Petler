@@ -72,4 +72,20 @@ router.get("/pet/:id", async (req, res) => {
     }
 });
 
+//DELETE ONE
+router.delete("/pet/:id", async (req, res) => {
+    const {id} = req.params
+    
+    try {
+        const currentpet = await prisma.pets.deleteMany({
+            where: { owner : { userId : id },
+                    id : req.body.id },
+                 
+        })
+        res.status(200).json({status:"Success", msg:"Pet Updated", data:currentpet})
+    } catch (error) {
+        res.status(400).json({status:"Failed", msg: "Create Pet failed"})
+    }
+});
+
 module.exports = router

@@ -34,20 +34,21 @@ const User_SignUp = () => {
       });
   }, []);
 
+
   const emailCheck = (email) => {
     const arr = [];
-    // if (usersData.length>0) {
-    for (const obj of usersData?.data) {
+    // if (!usersData) {
+    //   return setUniqueEmail(true)
+    // }else{
+    for (const obj of usersData?.data||[]) {
       if (obj.email === email) {
         arr.push(true);
       }
     }
     return setUniqueEmail(!arr.includes(true));
   }
-//  else {
-//   return setUniqueEmail(true)
-// }
   // }
+
   //Submite form to Create NEW USER
   const handleSubmit = (e) => {
     e.preventDefault();

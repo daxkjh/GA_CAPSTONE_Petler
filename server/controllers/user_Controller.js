@@ -20,9 +20,9 @@ router.get("/signingup", async (req, res) => {
   try {
     const users = await prisma.user.findMany({ select : {id: false,email: true, password:false}});
     console.log(users)
-    res.status(200).json({ data: users });
+    res.status(200).json({msg:"Created", data: users });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).json({msg:" User Not Created",data: error});
   }
 });
 

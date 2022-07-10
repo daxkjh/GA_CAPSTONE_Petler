@@ -94,7 +94,7 @@ model UserProfile {
   address     String?
   description String?
   pets        Pets[]
-  image       String?
+  image       String?    @default("https://i.imgur.com/aeW3aDj.png%22")
   booking     Bookings[]
   reviews     Reviews[]
   userId      String     @unique
@@ -140,6 +140,6 @@ model Services {
   price     Int?
   vendor    Profile    @relation(fields: [profileId], references: [id])
   bookings  Bookings[]
-  active    Boolean
+  active    Boolean    @default(true)
   profileId Int
 }

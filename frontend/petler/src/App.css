@@ -120,3 +120,11 @@ textarea {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.petcontainer{
+  display: inline-block;
+  width: 15rem;
+  height: 20rem;
+  margin: 1rem;
+  border: 1px black solid;
+}

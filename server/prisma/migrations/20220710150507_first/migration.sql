@@ -120,6 +120,7 @@ CREATE TABLE "Bookings" (
     "id" SERIAL NOT NULL,
     "dateTime" TIMESTAMP(3),
     "status" TEXT,
+    "bookingdesc" TEXT,
     "profileId" INTEGER NOT NULL,
     "userProfileId" INTEGER NOT NULL,
     "servicesId" INTEGER NOT NULL,
@@ -132,6 +133,7 @@ CREATE TABLE "Services" (
     "id" SERIAL NOT NULL,
     "title" TEXT,
     "price" INTEGER,
+    "active" BOOLEAN NOT NULL DEFAULT true,
     "profileId" INTEGER NOT NULL,
 
     CONSTRAINT "Services_pkey" PRIMARY KEY ("id")

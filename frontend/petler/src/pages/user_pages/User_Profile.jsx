@@ -5,6 +5,8 @@ import { userAtom } from "../../App";
 import jwtDecode from "jwt-decode";
 import EditUserPasswordForm from "../../components/edit_user/EditUserPasswordForm";
 import EditUserProfileForm from "../../components/edit_user/EditUserProfileForm";
+import PetCard from "../../components/user_components/PetCard";
+import EditUserPetsForm from "../../components/edit_user/EditUserPetForm";
 
 const User_Profile = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -14,12 +16,14 @@ const User_Profile = () => {
     pic: false,
     password: false,
     profile: false,
+    pet: false
   });
 
-  const toggleForm = (event) => {
+  const toggleForm = (x) => {
+    console.log("WHAT IS X?",x)
     setFormState({
       ...formState,
-      [event.target.value]: !formState[event.target.value],
+      [x] : !formState[x],
     });
   };
 
@@ -31,21 +35,34 @@ const User_Profile = () => {
       </div>
       <div className="userProf">
       <img src={user?.data?.profile?.image} width={"200px"}></img>
-      <button onClick={toggleForm} value="profile">
+      <button onClick={()=>toggleForm("profile")}>
         edit profile
       </button>
       <p>{user?.data?.profile?.name}</p>
       <p>{user?.data?.profile?.description}</p>
-      <button onClick={toggleForm} value="password">
+      <button onClick={()=>toggleForm("password")}>
         edit password
       </button>
       </div>
       <div className="userCalendar">
         <p>calendar will be displayed here</p>
       </div>
-
+     
+      <div>
+      <div className="petcontainer" id="pet1">
+        <PetCard toggleForm={toggleForm} data={user?.data?.profile?.pets[0]}/>
+      </div>
+      <div className="petcontainer" id="pet2">
+      <PetCard toggleForm={toggleForm} data={user?.data?.profile?.pets[1]}/>
+      </div>
+      <div className="petcontainer" id="pet3">
+      <PetCard toggleForm={toggleForm} data={user?.data?.profile?.pets[2]}/>
+      </div>
+      </div>
+      
       {formState.password && <EditUserPasswordForm toggleForm={toggleForm}/>}
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
+      {formState.pet&&<EditUserPetsForm toggleForm={toggleForm}/>}
     </div>
   );
 };

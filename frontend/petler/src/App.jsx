@@ -42,6 +42,8 @@ if(token){
    if(decodedToken.role === "user"){
     navigate("/user/login")
      } else { navigate("/vendor/login") }
+     localStorage.clear()
+     window.location.reload()
   } 
   else {
 axios

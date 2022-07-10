@@ -16,11 +16,12 @@ const User_Profile = () => {
     pic: false,
     password: false,
     profile: false,
-    pet: false
+    editpet: false,
+    createpet: false
   });
 
   const toggleForm = (x) => {
-    console.log("WHAT IS X?",x)
+    // console.log("WHAT IS X?",x)
     setFormState({
       ...formState,
       [x] : !formState[x],
@@ -62,7 +63,7 @@ const User_Profile = () => {
       
       {formState.password && <EditUserPasswordForm toggleForm={toggleForm}/>}
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
-      {formState.pet&&<EditUserPetsForm toggleForm={toggleForm}/>}
+      {formState.editpet&&<EditUserPetsForm toggleForm={toggleForm}/>}
     </div>
   );
 };

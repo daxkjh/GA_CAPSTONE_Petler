@@ -5,12 +5,14 @@ import axios from 'axios';
 import { userAtom, refreshAtom } from '../../App';
 import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPasswordForm';
 import { useAtom } from 'jotai';
+import ServicesForm from '../../components/edit_vendor/ServicesForm';
 
 function VendorProfileManage() {
   const [user, setUser] = useAtom(userAtom);
-  const [refresh, setRefresh] = useAtom(refreshAtom)
+  const [refresh, setRefresh] = useAtom(refreshAtom);
   const [vendor, setVendor] = useState();
   const [PWChange, setPWChange] = useState(false);
+  const [serviceSetting, setServiceSetting] = useState(false);
 
   const id = useParams();
 
@@ -20,7 +22,6 @@ function VendorProfileManage() {
     .catch(error => console.log("error", error));
     setRefresh(prev=>!prev);
   }, [])
-   console.log("hey bitch", vendor)
 
   //  if (!vendor) {
   //   return <p>loading,,,</p>
@@ -59,10 +60,14 @@ function VendorProfileManage() {
             over 40kg: {vendor?.data?.details.petSize.xl}
           </li>
         </ul>
-        <p></p>
+        <p>areas</p>
+        <p>services</p>
+        {}
+        <p className='edit'
+        onClick={()=>setServiceSetting(true)}>edit services</p>
       </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
-      
+      {serviceSetting ? <ServicesForm /> : null }
     </div>
   )
 }

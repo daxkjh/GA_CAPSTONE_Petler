@@ -140,6 +140,6 @@ model Services {
   price     Int?
   vendor    Profile    @relation(fields: [profileId], references: [id])
   bookings  Bookings[]
-  active    Boolean
+  active    Boolean    @default(true)
   profileId Int
 }

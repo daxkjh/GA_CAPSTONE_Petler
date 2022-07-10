@@ -145,7 +145,7 @@ router.get("/profile/:id", async (req, res) => {
       },
     });
     res.status(200).json({ status: "success", data: vendorProfile });
-    console.log(vendorProfile);
+    // console.log(vendorProfile);
   } catch (error) {
     res.send({ status: 401, error: error });
   }
@@ -235,19 +235,19 @@ router.delete("/profile/:id", async (req, res) => {
 
 // services
 router.post("/services/", async (req, res) => {
-  // const { id } = req.params;
-  const serviceData = {
+  const dda = {
     title: req.body.title,
     price: req.body.price,
     profileId: req.body.profileId
-  }
-  console.log(serviceData)
+    }
+  console.log("dda",dda)
   try { 
     const service = await prisma.services.create({
       // where: {
       //   vendorId: id,
       // },
-      data: serviceData})
+    data: dda
+  })
     res.status(200).json({data: service})
   } catch (error) {
     res.send({ status: "failed ", data: error })
@@ -258,22 +258,5 @@ router.post("/services/", async (req, res) => {
 router.get("/secret", isAuth, (req, res) => {
   res.send({ status: "ok", msg: "it's a secret" });
 });
-
-//   const data = req.body;
-//   const vendorLogin = await prisma.vendor.findOne({ data });
-//   if (vendorLogin === null) {
-//     res.send({ status: "fail", data: "Username not found" });
-//   } else {
-//     const match = await bcrypt.compare(data.password, vendorLogin.password)
-//     if (match) {
-//       res.json("accessToken")
-//       } else {
-//           res.status(404).json({status:"Failed", msg:"Incorrect User or Password"})
-//       }
-//     } else {
-//       res.send({ status: "error", data: "password fail" });
-//     }
-//   }
-// });
 
 module.exports = router;

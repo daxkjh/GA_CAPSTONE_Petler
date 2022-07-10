@@ -2,15 +2,28 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { useState } from "react";
 
 function VendorProfileCreation() {
+
   const navigate = useNavigate();
+  // const [check1, setCheck1] = useState(false)
   // const access = jwtDecode(localStorage.getItem("token"))
   // const vendorId = access.vendorLogin.id
 
-  // console.log("はよーはよー",vendorId)
   const id = useParams();
   console.log(id);
+
+  // const handleChange1 = event => {
+  //   if (event.target.checked) {
+  //     console.log("checked");
+  //   } else {
+  //     console.log("not checked");
+  //   }
+  //   setCheck1(current=>!current)
+  //   console.log(check1)
+  // };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const profileData = {
@@ -24,14 +37,14 @@ function VendorProfileCreation() {
       end: event.target.elements.end.value,
       svcdsc: event.target.elements.svcdsc.value,
       petType: event.target.elements.petType.value,
-      xs: event.target.elements.xs.value,
-      s: event.target.elements.s.value,
-      m: event.target.elements.m.value,
-      l: event.target.elements.l.value,
-      xl: event.target.elements.xl.value,
+      xs: event.target.elements.xs.checked,
+      xs: event.target.elements.s.checked,
+      xs: event.target.elements.m.checked,
+      xs: event.target.elements.l.checked,
+      xs: event.target.elements.xl.checked,
       // area: event.target.elements.area.value,
     };
-    console.log(profileData);
+    console.log("データ",profileData);
     axios
       .put(`/api/vendor/profile/${id.id}`, profileData)
       .then((res) => {
@@ -70,12 +83,48 @@ function VendorProfileCreation() {
         />
         <br />
         <label htmlFor="start time">start time</label>
-        {/* change to pull down */}
-        <input name="start" type="start" placeholder="start time" />
+        <select name="start">
+        <option value="6">6:00</option>
+        <option value="7">7:00</option>
+        <option value="8">8:00</option>
+        <option value="9">9:00</option>
+        <option value="10">10:00</option>
+        <option value="11">11:00</option>
+        <option value="12">12:00</option>
+        <option value="13">13:00</option>
+        <option value="14">14:00</option>
+        <option value="15">15:00</option>
+        <option value="16">16:00</option>
+        <option value="17">17:00</option>
+        <option value="18">18:00</option>
+        <option value="19">19:00</option>
+        <option value="20">20:00</option>
+        <option value="21">21:00</option>
+        <option value="22">22:00</option>
+        <option value="23">23:00</option>
+        </select>
         <br />
-        <label htmlFor="start time">end time</label>
-        {/* change to pull down */}
-        <input name="end" type="end" placeholder="end time" />
+        <label htmlFor="end time">end time</label>
+        <select name="end">
+        <option value="6">6:00</option>
+        <option value="7">7:00</option>
+        <option value="8">8:00</option>
+        <option value="9">9:00</option>
+        <option value="10">10:00</option>
+        <option value="11">11:00</option>
+        <option value="12">12:00</option>
+        <option value="13">13:00</option>
+        <option value="14">14:00</option>
+        <option value="15">15:00</option>
+        <option value="16">16:00</option>
+        <option value="17">17:00</option>
+        <option value="18">18:00</option>
+        <option value="19">19:00</option>
+        <option value="20">20:00</option>
+        <option value="21">21:00</option>
+        <option value="22">22:00</option>
+        <option value="23">23:00</option>
+        </select>
         <br />
         <label htmlFor="about your service">about your service</label>
         <input name="svcdsc" type="svcdsc" placeholder="about your service" />
@@ -92,13 +141,13 @@ function VendorProfileCreation() {
           <label htmlFor="Accepted pet size">1-5kg</label>
           <input type="checkbox" name="xs" />
           <label htmlFor="Accepted pet size">5-10kg</label>
-          <input type="checkbox" name="s" placeholder="petSize" />
-          <label htmlFor="Accepted pet size">10-20kg</label>
-          <input type="checkbox" name="m" />
-          <label htmlFor="Accepted pet size">20-40kg</label>
-          <input type="checkbox" name="l" />
+          <input type="checkbox" name="s" value="a" />
+          <label htmlFor="Accepted pet size" >10-20kg</label>
+          <input type="checkbox" name="m" value="a"/>
+          <label htmlFor="Accepted pet size" >20-40kg</label>
+          <input type="checkbox" name="l" value="a"/>
           <label htmlFor="Accepted pet size">over 40kg</label>
-          <input type="checkbox" name="xl" />
+          <input type="checkbox" name="xl" value="a"/>
           <br />
         </div>
         <div>

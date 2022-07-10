@@ -40,7 +40,7 @@ if(token){
   if (decodedToken.exp<current_time) {
       console.log("expired")
    alert("Your Token has expired")
-   if(decodedToken.role ==="user"){
+   if(decodedToken.role === "user"){
     navigate("/user/login")
      } else { navigate("/vendor/login") }
   } 
@@ -49,7 +49,8 @@ axios
 .get(`/api/${decodedToken.role}/profile/${decodedToken.id}`, {
   headers: { Authorization: token },
 })
-.then((res) => setUser(res.data))
+.then((res) =>{ setUser(res.data)
+console.log(res.data)})
 .catch((error) => console.log("error", error));
 }}
 },[refresh])

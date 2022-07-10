@@ -20,7 +20,7 @@ router.post("/signup", async (req, res) => {
     email: req.body.email,
     password: await bcrypt.hash(req.body.password, saltRounds),
   };
-  console.log(vendorData);
+  // console.log(vendorData);
   try {
     const vendor = await prisma.vendor.create({ data: vendorData });
     const vendorProfile = await prisma.profile.create({

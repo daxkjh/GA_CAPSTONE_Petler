@@ -5,7 +5,7 @@ import { vendorAtom } from './vendor_pages/VendorLogin'
 
 function Home() {
   const [user, setUser] = useAtom(userAtom);
-  console.log("home", user.data)
+  console.log("home", user)
   
   return (
     <div>

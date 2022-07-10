@@ -6,7 +6,7 @@ import { userAtom, refreshAtom } from '../../App';
 import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPasswordForm';
 import { useAtom } from 'jotai';
 
-function VendorProfile() {
+function VendorProfileManage() {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom)
   const [vendor, setVendor] = useState();
@@ -68,4 +68,4 @@ function VendorProfile() {
 }
 
 
-export default VendorProfile
+export default VendorProfileManage

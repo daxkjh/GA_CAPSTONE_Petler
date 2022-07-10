@@ -1,4 +1,3 @@
-import React from 'react'
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom"
 import './App.css'
 import { useState, useEffect } from 'react'
@@ -10,10 +9,11 @@ import User_Login from './pages/user_pages/User_Login'
 import User_SignUp from './pages/user_pages/User_Signup'
 import User_Profile from "./pages/user_pages/User_Profile"
 import { atom, useAtom, Provider } from 'jotai'
-import VendorProfile from './pages/vendor_pages/VendorProfile'
+import VendorProfileManage from './pages/vendor_pages/VendorProfileManage'
 import VendorProfileCreation from './pages/vendor_pages/VendorProfileCreation'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
+import VendorProfileShow from "./pages/vendor_pages/vendorProfileShow"
 
 const SECRET_KEY = import.meta.env.SECRET
 // const SECRET = process.env.SECRET
@@ -64,7 +64,7 @@ console.log(res.data)})
             <Route path="/home" element={<Home />} />
             <Route path="/vendor/signup" element={<VendorSignUp />} />
             <Route path="/vendor/login" element={<VendorLogin />} />
-            <Route path="/vendor/profile/:id" element={<VendorProfile />} />
+            <Route path="/vendor/manageprofile/:id" element={<VendorProfileManage />} />
             <Route path="/vendor/editprofile/:id" element={<VendorProfileCreation />} />
 
 
@@ -73,9 +73,10 @@ console.log(res.data)})
             <Route path="/user/profile/:id" element={<User_Profile/>}/>
             <Route path="/user/signup" element={<User_SignUp/>}/>
             <Route path="/user/login" element={<User_Login/>}/>
+            <Route path="vendor/profile/:id" element={<VendorProfileShow />}/>
             {/* <Route path="/owner/all"  */}
             
-{/**#########       Guest Home Page         ############# */}
+
 
           </Route>
         </Routes>

@@ -1,4 +1,4 @@
-// This is your Prisma schema file,
+// This is yo r Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
@@ -140,5 +140,6 @@ model Services {
   price     Int?
   vendor    Profile    @relation(fields: [profileId], references: [id])
   bookings  Bookings[]
+  active    Boolean
   profileId Int
 }

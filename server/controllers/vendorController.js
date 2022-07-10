@@ -145,41 +145,6 @@ router.get("/profile/:id", async (req, res) => {
 // vendor profile update
 router.put("/profile/:id", async (req, res) => {
   const { id } = req.params;
-
-  let xs = "";
-  let s = "";
-  let m = "";
-  let l = "";
-  let xl = "";
-
-  if (req.body.xs === "on") {
-    xs = true;
-  } else {
-    xs = false;
-  }
-  if (req.body.s === "on") {
-    s = true;
-  } else {
-    s = false;
-  }
-  if (req.body.m === "on") {
-    m = true;
-  } else {
-    m = false;
-  }
-  if (req.body.l === "on") {
-    l = true;
-  } else {
-    l = false;
-  }
-  if (req.body.xl === "on") {
-    xl = true;
-  } else {
-    xl = false;
-  }
-  console.log(xs, s, m, l, xl);
-  console.log(req.body.xs, req.body.s, req.body.m);
-
   try {
     // const vendor = await prisma.vendor.findUnique({
     //   where: { id: id },
@@ -208,11 +173,11 @@ router.put("/profile/:id", async (req, res) => {
                 update: {
               // //     where: { id: 1 },
               // //     data: {
-                    xs: xs,
-                    s: s,
-                    m: m,
-                    l: l,
-                    xl: xl,
+                    xs: req.body.xs,
+                    s: req.body.s,
+                    m: req.body.m,
+                    l: req.body.l,
+                    xl: req.body.xl,
                   },
                 },
               
@@ -232,6 +197,7 @@ router.put("/profile/:id", async (req, res) => {
         },
       },
     });
+    console.log("iii", vendorProfile)
     res.status(200).json({ status: "success", data: "ok" });
   } catch (error) {
     res.status(400).json({ status: "failed", data: error });

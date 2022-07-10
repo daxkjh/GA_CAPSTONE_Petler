@@ -32,7 +32,7 @@ const EditUserProfileForm = ({toggleForm})=>{
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-            axios.put(`/api/user/editprofile/${user?.id}/`,{
+            axios.put(`/api/user/editprofile/${user?.data?.id}/`,{
                 name : name,
                 address : address,
                 description : desc,

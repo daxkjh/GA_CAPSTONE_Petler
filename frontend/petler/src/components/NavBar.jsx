@@ -14,10 +14,9 @@ function Navbar() {
   }
 
   // const decodedToken = jwtDecode(localStorage.getItem("token"))
-
-
-  const userId = user?.data?.vendorId
-  // console.log("user", userId)
+  const vId = user?.data?.vendorId
+  const uId = user?.data?.id
+   console.log("user", uId)
   
   return (
     <div className='navBar'>
@@ -25,11 +24,11 @@ function Navbar() {
       <Link className='navBarText' to="/home">Home</Link>
       <Link className='navBarText' to="/vendor/signup">v-Signup</Link>
       <Link className='navBarText' to="/vendor/login">v-Login</Link>
-      <Link className='navBarText' to={`/vendor/profile/${userId}`}>v-Profile</Link>
-      <Link className='navBarText' to={`/vendor/editprofile/${userId}`}>v-Edit</Link>
+      <Link className='navBarText' to={`/vendor/profile/${vId}`}>v-Profile</Link>
+      <Link className='navBarText' to={`/vendor/editprofile/${vId}`}>v-Edit</Link>
       <Link className='navBarText' to="/user/signup">u-Signup</Link>
       <Link className='navBarText' to="/user/login">u-Login</Link>
-      <Link className='navBarText' to="/user/profile/">u-Profile</Link>
+      <Link className='navBarText' to={`/user/profile`}>u-Profile</Link>
       <button onClick={handleLogout}>LogOut</button>
       <span style={{fontWeight:"bold"}}>
         {(localStorage.getItem("token"))?`${jwtDecode(localStorage.getItem("token")).role}`:"No Login"}

@@ -8,6 +8,7 @@ import EditUserProfileForm from "../../components/edit_user/EditUserProfileForm"
 
 const User_Profile = () => {
   const [user, setUser] = useAtom(userAtom);
+  // const [userData, setUserData] = useState()
   console.log("USER", user);
   const [formState, setFormState] = useState({
     pic: false,
@@ -22,13 +23,21 @@ const User_Profile = () => {
     });
   };
 
+// const id = user?.data?.id
+// console.log('aa',id)
+//   useEffect(()=> {
+//     axios.get(`/api/user/profile/${id}`)
+//     .then((res) => {console.log("れす",res)
+//       setUserData(res.data)})
+//     .catch(error => console.log("error", error));
+//     // setRefresh(prev=>!prev);
+//   }, [])
+//    console.log("hey dude", userData)
+
   return (
     <div>
       <h1>Welcome Back! </h1>
-      <h2>{user.email}</h2>
-      
-
-
+      <h2>{user?.data?.email}</h2>
 
 
       <button onClick={toggleForm} value="password">

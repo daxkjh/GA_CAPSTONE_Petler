@@ -40,11 +40,9 @@ router.get("/profile/", async (req, res) => {
 });
 
 //READ User Profile - Profile Page on Load (SHOW route)
-router.get("/profile/:id/", async (req, res) => {
+router.get("/profile/:id", async (req, res) => {
   try {
     const { id } = req.params;
-   
-    console.log(id)
     const user = await prisma.user.findUnique({ 
       where: { id : id },
       include:{
@@ -56,8 +54,8 @@ router.get("/profile/:id/", async (req, res) => {
           }
         }},
       });
-      console.log("Show User Route Triggered",user)
-    res.status(200).send(user);
+      console.log("Show User Route Triggered!", user)
+      res.status(200).json({ status: "success", data: user });
   } catch (error) {
     res.status(400).send(error);
   }

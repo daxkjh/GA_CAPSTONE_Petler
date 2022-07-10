@@ -18,7 +18,7 @@ const EditUserPasswordForm = ({toggleForm})=>{
         } else {
             setCFMPW(true)
             // console.log("USERID",user)
-            axios.put(`/api/user/${user?.id}/`,{
+            axios.put(`/api/user/${user?.data?.id}/`,{
                 password : e.target.elements.newpw.value
             })
             .then((res)=> {

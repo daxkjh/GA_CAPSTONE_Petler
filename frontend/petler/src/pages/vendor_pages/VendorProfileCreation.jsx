@@ -38,11 +38,14 @@ function VendorProfileCreation() {
       svcdsc: event.target.elements.svcdsc.value,
       petType: event.target.elements.petType.value,
       xs: event.target.elements.xs.checked,
-      xs: event.target.elements.s.checked,
-      xs: event.target.elements.m.checked,
-      xs: event.target.elements.l.checked,
-      xs: event.target.elements.xl.checked,
-      // area: event.target.elements.area.value,
+      s: event.target.elements.s.checked,
+      m: event.target.elements.m.checked,
+      l: event.target.elements.l.checked,
+      xl: event.target.elements.xl.checked,
+      north: event.target.elements.north.checked,
+      south: event.target.elements.south.checked,
+      east: event.target.elements.east.checked,
+      west: event.target.elements.west.checked,
     };
     console.log("データ",profileData);
     axios
@@ -141,25 +144,25 @@ function VendorProfileCreation() {
           <label htmlFor="Accepted pet size">1-5kg</label>
           <input type="checkbox" name="xs" />
           <label htmlFor="Accepted pet size">5-10kg</label>
-          <input type="checkbox" name="s" value="a" />
+          <input type="checkbox" name="s" />
           <label htmlFor="Accepted pet size" >10-20kg</label>
-          <input type="checkbox" name="m" value="a"/>
+          <input type="checkbox" name="m" />
           <label htmlFor="Accepted pet size" >20-40kg</label>
-          <input type="checkbox" name="l" value="a"/>
+          <input type="checkbox" name="l" />
           <label htmlFor="Accepted pet size">over 40kg</label>
-          <input type="checkbox" name="xl" value="a"/>
+          <input type="checkbox" name="xl" />
           <br />
         </div>
         <div>
           <p>operation area</p>
           <label htmlFor="operation area">north</label>
-          <input type="checkbox" name="area" />
+          <input type="checkbox" name="north" />
           <label htmlFor="operation area">south</label>
-          <input type="checkbox" name="area" />
+          <input type="checkbox" name="south" />
           <label htmlFor="operation area">west</label>
-          <input type="checkbox" name="area" />
+          <input type="checkbox" name="west" />
           <label htmlFor="operation area">east</label>
-          <input type="checkbox" name="area" />
+          <input type="checkbox" name="east" />
           <br />
         </div>
         <button>submit</button>

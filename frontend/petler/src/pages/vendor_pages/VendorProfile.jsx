@@ -41,7 +41,24 @@ function VendorProfile() {
         <h3>manage business information</h3>
         <p>operation hours</p>
         <p>{vendor?.data.start}~{vendor?.data.end}</p>
-        <p>pet type: {vendor?.data.petType}</p>
+        <p>pet type: {vendor?.data?.details.petType}</p>
+        <ul className='petsize'> accepted pet size: <br />
+          <li className='petsize'>
+            1-5kg: {vendor?.data?.details.petSize.xs}
+          </li >
+          <li className='petsize'>
+            5-10kg: {vendor?.data?.details.petSize.s}
+          </li>
+          <li className='petsize'>
+            10-20kg:  {vendor?.data?.details.petSize.m}
+          </li>
+          <li className='petsize'>
+            20-40kg: {vendor?.data?.details.petSize.l}
+          </li>
+          <li className='petsize'>
+            over 40kg: {vendor?.data?.details.petSize.xl}
+          </li>
+        </ul>
         <p></p>
       </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}

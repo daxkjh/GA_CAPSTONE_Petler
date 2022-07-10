@@ -8,10 +8,18 @@ const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const saltRounds = 10;
 
-//get for test
+//get all vendors
 router.get("/", async (req, res) => {
-  const vendors = await prisma.vendor.findMany();
-  res.send(vendors);
+  try {
+  const vendors = await prisma.vendor.findMany({
+    include: {
+      profile: true,
+    }
+  });
+  res.status(200).json({ status: "success", data: vendors });
+  } catch (error) {
+    res.status(400).json({ status: "failed", data: error });
+  }
 });
 
 //sign up

@@ -28,7 +28,7 @@ function Navbar() {
       <Link className='navBarText' to={`/vendor/editprofile/${vId}`}>v-Edit</Link>
       <Link className='navBarText' to="/user/signup">u-Signup</Link>
       <Link className='navBarText' to="/user/login">u-Login</Link>
-      <Link className='navBarText' to={`/user/profile`}>u-Profile</Link>
+      <Link className='navBarText' to={`/user/profile/${uId}`}>u-Profile</Link>
       <button onClick={handleLogout}>LogOut</button>
       <span style={{fontWeight:"bold"}}>
         {(localStorage.getItem("token"))?`${jwtDecode(localStorage.getItem("token")).role}`:"No Login"}

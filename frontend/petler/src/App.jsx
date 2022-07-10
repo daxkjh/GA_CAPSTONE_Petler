@@ -12,7 +12,6 @@ import User_Profile from "./pages/user_pages/User_Profile"
 import { atom, useAtom, Provider } from 'jotai'
 import VendorProfile from './pages/vendor_pages/VendorProfile'
 import VendorProfileCreation from './pages/vendor_pages/VendorProfileCreation'
-import User_Home from './pages/user_pages/User_Home'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 
@@ -71,7 +70,7 @@ console.log(res.data)})
 
 
 {/* #########      User routes         #############*/}
-            <Route path="/user/profile" element={<User_Profile/>}/>
+            <Route path="/user/profile/:id" element={<User_Profile/>}/>
             <Route path="/user/signup" element={<User_SignUp/>}/>
             <Route path="/user/login" element={<User_Login/>}/>
             {/* <Route path="/owner/all"  */}

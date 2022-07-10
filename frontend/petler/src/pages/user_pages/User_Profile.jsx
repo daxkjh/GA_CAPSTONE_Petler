@@ -23,29 +23,27 @@ const User_Profile = () => {
     });
   };
 
-// const id = user?.data?.id
-// console.log('aa',id)
-//   useEffect(()=> {
-//     axios.get(`/api/user/profile/${id}`)
-//     .then((res) => {console.log("れす",res)
-//       setUserData(res.data)})
-//     .catch(error => console.log("error", error));
-//     // setRefresh(prev=>!prev);
-//   }, [])
-//    console.log("hey dude", userData)
-
   return (
-    <div>
+    <div className="userProfContainer">
+      <div className="userProfTitle">
       <h1>Welcome Back! </h1>
       <h2>{user?.data?.email}</h2>
-
-
-      <button onClick={toggleForm} value="password">
-        edit password
-      </button>
+      </div>
+      <div className="userProf">
+      <img src={user?.data?.profile?.image} width={"200px"}></img>
       <button onClick={toggleForm} value="profile">
         edit profile
       </button>
+      <p>{user?.data?.profile?.name}</p>
+      <p>{user?.data?.profile?.description}</p>
+      <button onClick={toggleForm} value="password">
+        edit password
+      </button>
+      </div>
+      <div className="userCalendar">
+        <p>calendar will be displayed here</p>
+      </div>
+
       {formState.password && <EditUserPasswordForm toggleForm={toggleForm}/>}
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
     </div>

@@ -138,61 +138,58 @@ router.put("/profile/:id", async (req, res) => {
   } else {
     xs = false
   };
-  if (req.body.xs === "on") {
+  if (req.body.s === "on") {
     s = true
   } else {
     s = false
   }; 
-  if (req.body.xs === "on") {
+  if (req.body.m === "on") {
     m = true
   } else {
     m = false
   }; 
-  if (req.body.xs === "on") {
+  if (req.body.l === "on") {
     l = true
   } else {
     l = false
   };
-  if (req.body.xs === "on") {
+  if (req.body.xl === "on") {
     xl = true
   } else {
     xl = false
   };
+
+
   const profile  = {
-    name: req.body.name,
-    address: req.body.address,
-    phone: req.body.phone,
-    intro: req.body.intro,          
-    type: req.body.type,
-    profilePic: req.body.profilePic,          
-    start: req.body.start,
-    end: req.body.end,
-    details: { 
-          update : {where: profileId: 20 }, {data: {
-            svcdsc: req.body.svcdsc,          
-            petType: req.body.petType,}
-          //   petSize: { create: {
-          //     xs: xs,
-          //     s: s,
-          //     m: m,
-          //     l: l,
-          //     xl: xl
-          // }},   
-          //   petSize: { create: {
-          //     xs: xs,
-          //     s: s,
-          //     m: m,
-          //     l: l,
-          //     xl: xl
-          // }}, 
-          // area: { update: {where:{id: 7} , data: {
-      //   north: true,
-      //   south: true,
-      //   east: true,
-      //   west: true
-      // }}}
-        }}}
-  console.log(profile)
+      name: req.body.name,
+      address: req.body.address,
+      phone: req.body.phone,
+      intro: req.body.intro,          
+      type: req.body.type,
+      profilePic: req.body.profilePic,          
+      start: req.body.start,
+      end: req.body.end,
+      details: { 
+        create: {
+        svcdsc: req.body.svcdsc,          
+        petType: req.body.petType,
+        petSize: {create: 
+          {xs: xs,
+            s: s,
+            m: m,
+            l: l,
+            xl: xl
+          }},   
+        area: {create: {
+          north: true,
+          south: true,
+          east: true,
+          west: true
+        }}
+      }}
+    }
+    console.log("どこ？？", profile ,xs,s,m,l,xl)
+
   try {
     const vendorProflie = await prisma.profile.update({ 
       where: { vendorId: id },

@@ -2,14 +2,16 @@ import { useState } from "react"
 import axios from "axios"
 import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
+import { refreshAtom } from "../../App";
 
 
-const EditUserProfileForm = ()=>{
+const EditUserProfileForm = ({toggleForm})=>{
     const [user, setUser] = useAtom(userAtom)
     const [name, setName] = useState(user?.profile?.name)
     const [address, setAddress] = useState(user?.profile?.address)
     const [desc, setDesc]  = useState(user?.profile?.description)
     const [img, setImg] = useState("https://i.imgur.com/aeW3aDj.png")
+    const [refresh, setRefresh] = useAtom(refreshAtom)
 
 
 
@@ -36,13 +38,17 @@ const EditUserProfileForm = ()=>{
                 description : desc,
                 image : img
             })
-            .then((res)=> alert(res.data.msg))
+            .then((res)=> {
+                setRefresh(!refresh)
+                alert(res.data.msg)
+                            })
             .catch(error => console.log("error", error));
         
     }
 
     return (
         <div className="profilechangeformcontainer">
+            <button onClick={toggleForm} value="profile">Close</button>
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Edit Profile</legend>

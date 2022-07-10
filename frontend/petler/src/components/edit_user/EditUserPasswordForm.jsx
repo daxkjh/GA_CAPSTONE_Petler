@@ -4,7 +4,7 @@ import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
 
 
-const EditUserPasswordForm = ()=>{
+const EditUserPasswordForm = ({toggleForm})=>{
     const [cfmpw, setCFMPW] = useState(true)
     const [user, setUser] = useAtom(userAtom)
 
@@ -30,6 +30,7 @@ const EditUserPasswordForm = ()=>{
 
     return (
         <div className="passwordchangeformcontainer">
+            <button value="password" onClick={toggleForm}>Close</button>
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Change Password</legend>

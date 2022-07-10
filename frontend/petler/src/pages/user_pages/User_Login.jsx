@@ -28,7 +28,7 @@ const navigate = useNavigate();
           console.log(response)
         //  setUser(response.data);
         setRefresh(!refresh);
-          navigate("/user/home");}
+          navigate("/home");}
         else {
           setInvalid(true);
           console.log(response.data);}

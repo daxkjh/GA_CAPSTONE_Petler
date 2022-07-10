@@ -128,6 +128,7 @@ model Bookings {
   services      Services    @relation(fields: [servicesId], references: [id])
   dateTime      DateTime?
   status        String?
+  bookingdesc   String?
   profileId     Int
   userProfileId Int
   servicesId    Int

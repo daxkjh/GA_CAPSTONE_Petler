@@ -28,7 +28,7 @@ model Profile {
   profilePic String     @default("https://i.imgur.com/aeW3aDj.png%22")
   start      String?
   end        String?
-  details    Details[]
+  details    Details?
   bookings   Bookings[]
   reviews    Reviews[]
   posts      Posts[]
@@ -38,27 +38,16 @@ model Profile {
 }
 
 model Details {
-  id        Int       @id @default(autoincrement())
-  profile   Profile   @relation(fields: [profileId], references: [id])
+  id        Int      @id @default(autoincrement())
+  profile   Profile  @relation(fields: [profileId], references: [id])
   svcdsc    String?
   petType   String?
-  petSize   PetSize[]
-  profileId Int
-  area      Area[]
-  // areaId      Int
-  // detailsOnArea DetailsOnArea[]
+  petSize   PetSize?
+  profileId Int      @unique
+  area      Area?
+  // petSizeId Int
+  // areaId    Int
 }
-
-// model DetailsOnArea {
-//   detail     Details  @relation(fields: [detailsId], references: [id])
-//   area       Area     @relation(fields: [areaId], references: [id])
-//   assignedAt DateTime @default(now())
-//   assignedBy String
-//   detailsId  Int
-//   areaId     Int
-
-//   @@id([detailsId, areaId])
-// }
 
 model PetSize {
   id        Int     @id @default(autoincrement())
@@ -68,17 +57,17 @@ model PetSize {
   l         Boolean @default(false)
   xl        Boolean @default(false)
   details   Details @relation(fields: [detailsId], references: [id])
-  detailsId Int
+  detailsId Int     @unique
 }
 
 model Area {
-  id      Int       @id @default(autoincrement())
-  north   Boolean   @default(false)
-  south   Boolean   @default(false)
-  east    Boolean   @default(false)
-  west    Boolean   @default(false)
-  // detailsOnArea DetailsOnArea[]
-  details Details[]
+  id        Int     @id @default(autoincrement())
+  north     Boolean @default(false)
+  south     Boolean @default(false)
+  east      Boolean @default(false)
+  west      Boolean @default(false)
+  details   Details @relation(fields: [detailsId], references: [id])
+  detailsId Int     @unique
 }
 
 model Reviews {

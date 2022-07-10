@@ -108,7 +108,7 @@ const isAuth = (req, res, next) => {
 router.get("/profile", async (req, res) => {
   try {
     const allProfile = await prisma.profile.findMany();
-    res.send(allProfile);
+    res.status(400).json({ data:allProfile });
   } catch (error) {
     res.send({ status: 401, error: error });
   }

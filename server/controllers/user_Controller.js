@@ -20,7 +20,7 @@ router.get("/signingup", async (req, res) => {
   try {
     const users = await prisma.user.findMany({ select : {id: false,email: true, password:false}});
     console.log(users)
-    res.status(200).send(users);
+    res.status(200).json({ data: users });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -30,7 +30,7 @@ router.get("/signingup", async (req, res) => {
 router.get("/profile/", async (req, res) => {
   try {
     const userProfiles = await prisma.userProfile.findMany({});
-    res.send(userProfiles);
+    res.json({ data: userProfiles});
   } catch (error) {
     res.json({
       status: "failed",
@@ -183,7 +183,7 @@ router.delete("/:id", async (req, res) => {
         id: num,
       },
     });
-    res.send(deleteUser);
+    res.json({ data:deleteUser });
   }
   main()
     .catch((e) => {

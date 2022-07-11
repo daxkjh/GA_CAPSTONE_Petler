@@ -7,6 +7,7 @@ import EditUserPasswordForm from "../../components/edit_user/EditUserPasswordFor
 import EditUserProfileForm from "../../components/edit_user/EditUserProfileForm";
 import PetCard from "../../components/user_components/PetCard";
 import EditUserPetsForm from "../../components/edit_user/EditUserPetForm";
+import CreatePetForm from "../../components/edit_user/CreatePetForm";
 
 const User_Profile = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -65,6 +66,7 @@ const User_Profile = () => {
       {formState.password && <EditUserPasswordForm toggleForm={toggleForm}/>}
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
       {formState.editpet&&<EditUserPetsForm selectedPet={selectedPet} toggleForm={toggleForm}/>}
+      {formState.createpet&&<CreatePetForm/>}
     </div>
   );
 };

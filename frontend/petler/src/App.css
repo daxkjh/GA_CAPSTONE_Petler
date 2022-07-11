@@ -40,8 +40,13 @@
   margin-right: auto;
 }
 
-.c-left { grid-area: c-left; }
+.c-left { 
+  grid-area: c-left; }
+
 .c-right { 
+  justify-content: center;
+  text-align: center;
+  padding-left: 3.2rem;
   border: solid;
   grid-area: c-right; }
 

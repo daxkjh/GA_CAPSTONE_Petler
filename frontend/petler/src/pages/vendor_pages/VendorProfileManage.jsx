@@ -7,7 +7,7 @@ import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPassw
 import { useAtom } from 'jotai';
 import ServicesForm from '../../components/edit_vendor/ServicesForm';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import '../../calendar.css';
 
 function VendorProfileManage() {
   const [user, setUser] = useAtom(userAtom);
@@ -26,6 +26,7 @@ function VendorProfileManage() {
     setRefresh(prev=>!prev);
   }, [])
 
+  
   //  if (!vendor) {
   //   return <p>loading,,,</p>
   //  }
@@ -39,7 +40,7 @@ function VendorProfileManage() {
         width={"200px"}></img>
         </div>
         <div className='v-right'>
-        <h3>{vendor?.data.name}</h3>
+        <h3>{vendor?.data?.name}</h3>
         <p> service type: {user.type}</p>
         <p> {vendor?.data.address} </p>
         <p> {vendor?.data.phone} </p>
@@ -71,8 +72,8 @@ function VendorProfileManage() {
         <p>areas:</p>
         <p>services:</p>
         {vendor?.data?.services?.map((ele, index) => 
-        <div>
-        <p>{ele.title}</p>
+        <div key={index}>
+        <p >{ele.title}</p>
         <p>{ele.price}</p>
         </div>
         )}
@@ -83,7 +84,10 @@ function VendorProfileManage() {
       </div>
       </div>
         <div className='c-right'>
-        <Calendar onChange={onChange} value={value} />
+        <Calendar 
+        className="react-calendar"
+        onChange={onChange} value={value} 
+        onClickDay={(day) => console.log(day) }/>
         </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
       {serviceSetting ? <ServicesForm /> : null }

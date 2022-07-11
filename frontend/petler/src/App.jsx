@@ -66,7 +66,7 @@ console.log(res.data)})
             <Route path="/home" element={<Home />} />
             <Route path="/vendor/signup" element={<VendorSignUp />} />
             <Route path="/vendor/login" element={<VendorLogin />} />
-            <Route path="/vendor/manageprofile/:id" element={<VendorProfileManage />} />
+            <Route path="/vendor/manageprofile/" element={<VendorProfileManage />} />
             <Route path="/vendor/editprofile/:id" element={<VendorProfileCreation />} />
 
 

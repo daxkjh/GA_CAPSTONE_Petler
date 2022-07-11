@@ -1,4 +1,5 @@
 import { useState, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
@@ -18,6 +19,7 @@ import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
   const [selectedPet, setSelectedPet] = useState({})
   // const [userData, setUserData] = useState()
   console.log("USER", user);
+  const navigate = useNavigate()
   const [formState, setFormState] = useState({
     pic: false,
     password: false,
@@ -27,12 +29,20 @@ import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
   });
 
   const toggleForm = (x) => {
-    // console.log("WHAT IS X?",x)
     setFormState({
       ...formState,
       [x] : !formState[x],
     });
   };
+
+  // useEffect(()=>{
+  //    if (Object.keys(user).length<1) {
+  //     navigate("/user/login")
+  //     alert("Not Logged In")
+  //    }
+  // },[])
+
+
 
   return (
     <div className="userProfContainer">

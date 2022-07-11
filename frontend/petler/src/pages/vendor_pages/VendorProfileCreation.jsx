@@ -52,7 +52,7 @@ function VendorProfileCreation() {
       .then((res) => {
         if (res.status === 200) {
           console.log(res.data);
-          navigate(`/vendor/profile/${id.id}`);
+          navigate(`/vendor/manageprofile/`);
         }
       })
 

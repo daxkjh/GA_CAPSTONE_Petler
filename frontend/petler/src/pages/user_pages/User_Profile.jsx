@@ -7,9 +7,13 @@ import EditUserPasswordForm from "../../components/edit_user/EditUserPasswordFor
 import EditUserProfileForm from "../../components/edit_user/EditUserProfileForm";
 import PetCard from "../../components/user_components/PetCard";
 import EditUserPetsForm from "../../components/edit_user/EditUserPetForm";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 const User_Profile = () => {
   const [user, setUser] = useAtom(userAtom);
+  const [value, onChange] = useState(new Date());
+
   // const [userData, setUserData] = useState()
   console.log("USER", user);
   const [formState, setFormState] = useState({
@@ -45,7 +49,7 @@ const User_Profile = () => {
       </button>
       </div>
       <div className="userCalendar">
-        <p>calendar will be displayed here</p>
+        <Calendar onChange={onChange} value={value} />
       </div>
      
       <div>

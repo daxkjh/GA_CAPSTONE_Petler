@@ -28,11 +28,52 @@
   margin: auto;
   width: 90%;
 }
+.v_profile_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr; 
+  grid-template-areas: 
+  "c-left c-right"; 
+  width: 90%;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c-left { grid-area: c-left; }
+.c-right { 
+  border: solid;
+  grid-area: c-right; }
 
 .vendorinfo {
-  max-width: 500px;
+  display: grid;
+  grid-template-columns: 40% 60%; 
+  grid-template-rows: 100%; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "v-left v-right"; 
+  min-width: 600px;
+  max-width: 600px;
+  min-height: 280px;
+  max-height: 280px;
   border: solid;
-}
+} 
+
+.v-left { 
+  margin-top: 2.5rem;
+  margin-left: 1.7rem;
+  grid-area: v-left; }
+
+.v-right { 
+  margin-top: 1.5rem;
+  margin-left: 0.5rem;
+  grid-area: v-right; }
+
+.managebiz {
+  margin-top: 1rem;
+  min-width: 600px;
+  max-width: 600px;
+}  
 
 textarea {
   resize: vertical;
@@ -127,4 +168,11 @@ textarea {
   height: 20rem;
   margin: 1rem;
   border: 1px black solid;
+}
+
+.userCalendar {
+  justify-content: center;
+  text-align: center;
+  padding: auto;
+  margin: auto;
 }

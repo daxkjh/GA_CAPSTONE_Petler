@@ -6,6 +6,8 @@ import { userAtom, refreshAtom } from '../../App';
 import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPasswordForm';
 import { useAtom } from 'jotai';
 import ServicesForm from '../../components/edit_vendor/ServicesForm';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 function VendorProfileManage() {
   const [user, setUser] = useAtom(userAtom);
@@ -13,6 +15,7 @@ function VendorProfileManage() {
   const [vendor, setVendor] = useState();
   const [PWChange, setPWChange] = useState(false);
   const [serviceSetting, setServiceSetting] = useState(false);
+  const [value, onChange] = useState(new Date());
 
   const id = useParams();
 
@@ -29,14 +32,19 @@ function VendorProfileManage() {
   //  else
   return (
     <div className="v_profile_container">
+      <div className='c-left'>
       <div className="vendorinfo">
+        <div className="v-left">
         <img src={vendor?.data?.profilePic}
         width={"200px"}></img>
+        </div>
+        <div className='v-right'>
         <h3>{vendor?.data.name}</h3>
         <p> service type: {user.type}</p>
         <p> {vendor?.data.address} </p>
         <p> {vendor?.data.phone} </p>
         <p className="pwchange" onClick={()=> setPWChange(true)}> change password</p>
+        </div>
       </div>
       <div className="managebiz">
         <h3>manage business information</h3>
@@ -60,12 +68,23 @@ function VendorProfileManage() {
             over 40kg: {vendor?.data?.details.petSize.xl}
           </li>
         </ul>
-        <p>areas</p>
-        <p>services</p>
-        {}
+        <p>areas:</p>
+        <p>services:</p>
+        {vendor?.data?.services?.map((ele, index) => 
+        <div>
+        <p>{ele.title}</p>
+        <p>{ele.price}</p>
+        </div>
+        )}
+          
+           
         <p className='edit'
         onClick={()=>setServiceSetting(true)}>edit services</p>
       </div>
+      </div>
+        <div className='c-right'>
+        <Calendar onChange={onChange} value={value} />
+        </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
       {serviceSetting ? <ServicesForm /> : null }
     </div>

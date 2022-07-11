@@ -114,8 +114,9 @@ const isAuth = (req, res, next) => {
 // vendor profile show all for testing
 router.get("/profile", async (req, res) => {
   try {
-    const allProfile = await prisma.profile.findMany();
-    res.status(400).json({ data:allProfile });
+    const allProfile = await prisma.profile.findMany({
+    include:{ details : true}});
+    res.status(200).json({ data:allProfile });
   } catch (error) {
     res.send({ status: 401, error: error });
   }

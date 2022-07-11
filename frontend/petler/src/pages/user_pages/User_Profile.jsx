@@ -9,7 +9,7 @@ import PetCard from "../../components/user_components/PetCard";
 import EditUserPetsForm from "../../components/edit_user/EditUserPetForm";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import CreatePetForm from "../../components/edit_user/CreatePetForm";
+import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
 
   
   const User_Profile = () => {
@@ -70,7 +70,7 @@ import CreatePetForm from "../../components/edit_user/CreatePetForm";
       {formState.password && <EditUserPasswordForm toggleForm={toggleForm}/>}
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
       {formState.editpet&&<EditUserPetsForm selectedPet={selectedPet} toggleForm={toggleForm}/>}
-      {formState.createpet&&<CreatePetForm/>}
+      {formState.createpet&&<CreatePetForm toggleForm={toggleForm}/>}
     </div>
   );
 };

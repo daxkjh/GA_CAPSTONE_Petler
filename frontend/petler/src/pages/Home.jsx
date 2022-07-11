@@ -46,15 +46,13 @@ function Home() {
       <div className="vendorcard">
         {allVendors?.data?.map((ele, index)=> 
         <section key={index} className='vendorsec' 
-        onClick={() => navigate(`/vendor/profile/${ele?.id}`)}>
-          <img src={ele.profile.profilePic} width={"150px"}></img>
-          <p>{ele.profile.name}</p>
-          <p>{ele.profile.intro}</p>
-          <p>{ele.profile.type}</p>
+        onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)}>
+          <img src={ele.profilePic} width={"150px"}></img>
+          <p>{ele.name}</p>
+          <p>{ele.intro}</p>
+          <p>{ele.type}</p>
         </section>)}
-      
-
-      </div>
+      </div> 
       <button className="topbutton" onClick={returnTop}>
         Return to Top
       </button>

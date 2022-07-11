@@ -21,22 +21,28 @@ function User_BrowseVendorDetails () {
     .catch(error => console.log("error", error));
     setRefresh(prev=>!prev);
   }, [])
-   console.log("hey bitch", vendor)
+   console.log("vendor detail from BrowseVendorDetails", vendor)
 
   //  if (!vendor) {
   //   return <p>loading,,,</p>
   //  }
   //  else
+  
   return (
     <div className="v_profile_container">
+      <div className='c-left'>
       <div className="vendorinfo">
+        <div className="v-left">
         <img src={vendor?.data?.profilePic}
         width={"200px"}></img>
-        <h3>{vendor?.data.name}</h3>
+        </div>
+        <div className='v-right'>
+        <h3>{vendor?.data?.name}</h3>
         <p> service type: {user.type}</p>
         <p> {vendor?.data.address} </p>
         <p> {vendor?.data.phone} </p>
-        <p className="pwchange" onClick={()=> setPWChange(true)}> change password</p>
+        </div>
+        </div>
       </div>
       <div className="managebiz">
         <h3>business information</h3>
@@ -63,7 +69,7 @@ function User_BrowseVendorDetails () {
         <p></p>
       </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
-      {<BookingForm/>}
+      {<BookingForm vendor={vendor}/>}
       
     </div>
   )

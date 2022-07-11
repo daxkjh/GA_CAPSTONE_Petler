@@ -10,9 +10,10 @@ const saltRounds = 10;
 //get all vendors
 router.get("/", async (req, res) => {
   try {
-  const vendors = await prisma.vendor.findMany({
-    include: {
-      profile: true,
+  const vendors = await prisma.profile.findMany({
+    include: {  
+      details: true,
+      services: true
     }
   });
   res.status(200).json({ status: "success", data: vendors });

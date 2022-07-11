@@ -12,7 +12,7 @@ const EditUserPetsForm = ({ toggleForm, selectedPet }) => {
   const [petName, setPetName] = useState(selectedPet?.name);
   const [petType, setPetType] = useState(selectedPet?.type);
   const [petBreed, setPetBreed] = useState(selectedPet?.breed);
-  const [ petSize, setPetSize] = useState(selectedPet?.size)
+  const [petSize, setPetSize] = useState(selectedPet?.size)
   const [petSterilized, setPetSterilized] = useState(selectedPet?.sterilized)
   const [petBirth, setPetBirth] = useState(selectedPet?.birth);
 
@@ -88,11 +88,11 @@ const handleSize = (e) =>{
 axios.put(`/api/userprofile/pet/${user.data.id}`,{
     id : selectedPet?.id,
     name : petName,
-   type : petType,
+    type : petType,
     breed : petBreed,
    "birth":petBirth+"T00:00:00.000Z",
-image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
-   size : petSize,
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
+    size : petSize,
     sterilized : petSterilized
 })
 .then((res)=> {

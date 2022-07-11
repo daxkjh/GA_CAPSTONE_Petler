@@ -16,9 +16,9 @@ function ServicesForm() {
         const serviceData = {
             title: event.target.elements.title.value,
             price: price,
-            profileId: profileId
-        }
-        console.log(serviceData)
+            profileId: profileId,
+            dayService: event.target.elements.dayService.value,
+        } 
         axios.post("/api/vendor/services/", serviceData)
         .then((res) => console.log("れっっす", res.data))
         .catch(error => console.log("error", error));
@@ -43,6 +43,20 @@ function ServicesForm() {
             placeholder="price"
             />
         <br></br>
+            single day<input
+            type="radio"
+            name="dayService"
+            id="dayService"
+            value="true"
+            placeholder="price"
+            />
+            multiple days<input
+            type="radio"
+            name="dayService"
+            id="dayService"
+            value="false"
+            placeholder="price"
+            />
         <button>Submit</button>
       </form>
     </div>

@@ -5,8 +5,8 @@ const router = express.Router();
 const prisma = require("../server");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { PrismaClient } = require("@prisma/client");
-const { bookings } = require("../server");
+
+
 const saltRounds = 10;
 
 //get all vendors

@@ -78,21 +78,22 @@ const handleSize = (e) =>{
   };
 
   const handleSterilized = (e)=>{
-    
     setPetSterilized(e.target.checked)
 //    console.log(e.target.checked)
   }
 
-  const handleSubmit = () => {
-axios.put(`/api/user/pet/${user.data.id}`,{
-    "id": selectedPet.id,
-    "name":petName,
-   "type":petType,
-   "breed":petBreed,
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+axios.put(`/api/userprofile/pet/${user.data.id}`,{
+    id : selectedPet?.id,
+    name : petName,
+   type : petType,
+    breed : petBreed,
    "birth":petBirth+"T00:00:00.000Z",
-"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
-   "size":petSize,
-   "sterilized":petSterilized
+image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
+   size : petSize,
+    sterilized : petSterilized
 })
 .then((res)=> {
     setRefresh(!refresh)
@@ -105,7 +106,7 @@ axios.put(`/api/user/pet/${user.data.id}`,{
 
 
 const date = selectedPet.birth.slice(0,10)
-
+console.log("SELECTED",selectedPet)
   return (
     <div className="EditPetFormContainer">
       <button onClick={() => toggleForm("editpet")}>Close</button>
@@ -151,6 +152,7 @@ const date = selectedPet.birth.slice(0,10)
             </select>
             <label htmlFor="sterilized">Sterilized</label>
             <input onChange={handleSterilized} type="checkbox" name="sterilized" id="sterilized" defaultChecked={petSterilized}/>
+            <button>Apply</button>
           </fieldset>
         </form>
       </div>

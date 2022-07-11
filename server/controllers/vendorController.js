@@ -31,7 +31,9 @@ router.post("/signup", async (req, res) => {
   try {
     const vendor = await prisma.vendor.create({ data: vendorData });
     const vendorProfile = await prisma.profile.create({
-      data: { vendorId: vendor.id },
+      data: { vendorId: vendor.id,
+        name: req.body.name,
+        type: req.body.type },
     });
     const vendorProfileDetails= await prisma.details.create({data: {profileId: vendorProfile.id}});
     const vendorProfileDetailsPetSize=await prisma.petSize.create({data:{detailsId:vendorProfileDetails.id}})

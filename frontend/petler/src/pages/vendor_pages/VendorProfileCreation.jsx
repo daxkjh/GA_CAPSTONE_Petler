@@ -31,7 +31,6 @@ function VendorProfileCreation() {
       address: event.target.elements.address.value,
       phone: event.target.elements.phone.value,
       intro: event.target.elements.intro.value,
-      type: event.target.elements.type.value,
       profilePic: event.target.elements.profilePic.value,
       start: event.target.elements.start.value,
       end: event.target.elements.end.value,
@@ -74,9 +73,6 @@ function VendorProfileCreation() {
         <br />
         <label htmlFor="intro">introduce yourself</label>
         <input name="intro" type="intro" placeholder="intro" />
-        <br />
-        <label htmlFor="type of service">type of service</label>
-        <input required name="type" type="type" placeholder="type" />
         <br />
         <label htmlFor="profilePic">add profile picture</label>
         <input

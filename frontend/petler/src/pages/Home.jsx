@@ -37,10 +37,10 @@ function Home() {
           <p> sitters </p>
         </section>
         <section className='menusec'>
-          <p> vet </p>
+          <p> hotels </p>
         </section>
         <section className='menusec'>
-          <p> groomer </p>
+          <p> groomers </p>
         </section>
       </div>
       <div className="vendorcard">

@@ -39,7 +39,7 @@ function User_BrowseVendorDetails () {
         <p className="pwchange" onClick={()=> setPWChange(true)}> change password</p>
       </div>
       <div className="managebiz">
-        <h3>manage business information</h3>
+        <h3>business information</h3>
         <p>operation hours</p>
         <p>{vendor?.data.start}~{vendor?.data.end}</p>
         <p>pet type: {vendor?.data?.details.petType}</p>

@@ -13,7 +13,10 @@ function VendorSignUp() {
     event.preventDefault();
     const signupData = {
       email: event.target.elements.email.value,
-      password: event.target.elements.password.value,}
+      password: event.target.elements.password.value,
+      name: event.target.elements.name.value,
+      type: event.target.elements.type.value,
+    }
       // console.log(signupData)
     axios.post( "/api/vendor/signup", signupData)
       .then(res => {
@@ -29,6 +32,9 @@ function VendorSignUp() {
   return (
     <div>
      <form onSubmit={handleSubmit} >
+        <label htmlFor="name">name</label>
+        <input required name="name" type="name" placeholder="name" />
+        <br />
       <label htmlFor="email">email</label>
       <input
               required
@@ -38,7 +44,7 @@ function VendorSignUp() {
               onChange={()=> setEmailTaken(false)}
             />
             {emailTaken? <p>this email is taken</p> : null }
-            
+            <br/>   
      <label htmlFor="password">password</label>
       <input
               required
@@ -46,6 +52,7 @@ function VendorSignUp() {
               type="password"
               placeholder="password"
               />
+              <br/>
       <label htmlFor="password2"> confirm password</label>
       <input
               required
@@ -53,7 +60,15 @@ function VendorSignUp() {
               type="password2"
               placeholder="confirm password"
               />
-      <button>submit</button>
+              <br/>
+        <label htmlFor="type of service">type of service</label>
+        <select name="type">
+        <option value="sitter">sitter</option>
+        <option value="hotel">hotel</option>
+        <option value="groomer">groomer</option>
+        </select>
+        <br/>
+      <button>create account</button>
       </form>
     </div>
   )

@@ -8,22 +8,22 @@ const BookingForm = ({ vendor }) => {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [dataRange, setDateRange] = useState("date");
-  const [startDate, setStartDate] = useState();
+  const [sameDay, setSameDay] = useState();
   const [startRange, setStartRange] = useState();
   const [endRange, setEndRange] = useState();
   const [bookingInfo, setBookingInfo] = useState({});
 
-  const handleDate = (e) => {
-        setStartDate(e.target.value);
+  const handleSameDay = (e) => {
+        setSameDay(e.target.value);
         console.log("startdate",e.target.value);
   }
 
-  const handleStartDate = (e) => {
+  const handleStartRange = (e) => {
     setStartRange(e.target.value);
-    console.log("startdate",e.target.value);
+    // console.log("startdate",e.target.value);
 }
 
-const handleEndDate = (e) => {
+const handleEndRange = (e) => {
     setEndRange(e.target.value);
     console.log("endate",e.target.value);
 }
@@ -32,16 +32,16 @@ console.log("いまの ",user?.data)
     e.preventDefault();
     if (dataRange === "date") {
         setBookingInfo({
-            profileId: "a",
-            userProfileId: "a",
-            servicesId: "a",
-            startDateTime: startDate+"T00:00:00.000Z",
-            endDateTime: startDate+"T00:00:00.000Z",
+            profileId: vendor?.data?.id,
+            userProfileId: user?.data?.profile?.id,
+            servicesId: "aa",
+            startDateTime: sameDay+"T00:00:00.000Z",
+            endDateTime: sameDay+"T00:00:00.000Z",
         });
     } else {
         setBookingInfo({          
-            profileId: "a",
-            userProfileId: "a",
+            profileId: vendor?.data?.id,
+            userProfileId: user?.data?.profile?.id,
             servicesId: "a",
             startDateTime: startRange+"T00:00:00.000Z",
             endDateTime: endRange+"T00:00:00.000Z",})
@@ -60,6 +60,7 @@ console.log("いまの ",user?.data)
       date<input type="radio" name="daterange" onClick={()=>setDateRange("date")}></input>
       range<input type="radio" name="daterange" onClick={()=>setDateRange("range")}></input>
         <div className="dateForm">
+
         <form onSubmit={handleSubmit}>
           <label htmlFor="choose service">choose service</label>
           <br />
@@ -73,23 +74,26 @@ console.log("いまの ",user?.data)
           <label htmlFor="choose date">choose date</label>
           <br />
           <input
-            onChange={handleDate}
+            onChange={handleSameDay}
+            value={sameDay}
             type="date"
             id="date"
             name="date"
           ></input>
+          <input type="time" ></input>
           <br />
           <br />
           <button>book</button>
         </form>
         </div>
         <div className="rangeForm">
+
         <form onSubmit={handleSubmit}>
         <label htmlFor="choose service">choose service</label>
           <br />
           <select name="service">
             {vendor?.data?.services.map((s, index) => (
-              <option key={index}>{s.title}</option>
+              <option key={index} name={s.id}>{s.title}</option>
             ))}
           </select>
           <br />
@@ -97,7 +101,8 @@ console.log("いまの ",user?.data)
           <label htmlFor="start date">start date</label>
           <br />
           <input
-            onChange={handleStartDate}
+            onChange={handleStartRange}
+            value={startRange}
             type="date"
             id="startdate"
             name="startdate"
@@ -106,7 +111,8 @@ console.log("いまの ",user?.data)
         <label htmlFor="end date">end date</label>
           <br />
           <input
-            onChange={handleEndDate}
+            onChange={handleEndRange}
+            value={endRange}
             type="date"
             id="enddate"
             name="enddate"

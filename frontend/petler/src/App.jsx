@@ -13,7 +13,7 @@ import VendorProfileManage from './pages/vendor_pages/VendorProfileManage'
 import VendorProfileCreation from './pages/vendor_pages/VendorProfileCreation'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
-import VendorProfileShow from "./pages/vendor_pages/vendorProfileShow"
+import VendorProfileShow from "./pages/user_pages/User_BrowseVendorDetails"
 
 const SECRET_KEY = import.meta.env.SECRET
 // const SECRET = process.env.SECRET

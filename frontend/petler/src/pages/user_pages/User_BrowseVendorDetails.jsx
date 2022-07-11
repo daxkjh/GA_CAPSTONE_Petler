@@ -5,8 +5,9 @@ import axios from 'axios';
 import { userAtom, refreshAtom } from '../../App';
 import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPasswordForm';
 import { useAtom } from 'jotai';
+import BookingForm from '../../components/user_components/BookingForm';
 
-function VendorProfileShow() {
+function User_BrowseVendorDetails () {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom)
   const [vendor, setVendor] = useState();
@@ -62,10 +63,11 @@ function VendorProfileShow() {
         <p></p>
       </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
+      {<BookingForm/>}
       
     </div>
   )
 }
 
 
-export default VendorProfileShow
+export default User_BrowseVendorDetails 

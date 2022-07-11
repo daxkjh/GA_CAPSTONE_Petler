@@ -126,7 +126,8 @@ model Bookings {
   profile       Profile     @relation(fields: [profileId], references: [id])
   user          UserProfile @relation(fields: [userProfileId], references: [id])
   services      Services    @relation(fields: [servicesId], references: [id])
-  dateTime      DateTime?
+  startDateTime DateTime?
+  endDateTime   DateTime?
   status        String?
   bookingdesc   String?
   profileId     Int

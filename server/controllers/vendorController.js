@@ -1,12 +1,8 @@
 const express = require("express");
 const router = express.Router();
-// const { PrismaClient } = require("@prisma/client");
-// const prisma = new PrismaClient();
 const prisma = require("../server");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { PrismaClient } = require("@prisma/client");
-const { bookings } = require("../server");
 const saltRounds = 10;
 
 //get all vendors
@@ -254,27 +250,6 @@ router.post("/services/", async (req, res) => {
   }
 })
 
-// booking
-router.post("/profile/:id/booking", async (req, res) =>{
-  const bookingData = {
-      profileId: req.body,
-      userProfileId: req.body,
-      servicesId: req.body,
-      // dateTime: req.body,
-      status: req.body,
-      bookingdesc: req.body,
-  }
-  console.log(bookingData);
-  try {
-    const booking = await prisma.bookings.create({
-      data: bookingData
-    }
-    )
-    res.send(booking)
-  } catch (error) {
-    res.send({status: "failed", data: error})
-  }
-})
 
 // Secret Route
 router.get("/secret", isAuth, (req, res) => {

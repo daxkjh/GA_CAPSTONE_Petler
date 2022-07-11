@@ -84,7 +84,7 @@ CREATE TABLE "UserProfile" (
     "name" TEXT,
     "address" TEXT,
     "description" TEXT,
-    "image" TEXT,
+    "image" TEXT DEFAULT 'https://i.imgur.com/aeW3aDj.png%22',
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "UserProfile_pkey" PRIMARY KEY ("id")
@@ -118,7 +118,8 @@ CREATE TABLE "Posts" (
 -- CreateTable
 CREATE TABLE "Bookings" (
     "id" SERIAL NOT NULL,
-    "dateTime" TIMESTAMP(3),
+    "startDateTime" TIMESTAMP(3),
+    "endDateTime" TIMESTAMP(3),
     "status" TEXT,
     "bookingdesc" TEXT,
     "profileId" INTEGER NOT NULL,

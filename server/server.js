@@ -13,13 +13,14 @@ const app = express();
 const PORT = process.env.PORT ?? 4000
 
 const vendorController = require("./controllers/vendorController");
+const bookingController = require("./controllers/bookingController")
 
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use("/api/vendor", vendorController);
-// app.use(cors())
+app.use("/api/booking", bookingController);
 app.use("/api/user", require("./controllers/user_Controller"))
 app.use("/api/userprofile", require("./controllers/userProfile_Controller"))
 

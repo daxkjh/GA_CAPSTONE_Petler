@@ -128,7 +128,7 @@ model Bookings {
   services      Services    @relation(fields: [servicesId], references: [id])
   startDateTime DateTime?
   endDateTime   DateTime?
-  status        String?
+  status        String?     @default("pending")
   bookingdesc   String?
   profileId     Int
   userProfileId Int
@@ -136,11 +136,12 @@ model Bookings {
 }
 
 model Services {
-  id        Int        @id @default(autoincrement())
-  title     String?
-  price     Int?
-  vendor    Profile    @relation(fields: [profileId], references: [id])
-  bookings  Bookings[]
-  active    Boolean    @default(true)
-  profileId Int
+  id         Int        @id @default(autoincrement())
+  title      String?
+  price      Int?
+  dayService Boolean?   @default(false)
+  vendor     Profile    @relation(fields: [profileId], references: [id])
+  bookings   Bookings[]
+  active     Boolean    @default(true)
+  profileId  Int
 }

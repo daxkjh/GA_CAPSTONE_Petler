@@ -32,7 +32,7 @@ function Navbar() {
       <Link className='navBarText' to={`/user/profile/${uId}`}>u-Profile</Link>
       <button onClick={handleLogout}>LogOut</button>
       <span style={{fontWeight:"bold"}}>
-        {(localStorage.getItem("token"))?`${jwtDecode(localStorage.getItem("token")).role}`:"No Login"}
+        {(localStorage.getItem("token"))?`${jwtDecode(localStorage.getItem("token")).role}`:"Not Login"}
       </span>
       
     </div>

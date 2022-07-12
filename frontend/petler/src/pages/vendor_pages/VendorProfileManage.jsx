@@ -9,6 +9,7 @@ import ServicesForm from '../../components/edit_vendor/ServicesForm';
 import Calendar from 'react-calendar';
 import '../../calendar.css';
 import StyledDropzone from '../../components/uploader/StyledDropzone';
+import BookingCardVendor from '../../components/BookingCardVendor';
 
 
 
@@ -20,8 +21,10 @@ function VendorProfileManage() {
   const [serviceSetting, setServiceSetting] = useState(false);
   const [value, onChange] = useState(new Date());
   const [bookings, setBookings] = useState([]);
+
   console.log('USER',user)
-  console.log("bookings", bookings)
+  console.log(bookings
+    )
   const navigate = useNavigate()
   useEffect(()=> {// Uncomment Before Deployment
     // if (Object.keys(user).length<1) {
@@ -42,7 +45,6 @@ useEffect(()=> {
   .catch(error => console.log("error", error));
   setRefresh(prev=>!prev);
   }, [vendor])
-
 
   return (
     <div className="v_profile_container">
@@ -102,18 +104,10 @@ useEffect(()=> {
         onChange={onChange} value={value} 
         onClickDay={(day) => console.log(day) }/>
         <h2>your bookings</h2>
-        {bookings?.data?.length > 1 ?
-        bookings?.data?.map((b, index)=>
-        <section key={index}>
-        <p>{b.services.title}</p>
-        {b.startDateTime}
-        <p> booked by : {b.user.name}</p>
-        <p> status: {b.status} </p>
-        <p className='edit'> change status</p>
-        </section>
-        
-        )
-        : null} 
+        {bookings?.data?.length > 1 ? bookings?.data?.map((booking, index)=> 
+        <BookingCardVendor key={index} vendor={vendor} booking={booking} />
+        ) 
+        : <p>no bookings yet</p>} 
         <p className='edit'> view past bookings</p>
         </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}

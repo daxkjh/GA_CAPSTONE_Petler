@@ -20,8 +20,22 @@ function VendorProfileManage() {
   const [serviceSetting, setServiceSetting] = useState(false);
   const [value, onChange] = useState(new Date());
   const navigate = useNavigate()
-  console.log('USER',user)
-  // const id = useParams();
+  const [formState, setFormState] = useState({
+    pic: false,
+    password: false,
+    profile: false,
+    
+  });
+
+  const toggleForm = (x) => {
+    setFormState({
+      ...formState,
+      [x] : !formState[x],
+    });
+  };
+
+
+
 
   useEffect(()=> {// Uncomment Before Deployment
     // if (Object.keys(user).length<1) {
@@ -30,7 +44,9 @@ function VendorProfileManage() {
     //  }
     // else{
     axios.get(`/api/vendor/profile/${user?.data?.vendorId}`)
-    .then((res) => setVendor(res?.data))
+    .then((res) => {setVendor(res?.data)
+    console.log("RES :",res)
+  console.log(user)})
     .catch(error => console.log("error", error));
     setRefresh(prev=>!prev);
 /*}*/}, [])
@@ -43,6 +59,7 @@ function VendorProfileManage() {
       <div className='c-left'>
       <div className="vendorinfo">
         <div className="v-left">
+        <div onClick={()=>toggleForm("pic")} className='editbutton'><img src='https://i.imgur.com/horiynl.png'></img></div>
         <img src={vendor?.data?.profilePic}
         width={"200px"}></img>
         </div>
@@ -98,7 +115,7 @@ function VendorProfileManage() {
         </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
       {serviceSetting ? <ServicesForm /> : null }
-      <StyledDropzone/>
+      {formState.pic&&<StyledDropzone toggleForm={toggleForm} arg={"pic"}/>}
     </div>
   )
 }

@@ -69,6 +69,10 @@
   margin-left: 1.7rem;
   grid-area: v-left; }
 
+  .v-left:hover img {
+    opacity: 0.8;
+  } 
+
 .v-right { 
   margin-top: 1.5rem;
   margin-left: 0.5rem;
@@ -220,7 +224,57 @@ height: 100%;
 }
 
 .selectedImg{
-  width: 5rem;
-  height: 5rem;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
+  
+}
+
+.editbutton{
+  position: absolute;
+}
+.editbutton:hover{
+  cursor: pointer;
+}
+
+
+.editbutton img{
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: .2rem;
+  opacity: 0.1;
+}
+
+.formCloseButton{
+  position:fixed;
+  background-color: aliceblue;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  align-content: center;
+  left:50%;
+  top:30px;
+  border-radius: 15px;
+}
+
+.formCloseButton h3{
+  position: relative;
+  top:-15px;
+}
+
+.formCloseButton:hover{
+  transform: scale(1.1);
+}
+.formCloseButton:active{
+  transform: scale(0.95);
+}
+
+.imgUploadContainer{
+  position: fixed;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  left:0;
+  top:0;
+
 }

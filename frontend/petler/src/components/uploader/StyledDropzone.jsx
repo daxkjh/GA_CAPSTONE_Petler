@@ -8,13 +8,21 @@ import { refreshAtom } from "../../App";
 
 
 const baseStyle = {
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  // flex: 1,
+  display: 'block',
+  position:"fixed",
+  // flexDirection: 'column',
+  width:"300px",
+  height:"300px",
+  // alignItems: 'center',
+  top:"50%",
+  left:"50%",
+  transform: 'translate(-50%, -50%)',
   padding: '20px',
-  borderWidth: 2,
-  borderRadius: 2,
+  borderWidth: 3,
+  borderRadius: 30,
+  // margin:"0 auto",
+  // marginTop:"50%",
   borderColor: '#eeeeee',
   borderStyle: 'dashed',
   backgroundColor: '#fafafa',
@@ -35,7 +43,7 @@ const rejectStyle = {
   borderColor: '#ff1744'
 };
 
-function StyledDropzone(props) {
+function StyledDropzone({toggleForm,arg}) {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [image, setImage] = useState([])
@@ -90,20 +98,24 @@ function StyledDropzone(props) {
   
 
   return (
-    <div className="container">
-      {image.length===0&&
+    <div className="imgUploadContainer">
+      <div className='formCloseButton' onClick={()=>toggleForm(arg)}><h3>&times;</h3></div>
+     
       <div {...getRootProps({style})}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop your image here, or click to select image</p>
-      </div>}
-      <aside>
-        <h4>Files</h4>
-        <ul>{files}</ul>
-      </aside>
-      {image.length>0&&<div>
+      {image.length===0&&
+      <><input {...getInputProps()} />
+        <p>Drag 'n' drop your image here, or click to select image</p></>}
+        {image.length>0&&<div>
         {image.map((x,i)=><img className='selectedImg' src={x} key={i}/>)}
         </div>}
-      {image.length>0&&<button onClick={handleUpload}>Upload</button>}
+        {image.length>0&&<button style={{marginTop:"15%", padding:"10px"}} onClick={handleUpload}>Upload</button>}
+      </div>
+      <aside>
+        {/* <h4>Files</h4> */}
+        {/* <ul>{files}</ul> */}
+      </aside>
+    
+      
 
     </div>
   );

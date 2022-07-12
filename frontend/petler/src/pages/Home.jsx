@@ -7,18 +7,18 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
   const [user, setUser] = useAtom(userAtom);
   const [allVendors, setAllVendors] =useState({});
-  // console.log("home", user)
+  console.log("home", user)
   
   const navigate = useNavigate();
 
  useEffect(()=> {
     axios.get("/api/vendor")
-    .then((res) => {/*console.log("れす",res)*/
+    .then((res) => {console.log("れす",res)
     setAllVendors(res.data)})
     .catch(error => console.log("error", error));
     // setRefresh(prev=>!prev);
   }, [])
-  //  console.log("hey vendors!", allVendors)
+   console.log("hey vendors!", allVendors)
 
    const returnTop = () => {
     window.scrollTo({
@@ -47,10 +47,10 @@ function Home() {
         {allVendors?.data?.map((ele, index)=> 
         <section key={index} className='vendorsec' 
         onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)}>
-          <img src={ele?.profilePic} width={"150px"}></img>
-          <p>{ele?.name}</p>
-          <p>{ele?.intro}</p>
-          <p>{ele?.type}</p>
+          <img src={ele.profilePic} width={"150px"}></img>
+          <p>{ele.name}</p>
+          <p>{ele.intro}</p>
+          <p>{ele.type}</p>
         </section>)}
       </div> 
       <button className="topbutton" onClick={returnTop}>

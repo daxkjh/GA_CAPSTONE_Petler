@@ -41,6 +41,41 @@ function VendorProfileManage() {
   };
 
 
+
+  const fetchData = async ()=>{
+    const res = await axios.get(`/api/booking/${user.id}`)
+     setBookings(res.data)
+    // const data = await res.json()
+    console.log('BOOKINGS',res)
+  }
+ useEffect(()=> {// Uncomment Before Deployment
+    // if (Object.keys(user).length<1) {
+    //   navigate("/vendor/login")
+    //   alert("Not Logged In")
+    //  }
+    // else{
+      if(user.id)
+      fetchData()
+  //   axios.get(`/api/vendor/profile/${user?.vendorId}`)
+  //   .then((res) => {setVendor(res?.data)
+  //   console.log("RES :",res)
+  // console.log(user)})
+  //   .catch(error => console.log("error", error));
+  //   setRefresh(prev=>!prev);
+/*}*/}, [user.id])
+
+
+
+
+
+
+
+
+
+
+
+
+
 //   useEffect(()=> {// Uncomment Before Deployment
 //     // if (Object.keys(user).length<1) {
 //     //   navigate("/vendor/login")
@@ -134,7 +169,7 @@ useEffect(()=> {
         onChange={onChange} value={value} 
         onClickDay={(day) => console.log(day) }/>
         <h2>your bookings</h2>
-        {bookings?.data?.length > 1 ? bookings?.data?.map((booking, index)=> 
+        {bookings?.data?.length > 0 ? bookings?.data?.map((booking, index)=> 
         <BookingCardVendor key={index} vendor={user} booking={booking} />
         ) 
         : <p>no bookings yet</p>} 

@@ -35,7 +35,7 @@ function User_BrowseVendorDetails () {
         </div>
         <div className='v-right'>
         <h3>{vendor?.data?.name}</h3>
-        <p> service type: {user.type}</p>
+        <p> service type: {user?.type}</p>
         <p> {vendor?.data.address} </p>
         <p> {vendor?.data.phone} </p>
         </div>

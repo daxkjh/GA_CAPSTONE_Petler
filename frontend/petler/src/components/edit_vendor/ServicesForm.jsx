@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAtom } from 'jotai';
 import { userAtom, refreshAtom } from '../../App';
 
-function ServicesForm({ setServiceSetting }) {
+function ServicesForm({ toggleForm,arg }) {
     const [user, setUser] = useAtom(userAtom);
     const [refresh, setRefresh] = useAtom(refreshAtom)
 
@@ -64,7 +64,7 @@ function ServicesForm({ setServiceSetting }) {
           <option name="dayService" value="false">multiple days</option>
         </select>
         <button>Submit</button>
-        <p onClick={() => setServiceSetting(false)}
+        <p onClick={() => toggleForm(arg)}
         className="edit"> cancel </p>
       </form>
     </div>

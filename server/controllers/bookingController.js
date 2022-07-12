@@ -16,7 +16,7 @@ router.post("/", async (req, res) =>{
         bookingdesc: req.body.bookingdesc,}
       }
       )
-      res.status.apply(200).json({ status: "success", data:booking })
+      res.status(200).json({ status: "success", data:booking })
     } catch (error) {
       res.send({status: "failed", data: error})
     }

@@ -50,8 +50,7 @@ axios
 .get(`/api/${decodedToken.role}/profile/${decodedToken.id}`, {
   headers: { Authorization: token },
 })
-.then((res) =>{ setUser(res.data)
-console.log(res.data)})
+.then((res) =>{ setUser(res.data)})
 .catch((error) => console.log("error", error));
 }}
 },[refresh])

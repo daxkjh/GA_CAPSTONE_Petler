@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
 // Auth
 const isAuth = (req, res, next) => {
   const auth = req.headers.authorization;
-  console.log(auth);
+  // console.log(auth);
   if (!auth) {
     res.status(401).send({ status: "error", msg: "No header" });
   }
@@ -239,17 +239,27 @@ router.post("/services/", async (req, res) => {
   const dda = {
     title: req.body.title,
     price: req.body.price,
-    profileId: req.body.profileId
+    profileId: req.body.profileId,
+    dayService: req.body.dayService
     }
-  console.log("dda",dda)
   try { 
     const service = await prisma.services.create({
-      // where: {
-      //   vendorId: id,
-      // },
     data: dda
   })
     res.status(200).json({data: service})
+  } catch (error) {
+    res.send({ status: "failed ", data: error })
+  }
+})
+
+router.get("/services/:id", async (req, res) => {
+  const { id } = req.params;
+  const idd = parseInt(id);
+  try { 
+    const service = await prisma.services.findUnique({
+       where: { id: idd }
+  })
+    res.status(200).json({ data: service })
   } catch (error) {
     res.send({ status: "failed ", data: error })
   }

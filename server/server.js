@@ -48,7 +48,7 @@ app.listen(PORT, () => {
 
 
 app.post("/api/vendor/testupload/", async(req,res)=>{
-    const image = req.body
+    const image = req.headers
     console.log("IMAGE",image)
     // res.send("hi")
     try {

@@ -51,9 +51,11 @@ router.post("/signup", async (req, res) => {
 router.post("/upload/:id", async (req,res,next)=>{
   try {
     const {id} = req.params
-    const {image} = req.body
-    const url = await cloudinary.uploader.upload( image, {folder: "vendor"} )
-    res.status(200).json({msg:"success", data: url})
+    const data = req.body
+    const image = data.data
+    // console.log("IMAGE",image)
+    const imageurl = await cloudinary.uploader.upload( image, {folder: "vendor"} )
+    res.status(200).json({msg:"success", data: imageurl})
   } catch (error) {
     res.status(400).json({ status: "failed", data: error });
   }

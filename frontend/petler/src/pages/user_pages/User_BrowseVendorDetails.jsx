@@ -23,10 +23,7 @@ function User_BrowseVendorDetails () {
   }, [])
    console.log("vendor detail from BrowseVendorDetails", vendor)
 
-  //  if (!vendor) {
-  //   return <p>loading,,,</p>
-  //  }
-  //  else
+ 
   
   return (
     <div className="v_profile_container">

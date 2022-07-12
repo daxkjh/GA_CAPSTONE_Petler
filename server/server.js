@@ -47,14 +47,14 @@ app.listen(PORT, () => {
 })
 
 
-app.post("/api/vendor/testupload/", async(req,res)=>{
-    const image = req.headers
-    console.log("IMAGE",image)
-    // res.send("hi")
-    try {
-        const url = await cloudinary.uploader.upload(image[0], function(error, result) {console.log(result, error)});
-        res.status(200).json({msg:"success", data: url})
-      } catch (error) {
-        res.status(400).json({ status: "failed", data: error });
-      }
-})
+// app.post("/api/vendor/testupload/", async(req,res)=>{
+//     const {data} = req.body
+//     console.log("IMAGE",data)
+//     // res.send("hi")
+//     try {
+//         const url = await cloudinary.uploader.upload(data, function(error, result) {console.log(result, error)});
+//         res.status(200).json({msg:"success", data: url})
+//       } catch (error) {
+//         res.status(400).json({ status: "failed", data: error });
+//       }
+// })

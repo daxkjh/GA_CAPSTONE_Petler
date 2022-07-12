@@ -110,45 +110,6 @@ const BookingForm = ({ vendor }) => {
             <button>book</button>
           </form>
         </div>
-        {/* <div className="rangeForm">
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="choose service">choose service</label>
-            <br />
-            <select name="service">
-              {vendor?.data?.services.map((s, index) => (
-                <option key={index} value={s.id}>
-                  {s.title}
-                </option>
-              ))}
-            </select>
-            <br />
-            <br />
-            <label htmlFor="start date">start date</label>
-
-            <br />
-            <DatePicker
-              selected={startRange}
-              dateFormat="dd/MM/yyyy"
-              onChange={(date) => setStartRange(date)}
-              selectsStart
-              startDate={startRange}
-              endDate={endRange}
-            />
-            <label htmlFor="end date">end date</label>
-            <DatePicker
-              selected={endRange}
-              dateFormat="dd/MM/yyyy"
-              onChange={(date) => setEndRange(date)}
-              selectsEnd
-              startDate={startRange}
-              endDate={endRange}
-              minDate={startRange}
-            />
-            <br />
-            <br />
-            <button>book</button>
-          </form>
-        </div> */}
       </div>
     </div>
   );

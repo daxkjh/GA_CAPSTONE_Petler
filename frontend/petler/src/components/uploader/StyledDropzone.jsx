@@ -91,10 +91,11 @@ function StyledDropzone(props) {
 
   return (
     <div className="container">
+      {image.length===0&&
       <div {...getRootProps({style})}>
         <input {...getInputProps()} />
         <p>Drag 'n' drop your image here, or click to select image</p>
-      </div>
+      </div>}
       <aside>
         <h4>Files</h4>
         <ul>{files}</ul>

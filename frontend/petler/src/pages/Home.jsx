@@ -31,8 +31,11 @@ function Home() {
   
   return (
     <div className='homecontainer'>
-      <div className='SearchBar'>
-      <h1>search bar will be here</h1>
+      <div className='search'>
+        <form>
+          <input className='searchbox' ></input>
+          <button className='searchbutton'>search</button>
+        </form>
       </div>
       <div className='menu'>
         <section className='menusec'>
@@ -45,16 +48,17 @@ function Home() {
           <p> groomers </p>
         </section>
       </div>
-      <div className="vendorcard">
+      
         {allVendors?.data?.map((ele, index)=> 
+        <div className="vendorcard">
         <section key={index} className='vendorsec' 
         onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)}>
           <img src={ele.profilePic} width={"150px"}></img>
           <p>{ele.name}</p>
           <p>{ele.intro}</p>
           <p>{ele.type}</p>
-        </section>)}
-      </div> 
+        </section>
+      </div> )}
       <button className="topbutton" onClick={returnTop}>
         Return to Top
       </button>

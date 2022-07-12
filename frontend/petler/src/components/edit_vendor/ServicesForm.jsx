@@ -7,8 +7,8 @@ function ServicesForm({ setServiceSetting }) {
     const [user, setUser] = useAtom(userAtom);
     const [refresh, setRefresh] = useAtom(refreshAtom)
 
-    console.log("d",user?.data?.id)
-    const profileId = user?.data?.id
+    console.log("d",user?.id)
+    const profileId = user?.id
     
     const handleSubmit = (event) => {
         event.preventDefault();

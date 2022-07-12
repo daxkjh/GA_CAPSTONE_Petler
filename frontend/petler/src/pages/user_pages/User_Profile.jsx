@@ -49,15 +49,15 @@ import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
     <div className="userProfContainer">
       <div className="userProfTitle">
       <h1>Welcome Back! </h1>
-      <h2>{user?.data?.email}</h2>
+      <h2>{user?.email}</h2>
       </div>
       <div className="userProf">
-      <img src={user?.data?.profile?.image} width={"200px"}></img>
+      <img src={user?.profile?.image} width={"200px"}></img>
       <button onClick={()=>toggleForm("profile")}>
         edit profile
       </button>
-      <p>{user?.data?.profile?.name}</p>
-      <p>{user?.data?.profile?.description}</p>
+      <p>{user?.profile?.name}</p>
+      <p>{user?.profile?.description}</p>
       <button onClick={()=>toggleForm("password")}>
         edit password
       </button>
@@ -68,13 +68,13 @@ import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
      
       <div>
       <div className="petcontainer" id="pet1">
-        <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet} data={user?.data?.profile?.pets[0]}/>
+        <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet} data={user?.profile?.pets[0]}/>
       </div>
       <div className="petcontainer" id="pet2">
-      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.data?.profile?.pets[1]}/>
+      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.profile?.pets[1]}/>
       </div>
       <div className="petcontainer" id="pet3">
-      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.data?.profile?.pets[2]}/>
+      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.profile?.pets[2]}/>
       </div>
       </div>
       

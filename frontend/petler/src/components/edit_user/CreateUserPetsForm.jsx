@@ -95,7 +95,7 @@ axios.post(`/api/userprofile/pet/${user.data.id}`,{
 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
    size : petSize,
     sterilized : petSterilized,
-    userProfileId: user?.data?.profile?.id
+    userProfileId: user?.profile?.id
 })
 .then((res)=> {
     setRefresh(!refresh)

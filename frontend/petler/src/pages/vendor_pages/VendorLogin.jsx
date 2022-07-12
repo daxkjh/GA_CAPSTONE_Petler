@@ -28,8 +28,8 @@ function VendorLogin() {
           const token = response.data.accessToken;
           localStorage.setItem("token", token);
           if (token) {
-            navigate("/vendor/manageprofile/");
             setRefresh((prev) => !prev);
+            setTimeout(()=>navigate("/vendor/manageprofile/"),200);
           } else {
             setInvalid(true);
             console.log(response.data);

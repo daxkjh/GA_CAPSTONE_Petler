@@ -45,7 +45,7 @@ const BookingForm = ({ vendor }) => {
     axios
       .post("/api/booking", {
         profileId: vendor?.data?.id,
-        userProfileId: user?.data?.profile?.id,
+        userProfileId: user?.profile?.id,
         servicesId: bookingInfo.servicesId,
         startDateTime: bookingInfo.startDateTime,
         endDateTime: bookingInfo.endDateTime,

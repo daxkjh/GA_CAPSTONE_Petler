@@ -29,6 +29,7 @@ function VendorProfileManage() {
     pic: false,
     password: false,
     profile: false,
+    service: false,
     
   });
 
@@ -134,7 +135,7 @@ useEffect(()=> {
         </div>
         )}
         <p className='edit'
-        onClick={()=>setServiceSetting(true)}>edit services</p>
+        onClick={()=>toggleForm('service')}>edit services</p>
       </div>
       </div>
         <div className='c-right'>
@@ -151,7 +152,7 @@ useEffect(()=> {
         <p className='edit'> view past bookings</p>
         </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
-      {serviceSetting && <ServicesForm setServiceSetting={setServiceSetting} /> }
+      {formState.service && <ServicesForm toggleForm={toggleForm} arg={"service"} /> }
       {formState.pic&&<StyledDropzone toggleForm={toggleForm} arg={"pic"}/>}
     </div>
   )

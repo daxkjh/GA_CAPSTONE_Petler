@@ -13,15 +13,27 @@ function ServicesForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const price = parseInt(event.target.elements.price.value)
-        const serviceData = {
+        if (event.target.elements.dayService.value === "true") {
+          const serviceData = {
             title: event.target.elements.title.value,
             price: price,
             profileId: profileId,
-            dayService: event.target.elements.dayService.value,
+            dayService: true,
+          }
+        axios.post("/api/vendor/services/", serviceData)
+        .then((res) => console.log("れっっす", res.data))
+        .catch(error => console.log("error", error));
+        } else {
+          const serviceData = {
+            title: event.target.elements.title.value,
+            price: price,
+            profileId: profileId,
+            dayService: false,
         } 
         axios.post("/api/vendor/services/", serviceData)
         .then((res) => console.log("れっっす", res.data))
         .catch(error => console.log("error", error));
+      }
         setRefresh(prev=>!prev);
     }
 
@@ -43,10 +55,13 @@ function ServicesForm() {
             placeholder="price"
             />
         <br></br>
-            single day<input
-            type="radio"
+        <select name="dayService" >
+          <option name="dayService" value="true">single day</option>
+          <option name="dayService" value="false">multiple days</option>
+        </select>
+            {/* single day<input
             name="dayService"
-            id="dayService"
+            id="dayService1"
             value="true"
             placeholder="price"
             />
@@ -56,7 +71,7 @@ function ServicesForm() {
             id="dayService"
             value="false"
             placeholder="price"
-            />
+            /> */}
         <button>Submit</button>
       </form>
     </div>

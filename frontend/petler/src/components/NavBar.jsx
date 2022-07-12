@@ -16,7 +16,7 @@ function Navbar() {
   // const decodedToken = jwtDecode(localStorage.getItem("token"))
   const vId = user?.data?.vendorId
   const uId = user?.data?.id
-   console.log("user", user?.data)
+  //  console.log("user", user?.data)
   
   return (
     <div className='navBar'>

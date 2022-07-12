@@ -47,10 +47,10 @@ if(token){
   } 
   else {
 axios
-.get(`/api/${decodedToken.role}/profile/${decodedToken.id}`, {
+.get(`/api/${decodedToken?.role}/profile/${decodedToken?.id}`, {
   headers: { Authorization: token },
 })
-.then((res) =>{ setUser(res.data)})
+.then((res) =>{ setUser(res.data.data)})
 .catch((error) => console.log("error", error));
 }}
 },[refresh])

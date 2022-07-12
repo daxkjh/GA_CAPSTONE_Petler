@@ -1,12 +1,13 @@
 import { useEffect, useState  } from 'react';
 import { useAtom } from 'jotai';
-import { userAtom } from '../App.jsx';
+import { userAtom, refreshAtom } from '../App.jsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [user, setUser] = useAtom(userAtom);
   const [allVendors, setAllVendors] =useState({});
+  const [refresh, setRefresh] = useAtom(refreshAtom);
   // console.log("home", user)
   
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Home() {
     .then((res) => {/*console.log("れす",res)*/
     setAllVendors(res.data)})
     .catch(error => console.log("error", error));
-    // setRefresh(prev=>!prev);
+    setRefresh(prev=>!prev);
   }, [])
   //  console.log("hey vendors!", allVendors)
 

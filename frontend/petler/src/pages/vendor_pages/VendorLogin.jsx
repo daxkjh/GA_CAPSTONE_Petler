@@ -28,7 +28,7 @@ function VendorLogin() {
           const token = response.data.accessToken;
           localStorage.setItem("token", token);
           if (token) {
-            navigate("/vendor/manageprofile");
+            navigate("/vendor/manageprofile/");
             setRefresh((prev) => !prev);
           } else {
             setInvalid(true);

@@ -24,6 +24,37 @@ function VendorProfileManage() {
 
   console.log('USER', user)
   const navigate = useNavigate();
+  
+  const [formState, setFormState] = useState({
+    pic: false,
+    password: false,
+    profile: false,
+    
+  });
+
+  const toggleForm = (x) => {
+    setFormState({
+      ...formState,
+      [x] : !formState[x],
+    });
+  };
+
+
+
+
+  useEffect(()=> {// Uncomment Before Deployment
+    // if (Object.keys(user).length<1) {
+    //   navigate("/vendor/login")
+    //   alert("Not Logged In")
+    //  }
+    // else{
+    axios.get(`/api/vendor/profile/${user?.data?.vendorId}`)
+    .then((res) => {setVendor(res?.data)
+    console.log("RES :",res)
+  console.log(user)})
+    .catch(error => console.log("error", error));
+    setRefresh(prev=>!prev);
+/*}*/}, [])
 
 //   useEffect(()=> {// Uncomment Before Deployment
 //     // if (Object.keys(user).length<1) {
@@ -53,8 +84,8 @@ useEffect(()=> {
       <div className='c-left'>
       <div className="vendorinfo">
         <div className="v-left">
-        <img src={user?.profilePic}
-        width={"200px"}></img>
+        <div onClick={()=>toggleForm("pic")} className='editbutton'><img src='https://i.imgur.com/horiynl.png'></img></div>
+        <img src={user?.profilePic} width={"200px"}/>
         </div>
         <div className='v-right'>
           <div>
@@ -120,8 +151,8 @@ useEffect(()=> {
         <p className='edit'> view past bookings</p>
         </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
-      {serviceSetting ? <ServicesForm setServiceSetting={setServiceSetting} /> : null }
-      <StyledDropzone/>
+      {serviceSetting && <ServicesForm setServiceSetting={setServiceSetting} /> }
+      {formState.pic&&<StyledDropzone toggleForm={toggleForm} arg={"pic"}/>}
     </div>
   )
 

@@ -82,7 +82,7 @@ import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
       {formState.editpet&&<EditUserPetsForm selectedPet={selectedPet} toggleForm={toggleForm}/>}
       {formState.createpet&&<CreatePetForm toggleForm={toggleForm}/>}
-      <EditUserPicForm/>
+      {formState.pic&&<EditUserPicForm/>}
     </div>
   );
 };

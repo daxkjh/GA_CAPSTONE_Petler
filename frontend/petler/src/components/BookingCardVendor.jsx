@@ -9,6 +9,7 @@ function BookingCardVendor({ vendor, booking }) {
   const bookingDate = date.toLocaleDateString('en-SG',{year: "numeric", month:"long", day:"numeric", time:"numeric"})
   const time = new Date(booking?.startDateTime);
   const bookingTime = time.toLocaleTimeString('en-SG')
+  console.log("hi")
   
   return (
     <div className='BookingCardContainer'>

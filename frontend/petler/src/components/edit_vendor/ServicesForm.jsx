@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAtom } from 'jotai';
 import { userAtom, refreshAtom } from '../../App';
 
-function ServicesForm() {
+function ServicesForm({ setServiceSetting }) {
     const [user, setUser] = useAtom(userAtom);
     const [refresh, setRefresh] = useAtom(refreshAtom)
 
@@ -38,42 +38,36 @@ function ServicesForm() {
     }
 
   return (
+    <div className="vendorFormContainer">
     <div className="serviceForm">
       <form onSubmit={handleSubmit}>  
             <label htmlFor="service">service title</label>
+            <br/>
             <input
             type="text"
             name="title"
             id="title"
             placeholder="ie) cat sitting service for 1h"
             />
+            <br/>
             <label htmlFor="price">price</label>
+            <br/>
             <input
             type="text"
             name="price"
             id="price"
             placeholder="price"
             />
-        <br></br>
+        <br/>
         <select name="dayService" >
           <option name="dayService" value="true">single day</option>
           <option name="dayService" value="false">multiple days</option>
         </select>
-            {/* single day<input
-            name="dayService"
-            id="dayService1"
-            value="true"
-            placeholder="price"
-            />
-            multiple days<input
-            type="radio"
-            name="dayService"
-            id="dayService"
-            value="false"
-            placeholder="price"
-            /> */}
         <button>Submit</button>
+        <p onClick={() => setServiceSetting(false)}
+        className="edit"> cancel </p>
       </form>
+    </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ const router = express.Router();
 const prisma = require("../server");
 const { bookings } = require("../server");
 
-// booking
+// create booking
 router.post("/", async (req, res) =>{
     try {
       const booking = await prisma.bookings.create({
@@ -18,8 +18,28 @@ router.post("/", async (req, res) =>{
       )
       res.status(200).json({ status: "success", data:booking })
     } catch (error) {
-      res.send({status: "failed", data: error})
+      res.send({ status: "failed", data: error })
     }
   })
+
+// read booking 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  const idd = parseInt(id)
+  try {
+    const bookings = await prisma.bookings.findMany({
+      where: {
+        profileId: idd
+      },
+      include: {
+        services: true,
+        user: true
+      }
+    })
+    res.status(200).json({ status: "success", data: bookings })
+  } catch (error) {
+    res.send({ status: "failed", data: error })
+  }
+})
 
   module.exports = router;

@@ -35,9 +35,9 @@ const EditVendorPasswordForm = ( {setPWChange} )=>{
     }
 
     return (
-        <div className="passwordchangeformcontainer">
+        <div className="vendorFormContainer">
+            <div className="serviceForm">
             <form onSubmit={handleSubmit}>
-                {/* <fieldset> */}
                     <legend>Change Password</legend>
                     {/* <label htmlFor="oldpw">Old Password</label>
                     <input type="text" name="oldpw" id="oldpw" placeholder="enter old password"/><br></br> */}
@@ -46,9 +46,9 @@ const EditVendorPasswordForm = ( {setPWChange} )=>{
                     <label htmlFor="cfmpw">Confirm New Password</label>
                     <input type="text" name="cfmpw" id="cfmpw" placeholder="re-enter new password"/><span>{(cfmpw)? null : "Password does not match"}</span><br></br>
                     <button>Submit</button>
-                {/* </fieldset> */}
             </form>
-            <button onClick={() => setPWChange(false)}>cancel</button>
+            <p className="edit" onClick={() => setPWChange(false)}>cancel</p>
+            </div>
         </div>
     )
 }

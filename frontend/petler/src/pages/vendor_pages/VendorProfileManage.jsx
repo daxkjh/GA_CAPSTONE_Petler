@@ -19,10 +19,10 @@ function VendorProfileManage() {
   const [PWChange, setPWChange] = useState(false);
   const [serviceSetting, setServiceSetting] = useState(false);
   const [value, onChange] = useState(new Date());
-  const navigate = useNavigate()
+  const [bookings, setBookings] = useState([]);
   console.log('USER',user)
-  // const id = useParams();
-
+  console.log("bookings", bookings)
+  const navigate = useNavigate()
   useEffect(()=> {// Uncomment Before Deployment
     // if (Object.keys(user).length<1) {
     //   navigate("/vendor/login")
@@ -35,7 +35,13 @@ function VendorProfileManage() {
     setRefresh(prev=>!prev);
 /*}*/}, [])
 
-
+useEffect(()=> {
+  axios.get(`/api/booking/${user?.data?.id}`)
+  .then((res) => {console.log(res.data)
+    setBookings(res?.data)})
+  .catch(error => console.log("error", error));
+  setRefresh(prev=>!prev);
+  }, [vendor])
 
 
   return (
@@ -51,7 +57,7 @@ function VendorProfileManage() {
         <p> service type: {user?.type}</p>
         <p> {vendor?.data?.address} </p>
         <p> {vendor?.data?.phone} </p>
-        <p className="pwchange" onClick={()=> setPWChange(true)}> change password</p>
+        <p className="edit" onClick={()=> setPWChange(true)}> change password</p>
         </div>
       </div>
       <div className="managebiz">
@@ -84,20 +90,34 @@ function VendorProfileManage() {
         <p>{ele?.price}</p>
         </div>
         )}
-          
-           
+
         <p className='edit'
         onClick={()=>setServiceSetting(true)}>edit services</p>
       </div>
       </div>
         <div className='c-right'>
+          <h2>manage your bookings  </h2>
         <Calendar 
         className="react-calendar"
         onChange={onChange} value={value} 
         onClickDay={(day) => console.log(day) }/>
+        <h2>your bookings</h2>
+        {bookings?.data?.length > 1 ?
+        bookings?.data?.map((b, index)=>
+        <section key={index}>
+        <p>{b.services.title}</p>
+        {b.startDateTime}
+        <p> booked by : {b.user.name}</p>
+        <p> status: {b.status} </p>
+        <p className='edit'> change status</p>
+        </section>
+        
+        )
+        : null} 
+        <p className='edit'> view past bookings</p>
         </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
-      {serviceSetting ? <ServicesForm /> : null }
+      {serviceSetting ? <ServicesForm setServiceSetting={setServiceSetting} /> : null }
       <StyledDropzone/>
     </div>
   )

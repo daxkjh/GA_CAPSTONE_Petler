@@ -8,6 +8,7 @@ import { useAtom } from 'jotai';
 import ServicesForm from '../../components/edit_vendor/ServicesForm';
 import Calendar from 'react-calendar';
 import '../../calendar.css';
+import StyledDropzone from '../../components/uploader/StyledDropzone';
 
 
 
@@ -97,6 +98,7 @@ function VendorProfileManage() {
         </div>
       {PWChange ? <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} /> : null}
       {serviceSetting ? <ServicesForm /> : null }
+      <StyledDropzone/>
     </div>
   )
 }

@@ -11,6 +11,7 @@ import EditUserPetsForm from "../../components/edit_user/EditUserPetForm";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
+import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
 
   
   const User_Profile = () => {
@@ -81,6 +82,7 @@ import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
       {formState.editpet&&<EditUserPetsForm selectedPet={selectedPet} toggleForm={toggleForm}/>}
       {formState.createpet&&<CreatePetForm toggleForm={toggleForm}/>}
+      <EditUserPicForm/>
     </div>
   );
 };

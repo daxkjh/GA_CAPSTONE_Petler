@@ -84,15 +84,18 @@ function StyledDropzone({ toggleForm, arg }) {
   ));
 
   const handleUpload = () => {
-    console.log(image);
+    // console.log(image);
     axios
-      .post(`/api/vendor/testupload/`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: image,
-      })
+      .post(
+        `/api/vendor/testupload/`,
+        { body: image[0] },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        }
+      )
       .then((res) => {
         alert("Upload success");
         console.log(res);

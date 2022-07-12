@@ -3,6 +3,8 @@ const router = express.Router();
 const prisma = require("../server");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("../server")
+
 
 
 const saltRounds = 10;
@@ -44,6 +46,24 @@ router.post("/signup", async (req, res) => {
     res.status(400).json({ status: "failed", data: error });
   }
 });
+
+// VENDOR PROFILE PIC UPLOAD
+router.post("/upload/:id", async (req,res,next)=>{
+  try {
+    const {id} = req.params
+    const {image} = req.body
+    const url = await cloudinary.uploader.upload( image, {folder: "vendor"} )
+    res.status(200).json({msg:"success", data: url})
+  } catch (error) {
+    res.status(400).json({ status: "failed", data: error });
+  }
+
+})
+
+
+
+
+
 
 //Vendor PASSWORD Change
 router.put("/signup/:id", async (req, res) => {

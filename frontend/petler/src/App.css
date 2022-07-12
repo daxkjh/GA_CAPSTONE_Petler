@@ -218,3 +218,9 @@ height: 100%;
   height: 250px;
   animation: 1s slideIn forwards;
 }
+
+.selectedImg{
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+}

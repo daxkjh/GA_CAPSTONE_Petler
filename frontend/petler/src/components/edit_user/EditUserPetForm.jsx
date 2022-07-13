@@ -166,6 +166,7 @@ const EditUserPetsForm = ({ toggleForm, selectedPet }) => {
   const handleDelete = (e) => {
     e.preventDefault();
     confirm("Are you sure? Your Pet WILL be Deleted!") /// WILLL DO CSS
+
     const headers = {
       'Authorization': `Bearer ${localStorage.getItem("token")}`
     }
@@ -173,6 +174,7 @@ const EditUserPetsForm = ({ toggleForm, selectedPet }) => {
       id: selectedPet.id
     }
     axios.delete(`/api/userprofile/pet/${user?.id}`, {headers, data})
+    
     .then((res) => {
       setRefresh(!refresh);
       toggleForm("editpet");

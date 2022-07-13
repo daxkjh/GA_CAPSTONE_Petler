@@ -25,7 +25,7 @@ function Home() {
   const handleFilter = (type) => {
     console.log(type);
     axios
-      .get(`/api/vendor/profile/filter?petType=${type}`, {
+      .get(`/api/vendor/profile/filter?button=${type}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         }
@@ -66,14 +66,14 @@ function Home() {
         <p value="dogs">services for dogs</p>
       </div>
       <div className="menu">
-        <div onClick={() => handleFilter("sitters")}
+        <div onClick={() => handleFilter("sitter")}
         className="menusec">
           <p> sitters </p>
         </div>
-        <div className="menusec">
+        <div onClick={() => handleFilter("hotel")} className="menusec">
           <p> hotels </p>
         </div>
-        <div className="menusec">
+        <div onClick={() => handleFilter("groomer")} className="menusec">
           <p> groomers </p>
         </div>
       </div>

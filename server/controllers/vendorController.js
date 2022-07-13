@@ -160,20 +160,31 @@ router.get("/profile", async (req, res) => {
   }
 });
 
-// cat or dog filter vendor
+// pet type filter 
 router.get("/profile/filter", async (req, res) => {
-  const  type  = req.query.petType
-  console.log("cat?", type)
-  try {
-    const FilterProfile = await prisma.profile.findMany({
-    where:{ details: 
-      {petType : type,} 
-    }});
-    res.status(200).json({ data: FilterProfile });
-  } catch (error) {
-    res.send({ status: 401, error: error });
+  const  type  = req.query.button
+  // console.log("cat?", type)
+  if (type === "cats" || type === "dogs") {
+    try {
+      const FilterProfile = await prisma.profile.findMany({
+      where:{ details: 
+        {petType : { in: [type, "both"]} } 
+      }});
+      res.status(200).json({ data: FilterProfile });
+    } catch (error) {
+      res.send({ status: 401, error: error });
+    }
+  } else {
+    try {
+      const FilterProfile = await prisma.profile.findMany({
+      where:{ type : type }});
+      res.status(200).json({ data: FilterProfile });
+    } catch (error) {
+      res.send({ status: 401, error: error });
+    }
   }
 });
+
 
 // vendor profile show
 router.get("/profile/:id", async (req, res) => {

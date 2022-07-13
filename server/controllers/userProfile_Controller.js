@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const { reviews } = require("../server");
 const prisma = require("../server");
+const userAuth = require("../middleware/userAuth")
+const vendorAuth = require("../middleware/vendorAuth")
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
@@ -13,7 +15,7 @@ cloudinary.config({
 //######    USER'S PETS      ########
 //###################################
 // CREATE
-router.post("/pet/:id", async (req, res) => {
+router.post("/pet/:id",userAuth, async (req, res) => {
     const id = parseInt(req.params.id)
     try {
         const imageurl = await cloudinary.uploader.upload( req.body.data, {folder: "pet"} )
@@ -37,7 +39,7 @@ router.post("/pet/:id", async (req, res) => {
 });
 
 //UPDATE
-router.put("/pet/:id", async (req, res) => {
+router.put("/pet/:id",userAuth, async (req, res) => {
     const id = parseInt(req.params.id)
     // console.log("DATA",req.body.data)
     const petID = parseInt(req.body.id)
@@ -69,7 +71,7 @@ router.put("/pet/:id", async (req, res) => {
 
 
 //READ ONE
-router.get("/pet/:id", async (req, res) => {
+router.get("/pet/:id",userAuth, async (req, res) => {
     const {id} = req.params
     
     try {
@@ -86,7 +88,7 @@ router.get("/pet/:id", async (req, res) => {
 });
 
 //DELETE ONE
-router.delete("/pet/:id", async (req, res) => {
+router.delete("/pet/:id",userAuth, async (req, res) => {
     const id = parseInt( req.params.id )
     console.log("ID", id ,req.body.id )
     try {

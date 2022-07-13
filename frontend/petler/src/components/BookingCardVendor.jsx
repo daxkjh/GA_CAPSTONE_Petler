@@ -24,9 +24,8 @@ function BookingCardVendor({ booking, fetchData }) {
       { 
         status: status
       },
-      {headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`
+      { headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`
         }})
     .then((res) => {
       setRefresh(!refresh)
@@ -34,7 +33,9 @@ function BookingCardVendor({ booking, fetchData }) {
       setEditBooking(false);
       fetchData();
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      alert(error)
+      console.log(error)});
 };
 
     return (

@@ -24,7 +24,7 @@ function VendorProfileManage() {
   const [element, setElement] =useState("")
   
 
-  // console.log('USER', user)
+
   const navigate = useNavigate();
   
   const [formState, setFormState] = useState({
@@ -48,14 +48,22 @@ function VendorProfileManage() {
 const fetchData = async ()=>{
     const res = await axios.get(`/api/booking/${user.id}`)
      setBookings(res.data)
-    // const data = await res.json()
-    // console.log('BOOKINGS',res)
   }
-console.log("here",user.id)
+
+ useEffect(()=> {
+  if (Object.keys(user).length<1) {
+    alert("Not Logged In")
+    navigate("/vendor/login")
+   }
+}, [])
+
+
  useEffect(()=> {
       if(user.id)
       fetchData()
 }, [user.id])
+
+
 
   return (
     <>

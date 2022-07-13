@@ -32,6 +32,16 @@ import BookingCardUser from "../../components/BookingCardUser";
     createpet: false
   });
 
+  //###  LOGIN PROTECTION  ###
+  useEffect(()=>{
+    if (Object.keys(user).length<1) {
+      alert("Not Logged In")
+     navigate("/user/login")
+    }
+ },[])
+//############################
+
+
   const toggleForm = (x) => {
     setFormState({
       ...formState,
@@ -45,6 +55,7 @@ import BookingCardUser from "../../components/BookingCardUser";
     const res = await axios.get(`/api/booking/${user.id}`)
      setBookings(res.data)
   }
+ 
 
  useEffect(()=> {
       if(user.id)

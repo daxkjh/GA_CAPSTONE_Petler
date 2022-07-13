@@ -2,9 +2,12 @@ const express = require("express");
 const router = express.Router();
 const prisma = require("../server");
 const { bookings } = require("../server");
+const userAuth = require("../middleware/userAuth")
+const vendorAuth = require("../middleware/vendorAuth")
+
 
 // create booking
-router.post("/", async (req, res) =>{
+router.post("/", userAuth ,async (req, res) =>{
     try {
       const booking = await prisma.bookings.create({
         data: { profileId: req.body.profileId,
@@ -18,7 +21,7 @@ router.post("/", async (req, res) =>{
       )
       res.status(200).json({ status: "success", data:booking })
     } catch (error) {
-      res.send({ status: "failed", data: error })
+      res.status(400).json({ status: "failed", data: error })
     }
   })
 

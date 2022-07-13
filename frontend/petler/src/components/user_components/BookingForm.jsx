@@ -49,9 +49,14 @@ const BookingForm = ({ vendor }) => {
         servicesId: bookingInfo.servicesId,
         startDateTime: bookingInfo.startDateTime,
         endDateTime: bookingInfo.endDateTime,
-      })
-      .then((res) => console.log("this is the res", res))
-      .catch((error) => console.log(error));
+      },{ headers: {
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
+      }})
+      .then((res) => {
+        alert("Booking has been submitted, awaiting Vendor's confirmation!")
+      console.log("this is the res", res)})
+      .catch((error) => {alert("Please Log in to book")
+      console.log(error)});
     setRefresh(!refresh);
   };
 

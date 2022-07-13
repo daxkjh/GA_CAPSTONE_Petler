@@ -91,7 +91,6 @@ function StyledDropzone({ toggleForm, arg }) {
         { data: image[0] },
         {
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`
           }
         }

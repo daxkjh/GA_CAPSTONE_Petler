@@ -40,7 +40,9 @@ console.log("疲れた", user?.vendorId)
     };
     console.log("データ",profileData);
     axios
-      .put(`/api/vendor/profile/b/${user?.vendorId}`, profileData)
+      .put(`/api/vendor/profile/b/${user?.vendorId}`, profileData,{ headers: {
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
+      }})
       .then((res) => {
           console.log(res.data);
           setRefresh(prev=>!prev);

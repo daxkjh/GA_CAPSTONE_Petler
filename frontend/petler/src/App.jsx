@@ -48,7 +48,7 @@ if(token){
   else {
 axios
 .get(`/api/${decodedToken?.role}/profile/${decodedToken?.id}`, {
-  headers: { Authorization: token },
+  headers: { 'Authorization' : `Bearer ${localStorage.getItem("token")}` },
 })
 .then((res) =>{ console.log(res)
   setUser(res.data.data)})

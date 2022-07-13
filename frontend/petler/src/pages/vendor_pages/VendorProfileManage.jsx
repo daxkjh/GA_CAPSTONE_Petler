@@ -50,13 +50,21 @@ const fetchData = async ()=>{
      setBookings(res.data)
   }
 
- useEffect(()=> {
-  if (Object.keys(user).length<1) {
-    alert("Not Logged In")
-    navigate("/vendor/login")
-   }
-}, [])
-
+  useEffect(()=>{
+    let token = localStorage.getItem("token")
+    if(token){
+   let decodedToken = jwtDecode(token)
+    if (!decodedToken || decodedToken.role !== "vendor") {
+      alert("Not Logged In As User")
+     navigate("/vendor/login")
+    } else{
+      fetchData()
+    }
+  } else {
+    alert("Not Logged In As Vendor")
+     navigate("/home")
+  }
+},[])
 
  useEffect(()=> {
       if(user.id)
@@ -163,7 +171,7 @@ const fetchData = async ()=>{
         onChange={onChange} value={value} 
         onClickDay={(day) => console.log(day) }/>
         <h2>your bookings</h2>
-        {bookings?.data?.length > 0 ? bookings?.data?.map((booking, index) => 
+        {bookings?.data?.length > 0 ? bookings?.data?.sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 
         : <p>no bookings yet</p> } 

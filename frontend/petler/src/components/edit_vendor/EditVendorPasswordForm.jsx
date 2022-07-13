@@ -26,7 +26,9 @@ const EditVendorPasswordForm = ( {setPWChange} )=>{
             console.log("USERID",user)
             axios.put(`/api/vendor/signup/${user?.vendorId}/`,{
                 password : e.target.elements.newpw.value
-            })
+            },{ headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+              }})
             .then((res)=> {
                 alert("password changed")
                 console.log(res)} )

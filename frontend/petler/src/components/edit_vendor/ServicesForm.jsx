@@ -20,7 +20,9 @@ function ServicesForm({ toggleForm, arg }) {
             profileId: profileId,
             dayService: true,
           }
-        axios.post("/api/vendor/services/", serviceData)
+        axios.post("/api/vendor/services/", serviceData,{ headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`
+        }})
         .then((res) => console.log("れっっす", res.data))
         .catch(error => console.log("error", error));
         } else {
@@ -30,7 +32,9 @@ function ServicesForm({ toggleForm, arg }) {
             profileId: profileId,
             dayService: false,
         } 
-        axios.post("/api/vendor/services/", serviceData)
+        axios.post("/api/vendor/services/", serviceData,{ headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`
+        }})
         .then((res) => console.log("れっっす", res.data))
         .catch(error => console.log("error", error));
       }

@@ -11,7 +11,9 @@ function EdtitVendorInfo( { user, toggleForm, arg, setRefresh }) {
             phone: event.target.elements.phone.value,
             intro: event.target.elements.intro.value
         };
-        axios.put(`/api/vendor/profile/p/${user?.vendorId}`, profileData)
+        axios.put(`/api/vendor/profile/p/${user?.vendorId}`, profileData,{ headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`
+          }})
             .then((res) => {console.log(res.data)
             setRefresh(prev=>!prev);
             toggleForm(arg);

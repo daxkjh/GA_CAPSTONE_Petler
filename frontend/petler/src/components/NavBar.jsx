@@ -1,16 +1,17 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from '../App';
 import jwtDecode from 'jwt-decode';
 
 function Navbar() {
   const [user,setUser] = useAtom(userAtom)
-
+  const navigate = useNavigate()
   const handleLogout =()=>{
+    navigate("/home")
+    alert("Logging Out")
     localStorage.clear()
     window.location.reload()
-    alert("Logging Out")
   }
 
   // const decodedToken = jwtDecode(localStorage.getItem("token"))

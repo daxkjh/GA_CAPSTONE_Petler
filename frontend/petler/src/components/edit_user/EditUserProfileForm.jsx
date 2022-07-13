@@ -38,7 +38,9 @@ const EditUserProfileForm = ({toggleForm})=>{
                 address : address,
                 description : desc,
                 image : img
-            })
+            },{ headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+              }})
             .then((res)=> {
                 setRefresh(!refresh)
                 alert(res.data.msg)

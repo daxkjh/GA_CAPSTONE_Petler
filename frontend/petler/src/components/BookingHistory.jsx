@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { userAtom, refreshAtom } from '../App';
 import axios from 'axios';
 
-function BookingCardUser( { booking, fetchData } ) {
+function BookingHistory( { booking, fetchData } ) {
     const [user, setUser] = useAtom(userAtom);
     const [editBooking, setEditBooking] = useState(false);
     const [refresh, setRefresh] = useAtom(refreshAtom);
@@ -62,7 +62,7 @@ function BookingCardUser( { booking, fetchData } ) {
     }
     
     return (
-      <div style={{backgroundColor: booking?.status==="cancelled" && "peachpuff"}} className='BookingCardContainer'>
+      <div className='BookingCardContainer'>
         {editBooking && <EditBookingFrom booking={booking} fetchData={fetchData}/> }
           <div className='bookingCardSec'>
           <p>{booking?.services.title} </p>
@@ -74,10 +74,10 @@ function BookingCardUser( { booking, fetchData } ) {
           <p> booked with : {booking?.profile.name}</p>
           <p> status: {booking?.status} </p>
           </div>
-          {(booking?.status!=="cancelled")&&<p onClick={()=>setEditBooking(true)}
-          className='edit'> cancel this booking</p>}
+          <p onClick={()=>setEditBooking(true)}
+          className='edit'> cancel this booking</p>
           
       </div>
     )
 }
-export default BookingCardUser
+export default BookingHistory

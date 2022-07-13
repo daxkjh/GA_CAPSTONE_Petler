@@ -34,11 +34,20 @@ import BookingCardUser from "../../components/BookingCardUser";
 
   //###  LOGIN PROTECTION  ###
   useEffect(()=>{
-    if (Object.keys(user).length<1) {
-      alert("Not Logged In")
+    let token = localStorage.getItem("token")
+    if(token){
+   let decodedToken = jwtDecode(token)
+    if (!decodedToken || decodedToken.role !== "user") {
+      alert("Not Logged In As User")
      navigate("/user/login")
+    } else{
+      fetchData()
     }
- },[])
+  } else {
+    alert("Not Logged In As User")
+     navigate("/home")
+  }
+},[])
 //############################
 
 
@@ -81,7 +90,9 @@ import BookingCardUser from "../../components/BookingCardUser";
       <div>
       <div className="userCalendar">
         <Calendar onChange={onChange} value={value} />
-       {bookings?.data?.length > 0 ? bookings?.data?.map((booking, index) => 
+        <h1>Upcoming Events</h1>
+       {bookings?.data?.length > 0 ? 
+       bookings?.data?.sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardUser key={index} booking={booking} fetchData={fetchData}/>
         ) 
         : <p>no bookings yet</p> }

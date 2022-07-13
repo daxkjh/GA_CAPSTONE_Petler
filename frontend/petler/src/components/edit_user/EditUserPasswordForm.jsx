@@ -11,8 +11,8 @@ const EditUserPasswordForm = ({toggleForm})=>{
     const handleSubmit=(e)=>{
         e.preventDefault()
         // console.log(e.target.elements.oldpw.value)
-        console.log(e.target.elements.newpw.value)
-        console.log(e.target.elements.cfmpw.value)
+        // console.log(e.target.elements.newpw.value)
+        // console.log(e.target.elements.cfmpw.value)
         if(e.target.elements.newpw.value!==e.target.elements.cfmpw.value){
             setCFMPW(false)
         } else {
@@ -20,7 +20,9 @@ const EditUserPasswordForm = ({toggleForm})=>{
             // console.log("USERID",user)
             axios.put(`/api/user/${user?.userId}/`,{
                 password : e.target.elements.newpw.value
-            })
+            },{ headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+              }})
             .then((res)=> {
                 alert("password changed")
                 console.log(res)} )

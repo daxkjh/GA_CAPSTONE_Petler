@@ -9,18 +9,36 @@ function Home() {
   const [allVendors, setAllVendors] =useState({});
   const [refresh, setRefresh] = useAtom(refreshAtom);
   // console.log("home", user)
-  console.log("home", user)
   
   const navigate = useNavigate();
 
  useEffect(()=> {
     axios.get("/api/vendor")
-    .then((res) => {console.log("れす",res)
+    .then((res) => {
     setAllVendors(res.data)})
     .catch(error => console.log("error", error));
     setRefresh(prev=>!prev);
   }, [])
-   console.log("hey vendors!", allVendors)
+
+  
+  const handleFilter = (e) => {
+    e.preventDefault();
+    const type = e.target.getAttribute("value")
+    axios.get("/api/vendor/profile/", 
+    {
+      type: type
+    },
+    {headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }})
+    .then((res) => {
+      setRefresh(!refresh)
+      console.log("filtered",res);
+      setAllVendors(res.data)
+    })
+    .catch((error) => console.log(error));
+};
 
    const returnTop = () => {
     window.scrollTo({
@@ -37,16 +55,22 @@ function Home() {
           <button className='searchbutton'>search</button>
         </form>
       </div>
+      <div value="cats" onClick={handleFilter} className='menusec1'>
+        <p value="cats">services for cats</p>
+      </div>
+      <div className='menusec1'>
+        <p>services for dogs</p>
+      </div>
       <div className='menu'>
-        <section className='menusec'>
+        <div className='menusec'>
           <p> sitters </p>
-        </section>
-        <section className='menusec'>
+        </div>
+        <div className='menusec'>
           <p> hotels </p>
-        </section>
-        <section className='menusec'>
+        </div>
+        <div className='menusec'>
           <p> groomers </p>
-        </section>
+        </div>
       </div>
       
         {allVendors?.data?.map((ele, index)=> 

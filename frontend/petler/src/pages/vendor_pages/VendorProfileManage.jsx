@@ -21,7 +21,7 @@ function VendorProfileManage() {
   const [bookings, setBookings] = useState([]);
   
 
-  console.log('USER', user)
+  // console.log('USER', user)
   const navigate = useNavigate();
   
   const [formState, setFormState] = useState({
@@ -43,7 +43,7 @@ const fetchData = async ()=>{
     const res = await axios.get(`/api/booking/${user.id}`)
      setBookings(res.data)
     // const data = await res.json()
-    console.log('BOOKINGS',res)
+    // console.log('BOOKINGS',res)
   }
 
  useEffect(()=> {// Uncomment Before Deployment
@@ -77,10 +77,6 @@ const fetchData = async ()=>{
 //     setRefresh(prev=>!prev);
 // /*}*/}, [])
 
-const arr = [{"BBB": "AAA"}, {"BBB": "AAA "}, {"BBB": "AAA"}]
-const newArr = []
-
-console.log("noooooooo", bookings?.data)
   return (
     <>
       {PWChange && <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} />}
@@ -152,7 +148,7 @@ console.log("noooooooo", bookings?.data)
         onClickDay={(day) => console.log(day) }/>
         <h2>your bookings</h2>
         {bookings?.data?.length > 0 ? bookings?.data?.map((booking, index) => 
-         <BookingCardVendor key={index} booking={booking} />
+         <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 
         : <p>no bookings yet</p> } 
         <p className='edit'> view past bookings (not in function)</p>

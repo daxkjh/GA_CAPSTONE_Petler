@@ -149,12 +149,24 @@ const isAuth = (req, res, next) => {
   }
 };
 
-// vendor profile show all for testing
+// vendor profile show all 
 router.get("/profile", async (req, res) => {
   try {
     const allProfile = await prisma.profile.findMany({
     include:{ details : true}});
     res.status(200).json({ data:allProfile });
+  } catch (error) {
+    res.send({ status: 401, error: error });
+  }
+});
+
+// cat or dog filter vendor
+router.get("/profile", async (req, res) => {
+  const type = req.body.type
+  try {
+    const FilterProfile = await prisma.profile.findMany({
+    where:{ petType : type }});
+    res.status(200).json({ data: FilterProfile });
   } catch (error) {
     res.send({ status: 401, error: error });
   }

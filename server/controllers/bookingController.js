@@ -42,4 +42,25 @@ router.get("/:id", async (req, res) => {
   }
 })
 
+
+// update booking
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const idd = parseInt(id)
+  console.log(idd)
+  try {
+    const bookings = await prisma.bookings.update({
+      where: {
+        id: idd
+      },
+      data: {
+        status: req.body.status,
+      }
+    })
+    console.log(req.body.status)
+    res.status(200).json({ status: "success", data: bookings })
+  } catch (error) {
+    res.send({ status: "failed", data: error })
+  }
+})
   module.exports = router;

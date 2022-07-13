@@ -328,3 +328,34 @@ height: 100%;
   top:0;
 
 }
+
+.bookingEdit {  
+  border: solid; 
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  width: 550px;
+  margin: auto;
+  max-height: 100%;
+  background: rgba(101, 99, 99, 0.85);
+  z-index: 5;
+}
+
+.bookingStatus {
+  margin: auto;
+  justify-content: center;
+  border: solid;
+  border-radius: 15px;
+  background-color: aliceblue;
+  width: 80%;
+}
+
+.menusec1 {
+  margin: 2rem 0.5rem 0.5rem 2rem;
+  width: 200px;
+  height: 80px;
+
+  
+  display: inline-block;
+  border: solid rgb(40, 127, 130);
+}

@@ -50,8 +50,8 @@ function Home() {
       </div>
       
         {allVendors?.data?.map((ele, index)=> 
-        <div className="vendorcard">
-        <section key={index} className='vendorsec' 
+        <div key={index} className="vendorcard">
+        <section  className='vendorsec' 
         onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)}>
           <img src={ele.profilePic} width={"150px"}></img>
           <p>{ele.name}</p>

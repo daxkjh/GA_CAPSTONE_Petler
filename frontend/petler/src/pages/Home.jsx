@@ -38,6 +38,22 @@ function Home() {
       .catch((error) => console.log(error));
   };
 
+const handleSearch = (e)=>{
+e.preventDefault()
+axios.get(`/api/vendor/profile/search?query=${e.target.value}`,{
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }
+}).then((res) => {
+  setRefresh(!refresh);
+  setAllVendors(res.data);
+  console.log("search", res);
+})
+.catch((error) => console.log(error));
+}
+
+
+
   const returnTop = () => {
     window.scrollTo({
       top: 0,
@@ -48,7 +64,7 @@ function Home() {
   return (
     <div className="homecontainer">
       <div className="search">
-        <form>
+        <form onSubmit={handleSearch}>
           <input className="searchbox"></input>
           <button className="searchbutton">search</button>
         </form>

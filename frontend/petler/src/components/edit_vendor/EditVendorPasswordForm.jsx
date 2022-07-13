@@ -31,6 +31,7 @@ const EditVendorPasswordForm = ( {setPWChange} )=>{
                 alert("password changed")
                 console.log(res)} )
             .catch(error => console.log("error", error));
+            setPWChange(false);
         }
     }
 

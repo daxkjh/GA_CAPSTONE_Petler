@@ -11,8 +11,6 @@ import '../../calendar.css';
 import StyledDropzone from '../../components/uploader/StyledDropzone';
 import BookingCardVendor from '../../components/BookingCardVendor';
 
-
-
 function VendorProfileManage() {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom);
@@ -21,6 +19,7 @@ function VendorProfileManage() {
   const [serviceSetting, setServiceSetting] = useState(false);
   const [value, onChange] = useState(new Date());
   const [bookings, setBookings] = useState([]);
+  
 
   console.log('USER', user)
   const navigate = useNavigate();
@@ -40,14 +39,13 @@ function VendorProfileManage() {
     });
   };
 
-
-
-  const fetchData = async ()=>{
+const fetchData = async ()=>{
     const res = await axios.get(`/api/booking/${user.id}`)
      setBookings(res.data)
     // const data = await res.json()
     console.log('BOOKINGS',res)
   }
+
  useEffect(()=> {// Uncomment Before Deployment
     // if (Object.keys(user).length<1) {
     //   navigate("/vendor/login")
@@ -65,17 +63,6 @@ function VendorProfileManage() {
 /*}*/}, [user.id])
 
 
-
-
-
-
-
-
-
-
-
-
-
 //   useEffect(()=> {// Uncomment Before Deployment
 //     // if (Object.keys(user).length<1) {
 //     //   navigate("/vendor/login")
@@ -90,15 +77,10 @@ function VendorProfileManage() {
 //     setRefresh(prev=>!prev);
 // /*}*/}, [])
 
-useEffect(()=> {
-  axios.get(`/api/booking/${user?.id}`)
-  .then((res) => {console.log("for booking fetch", res.data)
-    setBookings(res?.data)})
-  .catch(error => console.log("error", error));
-  setRefresh(prev=>!prev);
-  }, [])
+const arr = [{"BBB": "AAA"}, {"BBB": "AAA "}, {"BBB": "AAA"}]
+const newArr = []
 
-
+console.log("noooooooo", bookings?.data)
   return (
     <>
       {PWChange && <EditVendorPasswordForm PWChange={PWChange} setPWChange={setPWChange} />}
@@ -169,10 +151,10 @@ useEffect(()=> {
         onChange={onChange} value={value} 
         onClickDay={(day) => console.log(day) }/>
         <h2>your bookings</h2>
-        {bookings?.data?.length > 0 ? bookings?.data?.map((booking, index)=> 
-        <BookingCardVendor key={index} vendor={user} booking={booking} />
+        {bookings?.data?.length > 0 ? bookings?.data?.map((booking, index) => 
+         <BookingCardVendor key={index} booking={booking} />
         ) 
-        : <p>no bookings yet</p>} 
+        : <p>no bookings yet</p> } 
         <p className='edit'> view past bookings (not in function)</p>
         </div>
     </div>

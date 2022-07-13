@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useAtom } from 'jotai';
 import { userAtom, refreshAtom } from '../../App';
 
-function ServicesForm({ toggleForm,arg }) {
+function ServicesForm({ toggleForm, arg }) {
     const [user, setUser] = useAtom(userAtom);
     const [refresh, setRefresh] = useAtom(refreshAtom)
 
@@ -35,6 +35,7 @@ function ServicesForm({ toggleForm,arg }) {
         .catch(error => console.log("error", error));
       }
         setRefresh(prev=>!prev);
+        toggleForm(arg);
     }
 
   return (

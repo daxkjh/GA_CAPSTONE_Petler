@@ -286,7 +286,6 @@ height: 100%;
   cursor: pointer;
 }
 
-
 .editbutton img{
   width: 1.2rem;
   height: 1.2rem;
@@ -314,6 +313,7 @@ height: 100%;
 .formCloseButton:hover{
   transform: scale(1.1);
 }
+
 .formCloseButton:active{
   transform: scale(0.95);
 }

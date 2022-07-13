@@ -32,6 +32,7 @@ router.get("/:id", async (req, res) => {
         profileId: idd
       },
       include: {
+        profile: true,
         services: true,
         user: true
       }

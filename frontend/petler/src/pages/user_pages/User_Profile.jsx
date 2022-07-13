@@ -21,6 +21,7 @@ import BookingCardUser from "../../components/BookingCardUser";
   const [user, setUser] = useAtom(userAtom);
   const [selectedPet, setSelectedPet] = useState({})
   const [bookings, setBookings] = useState([]);
+  const [ history,setHistory] = useState(false)
   // const [userData, setUserData] = useState()
   console.log("USER", user);
   const navigate = useNavigate()
@@ -92,10 +93,15 @@ import BookingCardUser from "../../components/BookingCardUser";
         <Calendar onChange={onChange} value={value} />
         <h1>Upcoming Events</h1>
        {bookings?.data?.length > 0 ? 
-       bookings?.data?.sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
+       bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardUser key={index} booking={booking} fetchData={fetchData}/>
         ) 
         : <p>no bookings yet</p> }
+        <p onClick={()=>setHistory(!history)} className="edit">Past Bookings</p>
+        {history? (bookings?.data?.length > 0 ? bookings?.data?.filter((x)=> new Date(x.startDateTime) < new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
+         <BookingCardUser key={index} booking={booking} fetchData={fetchData}/>
+        ) 
+        : <p>no bookings yet</p> ):null}
       </div>
       </div>
      

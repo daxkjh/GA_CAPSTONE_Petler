@@ -65,7 +65,7 @@ function BookingCardVendor({ booking, fetchData }) {
   }
   
   return (
-    <div style={{backgroundColor: booking?.status==="cancelled" && "peachpuff"}} className='BookingCardContainer'>
+    <div style={{backgroundColor: booking?.status==="cancelled" ? "peachpuff" : booking?.status==="pending"? "lightblue":"paleturquoise"}} className='BookingCardContainer'>
       {editBooking && <EditBookingFrom booking={booking} fetchData={fetchData}/> }
         <div className='bookingCardSec'>
         <p>{booking?.services.title} </p>

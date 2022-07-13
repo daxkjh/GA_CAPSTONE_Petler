@@ -22,6 +22,7 @@ function VendorProfileManage() {
   const [value, onChange] = useState(new Date());
   const [bookings, setBookings] = useState([]);
   const [element, setElement] =useState("")
+  const [history, setHistory]= useState(false)
   
 
 
@@ -48,6 +49,7 @@ function VendorProfileManage() {
 const fetchData = async ()=>{
     const res = await axios.get(`/api/booking/${user.id}`)
      setBookings(res.data)
+    //  setHistory(res.data.data.filter((x)=> new Date(x.startDateTime) < new Date()))
   }
 
   useEffect(()=>{
@@ -171,11 +173,15 @@ const fetchData = async ()=>{
         onChange={onChange} value={value} 
         onClickDay={(day) => console.log(day) }/>
         <h2>your bookings</h2>
-        {bookings?.data?.length > 0 ? bookings?.data?.sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
+        {bookings?.data?.length > 0 ? bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 
         : <p>no bookings yet</p> } 
-        <p className='edit'> view past bookings (not in function)</p>
+        <p onClick={()=>setHistory(!history)} className='edit'> view past bookings (TEST)</p>
+        {history? (bookings?.data?.length > 0 ? bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
+         <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
+        ) 
+        : <p>no bookings yet</p> ):null}
         </div>
     </div>
     </>

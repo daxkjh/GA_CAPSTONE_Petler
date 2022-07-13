@@ -62,7 +62,7 @@ function BookingCardUser( { booking, fetchData } ) {
     }
     
     return (
-      <div style={{backgroundColor: booking?.status==="cancelled" && "peachpuff"}} className='BookingCardContainer'>
+      <div style={{backgroundColor: booking?.status==="cancelled" ? "peachpuff" : booking?.status==="pending"? "lightblue":"paleturquoise"}} className='BookingCardContainer'>
         {editBooking && <EditBookingFrom booking={booking} fetchData={fetchData}/> }
           <div className='bookingCardSec'>
           <p>{booking?.services.title} </p>
@@ -74,7 +74,7 @@ function BookingCardUser( { booking, fetchData } ) {
           <p> booked with : {booking?.profile.name}</p>
           <p> status: {booking?.status} </p>
           </div>
-          {(booking?.status!=="cancelled")&&<p onClick={()=>setEditBooking(true)}
+          {(booking?.status!=="cancelled" && new Date(booking?.startDateTime) > new Date())&&<p onClick={()=>setEditBooking(true)}
           className='edit'> cancel this booking</p>}
           
       </div>

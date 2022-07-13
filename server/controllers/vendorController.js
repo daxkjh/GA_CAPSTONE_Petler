@@ -3,7 +3,14 @@ const router = express.Router();
 const prisma = require("../server");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const cloudinary = require("../server")
+const cloudinary = require('cloudinary').v2
+
+cloudinary.config({
+    cloud_name: 'dax-ga-sei36', 
+    api_key: '887198321937621', 
+    api_secret: 'utEOWgDrspFvhTwAcOavkTBZY2g' 
+})
+
 
 
 
@@ -48,14 +55,20 @@ router.post("/signup", async (req, res) => {
 });
 
 // VENDOR PROFILE PIC UPLOAD
-router.post("/upload/:id", async (req,res,next)=>{
+router.post("/upload/:id", async (req,res)=>{
+   const id = parseInt(req.params.id);
+   
   try {
-    const {id} = req.params
-    const data = req.body
-    const image = data.data
+    
+    const {data} = req.body
+  
     // console.log("IMAGE",image)
-    const imageurl = await cloudinary.uploader.upload( image, {folder: "vendor"} )
-    res.status(200).json({msg:"success", data: imageurl})
+    const imageurl = await cloudinary.uploader.upload( data, {folder: "vendor"} )
+    
+    const imageUpload = await prisma.profile.update({where : {id : id}, 
+      data : { profilePic : imageurl.secure_url
+    }})
+    res.status(200).json({msg:"success", data: imageUpload})
   } catch (error) {
     res.status(400).json({ status: "failed", data: error });
   }

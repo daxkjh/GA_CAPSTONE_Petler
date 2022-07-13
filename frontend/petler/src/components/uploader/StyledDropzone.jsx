@@ -5,6 +5,7 @@ import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
 import { refreshAtom } from "../../App";
 
+
 const baseStyle = {
   // flex: 1,
   display: "block",
@@ -87,8 +88,8 @@ function StyledDropzone({ toggleForm, arg }) {
     // console.log(image);
     axios
       .post(
-        `/api/vendor/testupload/`,
-        { body: image[0] },
+        `/api/vendor/upload/${user.id}`,
+        { data: image[0] },
         {
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +98,10 @@ function StyledDropzone({ toggleForm, arg }) {
         }
       )
       .then((res) => {
+        setRefresh(!refresh)
+        toggleForm(arg)
         alert("Upload success");
+
         console.log(res);
       })
       .catch((error) => alert(error));

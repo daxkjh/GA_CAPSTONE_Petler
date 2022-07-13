@@ -19,7 +19,6 @@ function Navbar() {
   
   return (
     <div className='navBar'>
-     <span><h1 style={{display:"inline-block"}}>DEV Bar</h1></span> 
       <Link className='navBarText' to="/home">Home</Link>
       <Link className='navBarText' to="/vendor/signup">v-Signup</Link>
       <Link className='navBarText' to="/vendor/login">v-Login</Link>

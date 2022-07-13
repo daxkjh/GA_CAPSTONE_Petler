@@ -13,12 +13,14 @@ import 'react-calendar/dist/Calendar.css';
 import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
 import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
 import StyledDropzone from "../../components/uploader/StyledDropzone";
+import BookingCardUser from "../../components/BookingCardUser";
 
   
   const User_Profile = () => {
   const [value, onChange] = useState(new Date());
   const [user, setUser] = useAtom(userAtom);
   const [selectedPet, setSelectedPet] = useState({})
+  const [bookings, setBookings] = useState([]);
   // const [userData, setUserData] = useState()
   console.log("USER", user);
   const navigate = useNavigate()
@@ -37,21 +39,22 @@ import StyledDropzone from "../../components/uploader/StyledDropzone";
     });
   };
 
-  // useEffect(()=>{
-  //    if (Object.keys(user).length<1) {
-  //     navigate("/user/login")
-  //     alert("Not Logged In")
-  //    }
-  // },[])
+  console.log("in user Profile", user.id)
+
+  const fetchData = async ()=>{
+    const res = await axios.get(`/api/booking/${user.id}`)
+     setBookings(res.data)
+  }
+
+ useEffect(()=> {
+      if(user.id)
+      fetchData()
+}, [user.id])
 
 
 
   return (
     <div className="userProfContainer">
-      <div className="userProfTitle">
-      <h1>Welcome Back! </h1>
-      <h2>{user?.email}</h2>
-      </div>
       <div className="userProf">
       <div onClick={()=>toggleForm("pic")} className='editbutton'><img src='https://i.imgur.com/horiynl.png'></img></div>
       <img src={user?.image} width={"200px"}></img>
@@ -64,8 +67,14 @@ import StyledDropzone from "../../components/uploader/StyledDropzone";
         edit password
       </button>
       </div>
+      <div>
       <div className="userCalendar">
         <Calendar onChange={onChange} value={value} />
+       {bookings?.data?.length > 0 ? bookings?.data?.map((booking, index) => 
+         <BookingCardUser key={index} booking={booking} fetchData={fetchData}/>
+        ) 
+        : <p>no bookings yet</p> }
+      </div>
       </div>
      
       <div>

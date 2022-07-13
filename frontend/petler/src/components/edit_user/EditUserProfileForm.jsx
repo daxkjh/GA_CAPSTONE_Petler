@@ -7,9 +7,9 @@ import { refreshAtom } from "../../App";
 
 const EditUserProfileForm = ({toggleForm})=>{
     const [user, setUser] = useAtom(userAtom)
-    const [name, setName] = useState(user?.profile?.name)
-    const [address, setAddress] = useState(user?.profile?.address)
-    const [desc, setDesc]  = useState(user?.profile?.description)
+    const [name, setName] = useState(user?.name)
+    const [address, setAddress] = useState(user?.address)
+    const [desc, setDesc]  = useState(user?.description)
     const [img, setImg] = useState("https://i.imgur.com/aeW3aDj.png")
     const [refresh, setRefresh] = useAtom(refreshAtom)
    
@@ -33,7 +33,7 @@ const EditUserProfileForm = ({toggleForm})=>{
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-            axios.put(`/api/user/editprofile/${user?.id}/`,{
+            axios.put(`/api/user/editprofile/${user?.userId}/`,{
                 name : name,
                 address : address,
                 description : desc,

@@ -6,11 +6,9 @@ import { userAtom } from "../../App";
 import { refreshAtom } from "../../App";
 import jwtDecode from "jwt-decode";
 
-
 const baseStyle = {
-
   display: "block",
-  position: "fixed",
+  position: "relative",
   width: "300px",
   height: "300px",
   top: "50%",
@@ -39,13 +37,12 @@ const rejectStyle = {
   borderColor: "#ff1744",
 };
 
-function StyledDropzone({ toggleForm, arg }) {
+function PetPicDropZone({ toggleForm, arg }) {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [image, setImage] = useState([]);
   // console.log("VENDOR",user)
-  const role = jwtDecode(localStorage.getItem("token")).role
- 
+  const role = jwtDecode(localStorage.getItem("token")).role;
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -91,13 +88,13 @@ function StyledDropzone({ toggleForm, arg }) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-          }
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       )
       .then((res) => {
-        setRefresh(!refresh)
-        toggleForm(arg)
+        setRefresh(!refresh);
+        toggleForm(arg);
         alert("Upload success");
 
         console.log(res);
@@ -106,8 +103,8 @@ function StyledDropzone({ toggleForm, arg }) {
   };
 
   return (
-    <div className="imgUploadContainer">
-      <div className="formCloseButton" onClick={() => toggleForm(arg)}>
+    <div className="petImgUploadContainer">
+      <div className="petformCloseButton" onClick={() => toggleForm(arg)}>
         <h3>&times;</h3>
       </div>
 
@@ -121,7 +118,7 @@ function StyledDropzone({ toggleForm, arg }) {
         <div style={style}>
           <div>
             {image.map((x, i) => (
-              <img className="selectedImg" src={x} key={i} />
+              <img className="selectedImg" sr c={x} key={i} />
             ))}
           </div>
           <button
@@ -130,7 +127,16 @@ function StyledDropzone({ toggleForm, arg }) {
           >
             Upload
           </button>
-          <div onClick={()=>setImage([])} style={{display:"inline-block"}}><img style={{width:"1.5rem", height:"1.5rem"}} src="https://i.imgur.com/NYx460Q.png"></img></div>
+          <div
+            onClick={() => setImage([])}
+            style={{
+              display: "inline-block",
+              width: "1.5rem",
+              height: "1.5rem",
+            }}
+          >
+            <img src="https://i.imgur.com/NYx460Q.png"></img>
+          </div>
         </div>
       )}
 
@@ -142,4 +148,4 @@ function StyledDropzone({ toggleForm, arg }) {
   );
 }
 
-export default StyledDropzone;
+export default PetPicDropZone;

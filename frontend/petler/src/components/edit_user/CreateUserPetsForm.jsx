@@ -86,7 +86,7 @@ const handleSize = (e) =>{
 
   const handleSubmit = (e) => {
     e.preventDefault()
-axios.post(`/api/userprofile/pet/${user.data.id}`,{
+axios.post(`/api/userprofile/pet/${user.userId}`,{
     // id : selectedPet?.id,
     name : petName,
    type : petType,
@@ -95,7 +95,7 @@ axios.post(`/api/userprofile/pet/${user.data.id}`,{
 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg",
    size : petSize,
     sterilized : petSterilized,
-    userProfileId: user?.profile?.id
+    // userProfileId: user?.id
 })
 .then((res)=> {
     setRefresh(!refresh)

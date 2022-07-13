@@ -20,6 +20,7 @@ function Home() {
     .catch(error => console.log("error", error));
     setRefresh(prev=>!prev);
   }, [])
+  
    console.log("hey vendors!", allVendors)
 
    const returnTop = () => {

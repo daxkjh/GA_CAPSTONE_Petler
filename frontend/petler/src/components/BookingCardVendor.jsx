@@ -35,7 +35,6 @@ function BookingCardVendor({ booking }) {
   return (
     <div className='BookingCardContainer'>
         <div className='bookingCardSec'>
-        <p>{booking.id}</p>
         <p>{booking?.services.title} </p>
         <p>{bookingDate} </p>
         <p>{bookingTime}</p>

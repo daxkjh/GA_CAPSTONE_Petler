@@ -39,8 +39,9 @@ function Home() {
   };
 
 const handleSearch = (e)=>{
+  console.log("SEARCHTERM : ",e.target.elements.searchbox.value)
 e.preventDefault()
-axios.get(`/api/vendor/profile/search?query=${e.target.value}`,{
+axios.get(`/api/vendor/profile/search?searchbox=${e.target.elements.searchbox.value}`,{
   headers: {
     'Authorization': `Bearer ${localStorage.getItem("token")}`
   }
@@ -65,7 +66,7 @@ axios.get(`/api/vendor/profile/search?query=${e.target.value}`,{
     <div className="homecontainer">
       <div className="search">
         <form onSubmit={handleSearch}>
-          <input className="searchbox"></input>
+          <input className="searchbox" name="searchbox"></input>
           <button className="searchbutton">search</button>
         </form>
       </div>
@@ -93,7 +94,7 @@ axios.get(`/api/vendor/profile/search?query=${e.target.value}`,{
           <p> groomers </p>
         </div>
       </div>
-
+      {(allVendors?.data?.length===0)? <h1>No Results Found</h1> : null}
       {allVendors?.data?.map((ele, index) => (
         <div key={index} className="vendorcard">
           <section

@@ -54,7 +54,7 @@ router.get("/profile/:id", async (req, res) => {
           }
         }},
       });
-      console.log("Show User Route Triggered!", user)
+      // console.log("Show User Route Triggered!", user)
       res.status(200).json({ status: "success", data: user });
   } catch (error) {
     res.status(400).send(error);

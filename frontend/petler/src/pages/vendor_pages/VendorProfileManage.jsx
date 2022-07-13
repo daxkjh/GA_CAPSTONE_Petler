@@ -137,7 +137,7 @@ const fetchData = async ()=>{
         </div>
         )}
         <p className='edit'
-        onClick={()=>toggleForm('service')}>edit services</p>
+        onClick={()=>toggleForm('service')}>add services</p>
       </div>
       </div>
         <div className='c-right'>

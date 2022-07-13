@@ -161,11 +161,14 @@ router.get("/profile", async (req, res) => {
 });
 
 // cat or dog filter vendor
-router.get("/profile", async (req, res) => {
-  const type = req.body.type
+router.get("/profile/filter", async (req, res) => {
+  const  type  = req.query.petType
+  console.log("cat?", type)
   try {
     const FilterProfile = await prisma.profile.findMany({
-    where:{ petType : type }});
+    where:{ details: 
+      {petType : type,} 
+    }});
     res.status(200).json({ data: FilterProfile });
   } catch (error) {
     res.send({ status: 401, error: error });

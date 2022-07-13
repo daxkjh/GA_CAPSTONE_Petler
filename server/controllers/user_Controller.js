@@ -3,6 +3,14 @@ const prisma = require("../server");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const saltRounds = 10;
+const cloudinary = require('cloudinary').v2
+
+cloudinary.config({
+    cloud_name: 'dax-ga-sei36', 
+    api_key: '887198321937621', 
+    api_secret: 'utEOWgDrspFvhTwAcOavkTBZY2g' 
+})
+
 
 //### GET ALL USER
 
@@ -43,16 +51,14 @@ router.get("/profile/", async (req, res) => {
 router.get("/profile/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await prisma.user.findUnique({ 
-      where: { id : id },
+    const user = await prisma.userProfile.findUnique({ 
+      where: { userId : id },
       include:{
-        profile:{
-          include: {
             pets : true,
             booking: true,
             reviews : true
-          }
-        }},
+      
+        },
       });
       // console.log("Show User Route Triggered!", user)
       res.status(200).json({ status: "success", data: user });
@@ -103,6 +109,28 @@ router.put("/editprofile/:id", async (req,res)=>{
   }
   
 })
+
+// USER PROFILE PIC UPLOAD
+router.post("/upload/:id", async (req,res)=>{
+  const id = parseInt(req.params.id);
+  
+ try {
+   
+   const {data} = req.body
+ 
+   // console.log("IMAGE",image)
+   const imageurl = await cloudinary.uploader.upload( data, {folder: "user"} )
+   
+   const imageUpload = await prisma.userProfile.update({where : {id : id}, 
+     data : { image : imageurl.secure_url
+   }})
+   res.status(200).json({msg:"success", data: imageUpload})
+ } catch (error) {
+   res.status(400).json({ status: "failed", data: error });
+ }
+
+})
+
 
 
 // ### UPDATE User Password

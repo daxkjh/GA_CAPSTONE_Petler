@@ -1,6 +1,7 @@
 const { json } = require("body-parser");
 const { PrismaClient } = require('@prisma/client');
 const cors = require("cors")
+const bodyParser = require("body-parser");
 const prisma = new PrismaClient();
 module.exports = prisma
 const cloudinary = require('cloudinary').v2
@@ -27,8 +28,8 @@ const bookingController = require("./controllers/bookingController")
 
 
 // middleware
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }))
 app.use(cors());
 app.use("/api/vendor", vendorController);
 app.use("/api/booking", bookingController);

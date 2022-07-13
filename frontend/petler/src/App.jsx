@@ -21,7 +21,7 @@ const SECRET_KEY = import.meta.env.SECRET
 
 // import { loginAtom } from './pages/user_pages/User_Login'
 
-export const vendorAtom = atom({})
+
 export const userAtom = atom({})
 export const refreshAtom = atom(false)
 

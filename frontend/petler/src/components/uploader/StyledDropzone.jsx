@@ -4,24 +4,21 @@ import { useDropzone } from "react-dropzone";
 import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
 import { refreshAtom } from "../../App";
+import jwtDecode from "jwt-decode";
 
 
 const baseStyle = {
-  // flex: 1,
+
   display: "block",
   position: "fixed",
-  // flexDirection: 'column',
   width: "300px",
   height: "300px",
-  // alignItems: 'center',
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   padding: "20px",
   borderWidth: 3,
   borderRadius: 30,
-  // margin:"0 auto",
-  // marginTop:"50%",
   borderColor: "#eeeeee",
   borderStyle: "dashed",
   backgroundColor: "#fafafa",
@@ -47,6 +44,8 @@ function StyledDropzone({ toggleForm, arg }) {
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [image, setImage] = useState([]);
   // console.log("VENDOR",user)
+  const role = jwtDecode(localStorage.getItem("token")).role
+ 
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     acceptedFiles.forEach((file) => {
@@ -85,10 +84,9 @@ function StyledDropzone({ toggleForm, arg }) {
   ));
 
   const handleUpload = () => {
-    // console.log(image);
     axios
       .post(
-        `/api/vendor/upload/${user.id}`,
+        `/api/${role}/upload/${user.id}`,
         { data: image[0] },
         {
           headers: {
@@ -132,6 +130,7 @@ function StyledDropzone({ toggleForm, arg }) {
           >
             Upload
           </button>
+          <div onClick={()=>setImage([])} style={{display:"inline-block"}}><img style={{width:"1.5rem", height:"1.5rem"}} src="https://i.imgur.com/NYx460Q.png"></img></div>
         </div>
       )}
 

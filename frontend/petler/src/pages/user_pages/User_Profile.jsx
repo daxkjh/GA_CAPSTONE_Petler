@@ -12,6 +12,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
 import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
+import StyledDropzone from "../../components/uploader/StyledDropzone";
 
   
   const User_Profile = () => {
@@ -52,12 +53,13 @@ import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
       <h2>{user?.email}</h2>
       </div>
       <div className="userProf">
-      <img src={user?.profile?.image} width={"200px"}></img>
+      <div onClick={()=>toggleForm("pic")} className='editbutton'><img src='https://i.imgur.com/horiynl.png'></img></div>
+      <img src={user?.image} width={"200px"}></img>
       <button onClick={()=>toggleForm("profile")}>
         edit profile
       </button>
-      <p>{user?.profile?.name}</p>
-      <p>{user?.profile?.description}</p>
+      <p>{user?.name}</p>
+      <p>{user?.description}</p>
       <button onClick={()=>toggleForm("password")}>
         edit password
       </button>
@@ -68,13 +70,13 @@ import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
      
       <div>
       <div className="petcontainer" id="pet1">
-        <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet} data={user?.profile?.pets[0]}/>
+        <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet} data={user?.pets?.[0]}/>
       </div>
       <div className="petcontainer" id="pet2">
-      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.profile?.pets[1]}/>
+      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.pets?.[1]}/>
       </div>
       <div className="petcontainer" id="pet3">
-      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.profile?.pets[2]}/>
+      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.pets?.[2]}/>
       </div>
       </div>
       
@@ -82,7 +84,7 @@ import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}
       {formState.editpet&&<EditUserPetsForm selectedPet={selectedPet} toggleForm={toggleForm}/>}
       {formState.createpet&&<CreatePetForm toggleForm={toggleForm}/>}
-      {formState.pic&&<EditUserPicForm/>}
+      {formState.pic&&<StyledDropzone toggleForm={toggleForm} arg={"pic"}/>}
     </div>
   );
 };

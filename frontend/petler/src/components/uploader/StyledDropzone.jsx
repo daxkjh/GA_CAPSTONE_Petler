@@ -40,6 +40,7 @@ const rejectStyle = {
 };
 
 function StyledDropzone({ toggleForm, arg }) {
+
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [image, setImage] = useState([]);

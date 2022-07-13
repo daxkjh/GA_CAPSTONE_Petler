@@ -160,7 +160,7 @@ router.get("/profile", async (req, res) => {
   }
 });
 
-// pet type filter 
+//  Filter Vendor on Home Page
 router.get("/profile/filter", async (req, res) => {
   const  type  = req.query.button
   // console.log("cat?", type)
@@ -184,6 +184,23 @@ router.get("/profile/filter", async (req, res) => {
     }
   }
 });
+
+/// Search Vendor on Home Page
+router.get("/profile/search", async (req, res) => {
+  const  type  = req.query.searchbox
+  // console.log("query",type)
+    try {
+      const FilterProfile = await prisma.profile.findMany({
+      where:{ 
+        OR:[{details: {svcdsc : { contains: type, mode: "insensitive" } } },
+        { name : { contains : type, mode: "insensitive" } }, {intro : {contains : type, mode: "insensitive"}} ]
+      }});
+      res.status(200).json({ data: FilterProfile });
+    } catch (error) {
+      res.send({ status: 401, error: error });
+    }
+  })
+
 
 
 // vendor profile show

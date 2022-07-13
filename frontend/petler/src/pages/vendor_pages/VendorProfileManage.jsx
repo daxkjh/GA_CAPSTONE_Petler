@@ -130,16 +130,16 @@ console.log("kkkkkkk",user?.details?.petSize?.xs)
             { user?.details?.petSize?.xs && <><p>1-5kg</p> <img src="https://i.imgur.com/tgjlv34.png" width={"80px"} /></>}
           </li >
           <li className='petsize'>
-          { user?.details?.petSize?.xs && <><p>5-10kg</p> <img src="https://i.imgur.com/EIkUWtP.png" width={"80px"}/></> }
+          { user?.details?.petSize?.s && <><p>5-10kg</p> <img src="https://i.imgur.com/EIkUWtP.png" width={"80px"}/></> }
           </li>
           <li className='petsize'>
-          { user?.details?.petSize?.xs && <> <p>10-20</p> <img src="https://i.imgur.com/jCsCsy6.png" width={"80px"} /></> }
+          { user?.details?.petSize?.m && <> <p>10-20</p> <img src="https://i.imgur.com/jCsCsy6.png" width={"80px"} /></> }
           </li>
           <li className='petsize'>
-          { user?.details?.petSize?.xs && <><p>20-40 </p><img src="https://i.imgur.com/VGd3U5L.png" width={"80px"}/> </>}
+          { user?.details?.petSize?.l && <><p>20-40 </p><img src="https://i.imgur.com/VGd3U5L.png" width={"80px"}/> </>}
           </li>
           <li className='petsize'>
-          { user?.details?.petSize?.xs && <>  <p>over 40kg</p><img src="https://i.imgur.com/JeZkKL6.png" width={"80px"}/> </> }
+          { user?.details?.petSize?.xl && <>  <p>over 40kg</p><img src="https://i.imgur.com/JeZkKL6.png" width={"80px"}/> </> }
           </li>
         </ul>
 

@@ -37,12 +37,12 @@ import StyledDropzone from "../../components/uploader/StyledDropzone";
     });
   };
 
-  // useEffect(()=>{
-  //    if (Object.keys(user).length<1) {
-  //     navigate("/user/login")
-  //     alert("Not Logged In")
-  //    }
-  // },[])
+  useEffect(()=>{
+     if (Object.keys(user).length<1) {
+       alert("Not Logged In")
+      navigate("/user/login")
+     }
+  },[])
 
 
 

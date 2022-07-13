@@ -3,6 +3,8 @@ const prisma = require("../server");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const saltRounds = 10;
+const userAuth = require("../middleware/userAuth")
+const vendorAuth = require("../middleware/vendorAuth")
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
@@ -48,7 +50,7 @@ router.get("/profile/", async (req, res) => {
 });
 
 //READ User Profile - Profile Page on Load (SHOW route)
-router.get("/profile/:id", async (req, res) => {
+router.get("/profile/:id",userAuth, async (req, res) => {
   try {
     const { id } = req.params;
     const user = await prisma.userProfile.findUnique({ 
@@ -91,7 +93,7 @@ router.post("/", async (req, res) => {
 
 //USER PROFILE
 
-router.put("/editprofile/:id", async (req,res)=>{
+router.put("/editprofile/:id",userAuth, async (req,res)=>{
   const {id} = req.params
   try {
     const user = await prisma.userProfile.update({
@@ -111,7 +113,7 @@ router.put("/editprofile/:id", async (req,res)=>{
 })
 
 // USER PROFILE PIC UPLOAD
-router.post("/upload/:id", async (req,res)=>{
+router.post("/upload/:id",userAuth, async (req,res)=>{
   const id = parseInt(req.params.id);
   
  try {
@@ -134,7 +136,7 @@ router.post("/upload/:id", async (req,res)=>{
 
 
 // ### UPDATE User Password
-router.put("/:id", async (req,res)=>{
+router.put("/:id",userAuth, async (req,res)=>{
   const {id} = req.params
   const newPassword = await bcrypt.hash(req.body.password,saltRounds)
   try {

@@ -53,11 +53,11 @@ const fetchData = async ()=>{
   }
 
  useEffect(()=> {// Uncomment Before Deployment
-    // if (Object.keys(user).length<1) {
-    //   navigate("/vendor/login")
-    //   alert("Not Logged In")
-    //  }
-    // else{
+    if (Object.keys(user).length<1) {
+      alert("Not Logged In")
+      navigate("/vendor/login")
+     }
+    else{
       if(user.id)
       fetchData()
   //   axios.get(`/api/vendor/profile/${user?.vendorId}`)
@@ -66,7 +66,7 @@ const fetchData = async ()=>{
   // console.log(user)})
   //   .catch(error => console.log("error", error));
   //   setRefresh(prev=>!prev);
-/*}*/}, [user.id])
+}}, [user.id])
 console.log("kkkkkkk",user?.details?.petSize?.xs)
   return (
     <>

@@ -3,6 +3,8 @@ const router = express.Router();
 const prisma = require("../server");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const userAuth = require("../middleware/userAuth")
+const vendorAuth = require("../middleware/vendorAuth")
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config({
@@ -55,7 +57,7 @@ router.post("/signup", async (req, res) => {
 });
 
 // VENDOR PROFILE PIC UPLOAD
-router.post("/upload/:id", async (req,res)=>{
+router.post("/upload/:id",vendorAuth, async (req,res)=>{
    const id = parseInt(req.params.id);
    
   try {
@@ -77,7 +79,7 @@ router.post("/upload/:id", async (req,res)=>{
 
 
 //Vendor PASSWORD Change
-router.put("/signup/:id", async (req, res) => {
+router.put("/signup/:id",vendorAuth, async (req, res) => {
   const { id } = req.params;
   const newPassword = await bcrypt.hash(req.body.password, saltRounds);
   try {
@@ -125,25 +127,25 @@ router.post("/login", async (req, res) => {
 });
 
 // Auth
-const isAuth = (req, res, next) => {
-  const auth = req.headers.authorization;
-  // console.log(auth);
-  if (!auth) {
-    res.status(401).send({ status: "error", msg: "No header" });
-  }
-  const accessToken = auth.split(" ")[1];
-  try {
-    const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-    if (decoded) {
-      res.locals.vendor = decoded;
-      next();
-    } else {
-      res.status(401).send({ status: "error", msg: "Decode check fail" });
-    }
-  } catch (err) {
-    res.status(401).send({ status: "error", msg: "No access" });
-  }
-};
+// const isAuth = (req, res, next) => {
+//   const auth = req.headers.authorization;
+//   // console.log(auth);
+//   if (!auth) {
+//     res.status(401).send({ status: "error", msg: "No header" });
+//   }
+//   const accessToken = auth.split(" ")[1];
+//   try {
+//     const decoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+//     if (decoded) {
+//       res.locals.vendor = decoded;
+//       next();
+//     } else {
+//       res.status(401).send({ status: "error", msg: "Decode check fail" });
+//     }
+//   } catch (err) {
+//     res.status(401).send({ status: "error", msg: "No access" });
+//   }
+// };
 
 // vendor profile show all 
 router.get("/profile", async (req, res) => {
@@ -228,7 +230,7 @@ router.get("/profile/:id", async (req, res) => {
 });
 
 // vendor profile update
-router.put("/profile/p/:id", async (req, res) => {
+router.put("/profile/p/:id",vendorAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const vendorProfile = await prisma.profile.update({
@@ -246,7 +248,7 @@ router.put("/profile/p/:id", async (req, res) => {
   }
 });
 
-router.put("/profile/b/:id", async (req, res) => {
+router.put("/profile/b/:id",vendorAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const vendorProfile = await prisma.profile.update({
@@ -309,7 +311,7 @@ router.delete("/profile/:id", async (req, res) => {
 });
 
 // services
-router.post("/services/", async (req, res) => {
+router.post("/services/",vendorAuth, async (req, res) => {
   const dda = {
     title: req.body.title,
     price: req.body.price,
@@ -326,6 +328,8 @@ router.post("/services/", async (req, res) => {
   }
 })
 
+
+// For User to select Service
 router.get("/services/:id", async (req, res) => {
   const { id } = req.params;
   const idd = parseInt(id);
@@ -341,8 +345,8 @@ router.get("/services/:id", async (req, res) => {
 
 
 // Secret Route
-router.get("/secret", isAuth, (req, res) => {
-  res.send({ status: "ok", msg: "it's a secret" });
-});
+// router.get("/secret", isAuth, (req, res) => {
+//   res.send({ status: "ok", msg: "it's a secret" });
+// });
 
 module.exports = router;

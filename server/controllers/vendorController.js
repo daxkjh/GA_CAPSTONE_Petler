@@ -76,10 +76,6 @@ router.post("/upload/:id", async (req,res)=>{
 })
 
 
-
-
-
-
 //Vendor PASSWORD Change
 router.put("/signup/:id", async (req, res) => {
   const { id } = req.params;
@@ -215,15 +211,9 @@ router.get("/profile/:id", async (req, res) => {
 });
 
 // vendor profile update
-router.put("/profile/:id", async (req, res) => {
+router.put("/profile/p/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    // const vendor = await prisma.vendor.findUnique({
-    //   where: { id: id },
-    //   include : { profile : { include: { details : {include: {petSize: true, area:true}}}},
-    //  }});
-    // console.log("VENDOR", vendor);
-
     const vendorProfile = await prisma.profile.update({
       where: { vendorId: id },
       data: {
@@ -231,32 +221,37 @@ router.put("/profile/:id", async (req, res) => {
         address: req.body.address,
         phone: req.body.phone,
         intro: req.body.intro,
-        type: req.body.type,
-        profilePic: req.body.profilePic,
+              },
+      });
+    res.status(200).json({ status: "success", data: "ok" });
+  } catch (error) {
+    res.status(400).json({ status: "failed", data: error });
+  }
+});
+
+router.put("/profile/b/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const vendorProfile = await prisma.profile.update({
+      where: { vendorId: id },
+      data: {
         start: req.body.start,
         end: req.body.end,
         details: {
           update: {
-        //     // where: { id:2 }, //one to many
-        //     data: {
               svcdsc: req.body.svcdsc,
               petType: req.body.petType,
               petSize: {
                 update: {
-              // //     where: { id: 1 },
-              // //     data: {
                     xs: req.body.xs,
                     s: req.body.s,
                     m: req.body.m,
                     l: req.body.l,
                     xl: req.body.xl,
                   },
-                },
-              
+                }, 
               area: {
                 update: {
-        // //       //     where: { id:1 },
-        // //       //     data: {
                     north: req.body.north,
                     south: req.body.south,
                     east: req.body.east,
@@ -269,12 +264,12 @@ router.put("/profile/:id", async (req, res) => {
         },
       },
     });
-    // console.log("iii", vendorProfile)
-    res.status(200).json({ status: "success", data: "ok" });
+    res.status(200).json({ status: "success", data: vendorProfile });
   } catch (error) {
     res.status(400).json({ status: "failed", data: error });
   }
 });
+
 
 // vendor acount delete
 router.delete("/profile/:id", async (req, res) => {

@@ -72,7 +72,7 @@
   min-width: 600px;
   max-width: 600px;
   min-height: 280px;
-  max-height: 280px;
+  /* max-height: 280px; */
   border: solid;
 } 
 
@@ -379,4 +379,17 @@ height: 100%;
   width: 350px;
   margin: 0 auto;
   background-color: aliceblue;
+}
+
+.inline {
+  display: flex;
+  text-align: center;
+  margin: 0 1rem 1rem 0;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.serviceText {
+  margin-left: 2rem;
+  margin-right: 4rem;
 }

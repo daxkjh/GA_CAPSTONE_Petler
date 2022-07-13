@@ -10,7 +10,7 @@ import User_SignUp from './pages/user_pages/User_Signup'
 import User_Profile from "./pages/user_pages/User_Profile"
 import { atom, useAtom, Provider } from 'jotai'
 import VendorProfileManage from './pages/vendor_pages/VendorProfileManage'
-import VendorProfileCreation from './pages/vendor_pages/VendorProfileCreation'
+import VendorProfileCreation from './components/edit_vendor/EditVendorBusiness'
 import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 import VendorProfileShow from "./pages/user_pages/User_BrowseVendorDetails"

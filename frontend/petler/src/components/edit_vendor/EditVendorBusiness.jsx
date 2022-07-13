@@ -4,17 +4,14 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useState } from "react";
 
-function VendorProfileCreation() {
+function EditVendorBusiness( { toggleForm, arg, user, setRefresh }) {
 
   const navigate = useNavigate();
   // const [check1, setCheck1] = useState(false)
   // const access = jwtDecode(localStorage.getItem("token"))
   // const vendorId = access.vendorLogin.id
 
-  const id = useParams();
-  console.log(id);
-
-  // const handleChange1 = event => {
+  // const handleChange1 = event => { 
   //   if (event.target.checked) {
   //     console.log("checked");
   //   } else {
@@ -23,15 +20,10 @@ function VendorProfileCreation() {
   //   setCheck1(current=>!current)
   //   console.log(check1)
   // };
-
+console.log("疲れた", user?.vendorId)
   const handleSubmit = (event) => {
     event.preventDefault();
     const profileData = {
-      name: event.target.elements.name.value,
-      address: event.target.elements.address.value,
-      phone: event.target.elements.phone.value,
-      intro: event.target.elements.intro.value,
-      profilePic: event.target.elements.profilePic.value,
       start: event.target.elements.start.value,
       end: event.target.elements.end.value,
       svcdsc: event.target.elements.svcdsc.value,
@@ -48,41 +40,23 @@ function VendorProfileCreation() {
     };
     console.log("データ",profileData);
     axios
-      .put(`/api/vendor/profile/${id.id}`, profileData)
+      .put(`/api/vendor/profile/b/${user?.vendorId}`, profileData)
       .then((res) => {
-        if (res.status === 200) {
           console.log(res.data);
-          navigate(`/vendor/manageprofile/`);
-        }
+          setRefresh(prev=>!prev);
+          toggleForm(arg);
       })
-
       .catch((error) => console.log("error", error));
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">name</label>
-        <input required name="name" type="name" placeholder="name" />
-        <br />
-        <label htmlFor="address">address</label>
-        <input required name="address" type="address" placeholder="address" />
-        <br />
-        <label htmlFor="phone">phone</label>
-        <input name="phone" type="phone" placeholder="phone" />
-        <br />
-        <label htmlFor="intro">introduce yourself</label>
-        <input name="intro" type="intro" placeholder="intro" />
-        <br />
-        <label htmlFor="profilePic">add profile picture</label>
-        <input
-          name="profilePic"
-          type="profilePic"
-          placeholder="profilePicture"
-        />
-        <br />
+    <div className="vendorFormContainer">
+    
+        <div className="serviceForm">
+          <h2>Edit your business info</h2>
+        <form onSubmit={handleSubmit}>
         <label htmlFor="start time">start time</label>
-        <select name="start">
+        <select name="start" defaultValue={user?.start}>
         <option value="6">6:00</option>
         <option value="7">7:00</option>
         <option value="8">8:00</option>
@@ -104,7 +78,7 @@ function VendorProfileCreation() {
         </select>
         <br />
         <label htmlFor="end time">end time</label>
-        <select name="end">
+        <select name="end" defaultValue={user?.end}>
         <option value="6">6:00</option>
         <option value="7">7:00</option>
         <option value="8">8:00</option>
@@ -126,10 +100,10 @@ function VendorProfileCreation() {
         </select>
         <br />
         <label htmlFor="about your service">about your service</label>
-        <input name="svcdsc" type="svcdsc" placeholder="about your service" />
+        <input name="svcdsc" type="svcdsc" defaultValue={user?.details?.svcdsc}/>
         <br />
         <label htmlFor="Accepted pet type">accepted pet type</label>
-        <select name="petType">
+        <select name="petType" defaultValue={user?.details?.petType}>
           <option value="cats">cats</option>
           <option value="dogs">dogs</option>
           <option value="both">both</option>
@@ -138,7 +112,7 @@ function VendorProfileCreation() {
         <div>
           <p>accepted pet size</p>
           <label htmlFor="Accepted pet size">1-5kg</label>
-          <input type="checkbox" name="xs" />
+          <input defaultValue={true} type="checkbox" name="xs" />
           <label htmlFor="Accepted pet size">5-10kg</label>
           <input type="checkbox" name="s" />
           <label htmlFor="Accepted pet size" >10-20kg</label>
@@ -162,9 +136,12 @@ function VendorProfileCreation() {
           <br />
         </div>
         <button>submit</button>
+        <p onClick={() => toggleForm(arg)} className="edit"> cancel</p>
       </form>
+      
+      </div>
     </div>
   );
 }
 
-export default VendorProfileCreation;
+export default EditVendorBusiness;

@@ -36,7 +36,8 @@ function VendorLogin() {
           }
         }
       })
-      .catch((error) => console.log("error", error));
+      .catch(error => { alert("Invalid Login Credentials")
+        console.log("error", error)});
   };
 
   // console.log("ここ", vendor)

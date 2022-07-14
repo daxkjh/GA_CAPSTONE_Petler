@@ -4,6 +4,7 @@ import { atom, useAtom, Provider } from "jotai";
 import { userAtom, refreshAtom } from "../../App";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useEffect } from "react";
 
 
 const BookingForm = ({ vendor }) => {
@@ -12,10 +13,12 @@ const BookingForm = ({ vendor }) => {
   const [dateOrRange, setDateRange] = useState(false); //set by handleSelect
   const Today = new Date();
 // console.log("VENDOR",vendor.data.id)
+console.log(user)
   function roundToHour(date) {
     const p = 60 * 60 * 1000; // milliseconds in an hour
     return new Date(Math.ceil(date.getTime() / p ) * p);
   }
+  const [bookable, setBookable] = useState(false)
   const [sameDay, setSameDay] = useState(Today);
   const [startRange, setStartRange] = useState(Today); 
   const [endRange, setEndRange] = useState();
@@ -26,6 +29,26 @@ const BookingForm = ({ vendor }) => {
     startDateTime: roundToHour(Today),
     endDateTime: roundToHour(Today),
   });
+
+useEffect(()=>{
+  if(vendor){
+    let check = 0
+  let acceptableSize = vendor.data.details.petSize
+  let arr = user.pets
+  console.log(arr,acceptableSize)
+  for (const element of arr){
+    if (acceptableSize[element.size]){
+      check+=1
+    }
+    console.log("CHECK",check)
+    if(check>0){
+      setBookable(true)
+    }
+  }
+  
+  }
+},[vendor])
+
 
  
 
@@ -42,6 +65,9 @@ const BookingForm = ({ vendor }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!bookable){
+      alert("Sorry, You do not have a pet that conforms to Vendor Pet Size Limitations")
+    }else{
     axios
       .post("/api/booking", {
         profileId: vendor?.data?.id,
@@ -58,7 +84,7 @@ const BookingForm = ({ vendor }) => {
       .catch((error) => {alert("Please Log in to book")
       console.log(error)});
     setRefresh(!refresh);
-  };
+  }}
 
   return (
     <div className="bookingFormContainer">

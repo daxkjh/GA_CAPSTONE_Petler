@@ -146,7 +146,7 @@ const BookingForm = ({ vendor, setBookingForm }) => {
             <br />
             { dateOrRange ? <DatePicker
               dateFormat="dd/MM/yyyy HH:mm"
-              selected={bookingInfo.startDateTime || roundToHour(Today)}
+              selected={bookingInfo.startDateTime /*|| roundToHour(Today)*/}
               minDate={Today}
               showTimeSelect
               timeFormat="hh:mm aa"

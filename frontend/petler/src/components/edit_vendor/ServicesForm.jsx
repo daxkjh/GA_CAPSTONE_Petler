@@ -70,7 +70,7 @@ function ServicesForm({ toggleForm, arg }) {
             id="price"
             placeholder="price"
             />
-        <br/>
+        <br/><br></br>
         <select name="dayService" >
           <option name="dayService" value="true">single day</option>
           <option name="dayService" value="false">multiple days</option>

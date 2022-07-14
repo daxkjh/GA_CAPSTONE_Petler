@@ -35,13 +35,13 @@ function EdtitVendorInfo( { user, toggleForm, arg, setRefresh }) {
       <input required name="name" type="name" defaultValue={user?.name}/>
       <br />
       <label htmlFor="address">address</label>
-      <input required name="address" type="address" defaultValue={user?.address} />
+      <input required name="address" type="text" defaultValue={user?.address} />
       <br />
       <label htmlFor="phone">phone</label>
-      <input required name="phone" type="phone" defaultValue={user?.phone} />
+      <input required name="phone" type="text" defaultValue={user?.phone} />
       <br />
-      <label htmlFor="intro">introduce yourself</label>
-      <input required name="intro" type="intro" defaultValue={user?.intro}/>
+      <h3 htmlFor="intro">Briefly Introduce Yourself</h3>
+      <textarea required maxLength="500" cols="30" rows="15" charswidth="23"  name="intro" defaultValue={user?.intro}/>
       <br />
       <button>Apply</button>
       </form>

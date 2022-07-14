@@ -2,10 +2,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export const validEmail = new RegExp(
-    '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
- );
- export const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
+// export const validEmail = new RegExp(
+//     '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+//  );
+//  export const validPassword = new RegExp('^(?=.*?[A-Za-z])(?=.*?[0-9]).{6,}$');
+
+const API_URL =
+process.env.NODE_ENV === "production"
+  ? "https://petlers.herokuapp.com/"
+  : "http://localhost:3000";
 
 const User_SignUp = () => {
   // SET STATES
@@ -24,7 +29,7 @@ const User_SignUp = () => {
   // Draw all USERS DATA for email check
   useEffect(() => {
     axios
-      .get("/api/user/signingup")
+      .get(`${API_URL}/api/user/signingup`)
       .then(function (response) {
         setUsersData(response);
         console.log("response",response);
@@ -54,7 +59,7 @@ const User_SignUp = () => {
     e.preventDefault();
     try {
       axios
-        .post("/api/user/", submit)
+        .post(`${API_URL}/api/user/`, submit)
         .then((response) => console.log(response))
         .then(() => alert("User Created Success!"))
         .then(() => navigate("/user/login"));

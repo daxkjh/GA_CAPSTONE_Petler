@@ -13,6 +13,11 @@ import BookingCardVendor from '../../components/BookingCardVendor';
 import EditVendorBusiness from '../../components/edit_vendor/EditVendorBusiness';
 import EdtitVendorInfo from '../../components/edit_vendor/EdtitVendorInfo';
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 function VendorProfileManage() {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom);
@@ -47,7 +52,7 @@ function VendorProfileManage() {
   };
 
 const fetchData = async ()=>{
-    const res = await axios.get(`/api/booking/${user.id}`)
+    const res = await axios.get(`${API_URL}/api/booking/${user.id}`)
      setBookings(res.data)
     //  setHistory(res.data.data.filter((x)=> new Date(x.startDateTime) < new Date()))
   }

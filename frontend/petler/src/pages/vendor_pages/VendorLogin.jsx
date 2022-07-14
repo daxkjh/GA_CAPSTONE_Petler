@@ -7,6 +7,10 @@ import { refreshAtom } from "../../App";
 import { useState } from "react";
 
 export const vendorAtom = atom({});
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 
 function VendorLogin() {
   const [user, setUser] = useAtom(userAtom);
@@ -22,7 +26,7 @@ function VendorLogin() {
     };
 
     axios
-      .post("/api/vendor/login", loginData)
+      .post(`${API_URL}/api/vendor/login`, loginData)
       .then((response) => {
         {
           const token = response.data.accessToken;

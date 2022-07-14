@@ -15,7 +15,11 @@ import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
 import StyledDropzone from "../../components/uploader/StyledDropzone";
 import BookingCardUser from "../../components/BookingCardUser";
 
-  
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";  
+
   const User_Profile = () => {
   const [value, onChange] = useState(new Date());
   const [user, setUser] = useAtom(userAtom);
@@ -62,7 +66,7 @@ import BookingCardUser from "../../components/BookingCardUser";
   console.log("in user Profile", user.id)
 
   const fetchData = async ()=>{
-    const res = await axios.get(`/api/booking/${user.id}`)
+    const res = await axios.get(`${API_URL}/api/booking/${user.id}`)
      setBookings(res.data)
   }
  

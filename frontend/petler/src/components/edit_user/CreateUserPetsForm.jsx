@@ -6,7 +6,10 @@ import { userAtom } from "../../App";
 import { refreshAtom } from "../../App";
 import jwtDecode from "jwt-decode";
 
-
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 //#######################     DROPZONE STYLING Start  #################################
 
 const baseStyle = {
@@ -167,7 +170,7 @@ const handleSize = (e) =>{
 
   const handleSubmit = (e) => {
     e.preventDefault()
-axios.post(`/api/userprofile/pet/${user?.id}`,{
+axios.post(`${API_URL}/api/userprofile/pet/${user?.id}`,{
 
     name : petName,
     type : petType,

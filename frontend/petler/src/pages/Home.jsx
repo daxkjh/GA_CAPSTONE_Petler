@@ -4,6 +4,11 @@ import { userAtom, refreshAtom } from "../App.jsx";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 function Home() {
   const [user, setUser] = useAtom(userAtom);
   const [allVendors, setAllVendors] = useState({});
@@ -14,7 +19,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("/api/vendor")
+      .get(`${API_URL}/api/vendor`)
       .then((res) => {
         setAllVendors(res.data);
       })
@@ -25,7 +30,7 @@ function Home() {
   const handleFilter = (type) => {
     console.log(type);
     axios
-      .get(`/api/vendor/profile/filter?button=${type}`, {
+      .get(`${API_URL}/api/vendor/profile/filter?button=${type}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         }
@@ -41,7 +46,7 @@ function Home() {
 const handleSearch = (e)=>{
   console.log("SEARCHTERM : ",e.target.elements.searchbox.value)
 e.preventDefault()
-axios.get(`/api/vendor/profile/search?searchbox=${e.target.elements.searchbox.value}`,{
+axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.searchbox.value}`,{
   headers: {
     'Authorization': `Bearer ${localStorage.getItem("token")}`
   }

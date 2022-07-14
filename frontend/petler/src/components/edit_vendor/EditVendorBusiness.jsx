@@ -2,6 +2,11 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useState } from "react";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 function EditVendorBusiness( { toggleForm, arg, user, setRefresh }) {
   const [emptyAlertSize, setElementSize] = useState(false);
   const [emptyAlertArea, setElementArea] = useState(false);
@@ -42,7 +47,7 @@ function EditVendorBusiness( { toggleForm, arg, user, setRefresh }) {
     };
     // console.log("データ",profileData);
     axios
-      .put(`/api/vendor/profile/b/${user?.vendorId}`, profileData,{ headers: {
+      .put(`${API_URL}/api/vendor/profile/b/${user?.vendorId}`, profileData,{ headers: {
         'Authorization': `Bearer ${localStorage.getItem("token")}`
       }})
       .then((res) => {

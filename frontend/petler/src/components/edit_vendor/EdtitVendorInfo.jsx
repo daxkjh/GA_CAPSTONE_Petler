@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useState } from 'react';
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 function EdtitVendorInfo( { user, toggleForm, arg, setRefresh }) {
 
     const handleSubmit = (event) => {
@@ -11,7 +16,7 @@ function EdtitVendorInfo( { user, toggleForm, arg, setRefresh }) {
             phone: event.target.elements.phone.value,
             intro: event.target.elements.intro.value
         };
-        axios.put(`/api/vendor/profile/p/${user?.vendorId}`, profileData,{ headers: {
+        axios.put(`${API_URL}/api/vendor/profile/p/${user?.vendorId}`, profileData,{ headers: {
             'Authorization': `Bearer ${localStorage.getItem("token")}`
           }})
             .then((res) => {console.log(res.data)

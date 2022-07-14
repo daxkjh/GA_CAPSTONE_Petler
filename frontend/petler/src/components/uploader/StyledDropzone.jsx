@@ -6,6 +6,10 @@ import { userAtom } from "../../App";
 import { refreshAtom } from "../../App";
 import jwtDecode from "jwt-decode";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 
 const baseStyle = {
 
@@ -87,7 +91,7 @@ function StyledDropzone({ toggleForm, arg }) {
   const handleUpload = () => {
     axios
       .post(
-        `/api/${role}/upload/${user.id}`,
+        `${API_URL}/api/${role}/upload/${user.id}`,
         { data: image[0] },
         {
           headers: {

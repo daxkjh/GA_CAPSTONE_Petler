@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 
 function VendorSignUp() {
   const [emailTaken, setEmailTaken] = useState(false)
@@ -18,7 +22,7 @@ function VendorSignUp() {
       type: event.target.elements.type.value,
     }
       // console.log(signupData)
-    axios.post( "/api/vendor/signup", signupData)
+    axios.post( `${API_URL}/api/vendor/signup`, signupData)
       .then(res => {
         if (res.status === 200) {
           navigate('/vendor/login')

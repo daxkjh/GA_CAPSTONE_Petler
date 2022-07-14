@@ -4,6 +4,11 @@ import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
 import { refreshAtom } from "../../App";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 
 const EditUserProfileForm = ({toggleForm})=>{
     const [user, setUser] = useAtom(userAtom)
@@ -33,7 +38,7 @@ const EditUserProfileForm = ({toggleForm})=>{
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-            axios.put(`/api/user/editprofile/${user?.userId}/`,{
+            axios.put(`${API_URL}/api/user/editprofile/${user?.userId}/`,{
                 name : name,
                 address : address,
                 description : desc,

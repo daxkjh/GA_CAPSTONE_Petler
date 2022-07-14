@@ -75,13 +75,15 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
       </div>
       <div className="catsanddogs">
       <div 
+       style={{borderColor:"steelblue",borderWidth:"0.6rem"}}
         className="menusec"
         onClick={() => handleFilter("cats")}
       >
         <p value="cats">services for cats</p>
-        <img src="https://i.imgur.com/zEho2MQ.png?1" width={"90px"} /> 
+        <img style={{marginTop:"-15px"}} src="https://i.imgur.com/zEho2MQ.png?1" width={"90px"} /> 
       </div>
       <div 
+      style={{borderColor:"gold", borderWidth:"0.6rem"}}
       className="menusec"
       onClick={() => handleFilter("dogs")}
       >
@@ -90,14 +92,14 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
       </div>
       </div>
       <div className="menu">
-        <div onClick={() => handleFilter("sitter")}
+        <div style={{borderColor:"Crimson",borderWidth:"0.6rem"}} onClick={() => handleFilter("sitter")}
         className="menusec">
           <p> sitters </p>
         </div>
-        <div onClick={() => handleFilter("hotel")} className="menusec">
+        <div style={{borderWidth:"0.6rem"}} onClick={() => handleFilter("hotel")} className="menusec">
           <p> hotels </p>
         </div>
-        <div onClick={() => handleFilter("groomer")} className="menusec">
+        <div style={{borderColor:"Orchid",borderWidth:"0.6rem"}} onClick={() => handleFilter("groomer")} className="menusec">
           <p> groomers </p>
         </div>
       </div>
@@ -108,10 +110,10 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
             className="vendorsec"
             onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)}
           >
-            <img src={ele.profilePic} width={"150px"}></img>
-            <p>{ele.name}</p>
-            <p>{ele.intro}</p>
+            <img style={{position:"relative", marginRight:"70%", marginTop:"5%", display:"inline-block", verticalAlign:"top"}} src={ele.profilePic} width={"150px"}></img>
+            <h2  style={{position:"relative", marginTop:"5%", display:"inline-block", verticalAlign:"top"}} >{ele.name}</h2>
             <p>{ele.type}</p>
+            <p>{ele.intro}</p>
           </div>
         </div>
       ))}

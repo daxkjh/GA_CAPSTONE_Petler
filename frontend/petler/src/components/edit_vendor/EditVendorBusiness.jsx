@@ -107,8 +107,8 @@ function EditVendorBusiness( { toggleForm, arg, user, setRefresh }) {
         <option value="23">23:00</option>
         </select>
         <br />
-        <label htmlFor="about your service">Description of Your Service</label>
-        <textarea name="svcdsc" id="svcdsc" defaultValue={user?.details?.svcdsc}/>
+        <h3 htmlFor="about your service">Description of Your Service</h3>
+        <textarea maxLength="500" cols="30" rows="15" charswidth="23" name="svcdsc" id="svcdsc" defaultValue={user?.details?.svcdsc}/>
         <br />
         <label htmlFor="Accepted pet type">accepted pet type</label>
         <select name="petType" defaultValue={user?.details?.petType}>
@@ -121,15 +121,15 @@ function EditVendorBusiness( { toggleForm, arg, user, setRefresh }) {
           <p>accepted pet size</p>
           {emptyAlertSize&&<p>please select at least one</p>}
           <label htmlFor="Accepted pet size">1-5kg</label>
-          <input type="checkbox" name="xs" defaultChecked={user?.details.petSize.xs} />
+          <input type="checkbox" name="xs" defaultChecked={user?.details.petSize.xs} /><span> </span>
           <label htmlFor="Accepted pet size">5-10kg</label>
-          <input  type="checkbox" name="s" defaultChecked={user?.details.petSize.s}/>
+          <input  type="checkbox" name="s" defaultChecked={user?.details.petSize.s}/><span> </span>
           <label htmlFor="Accepted pet size" >10-20kg</label>
-          <input type="checkbox" name="m" defaultChecked={user?.details.petSize.m} />
+          <input type="checkbox" name="m" defaultChecked={user?.details.petSize.m} /><span> </span>
           <label htmlFor="Accepted pet size" >20-40kg</label>
-          <input type="checkbox" name="l" defaultChecked={user?.details.petSize.l}/>
+          <input type="checkbox" name="l" defaultChecked={user?.details.petSize.l}/><span> </span>
           <label htmlFor="Accepted pet size">over 40kg</label>
-          <input type="checkbox" name="xl" defaultChecked={user?.details.petSize.xl}/>
+          <input type="checkbox" name="xl" defaultChecked={user?.details.petSize.xl}/><span> </span>
           <br />
         </div>
         <div>

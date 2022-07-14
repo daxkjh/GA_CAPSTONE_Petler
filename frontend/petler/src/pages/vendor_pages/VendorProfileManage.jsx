@@ -146,7 +146,7 @@ const handleDateClick = (x) => {
           <p>{user?.details?.svcdsc}</p>
         </div>
         <p>operation hours:</p>
-        <p>{user?.start}~{user?.end}</p>
+        <p>{user?.start}00H ~ {user?.end}00H </p>
         <p>pet type: {user?.details?.petType}</p>
 
         <ul className='petsize'> accepted pet size: <br />
@@ -167,10 +167,10 @@ const handleDateClick = (x) => {
           </li>
         </ul>
         <p>areas:</p>
-        { user?.details?.area?.north && <p>north</p> }
-        { user?.details?.area?.south && <p>south</p> }
-        { user?.details?.area?.east && <p>east</p> }
-        { user?.details?.area?.west && <p>west</p> }
+        { user?.details?.area?.north && <span style={{margin:"0 5px 0 5px"}}>North</span> }
+        { user?.details?.area?.south && <span style={{margin:"0 5px 0 5px"}}>South</span> }
+        { user?.details?.area?.east && <span style={{margin:"0 5px 0 5px"}}>East</span> }
+        { user?.details?.area?.west && <span style={{margin:"0 5px 0 5px"}}>West</span> }
         <p>services:</p>
         {user?.services?.map((ele, index) => 
         <div className='inline' key={index}>
@@ -198,7 +198,7 @@ const handleDateClick = (x) => {
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 
         : <p>no bookings yet</p> } 
-        <p onClick={()=>setHistory(!history)} className='edit'> view past bookings (TEST)</p>
+        <p onClick={()=>setHistory(!history)} className='edit'> view past bookings</p>
         {history? (bookings?.data?.length > 0 ? bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 

@@ -80,8 +80,8 @@ const API_URL =
 
   return (
     <div className="v_profile_container">
-      <div className='c-right'>
-      <div className="userProf">
+      <div className='c-right profileZone'>
+      <div className="userProf whitebackground">
       <div className="v-left">
       <div onClick={()=>toggleForm("pic")} className='editbutton'><img src='https://i.imgur.com/horiynl.png'></img></div>
       <img src={user?.image} width={"200px"}></img>

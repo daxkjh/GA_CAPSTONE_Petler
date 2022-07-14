@@ -52,7 +52,7 @@ function Navbar() {
         <Link className="navBarText" to="/user/profile">
           Profile
         </Link>
-        <div
+        <p
           onClick={handleLogout}
           style={{
             width: "6rem",
@@ -61,14 +61,14 @@ function Navbar() {
             padding: "0.2rem 0",
             position: "relative",
             marginLeft: "55%",
-            marginTop: "-1.9%",
+            marginTop: "-25px",
             cursor: "pointer",
           }}
           className="navBarText"
         >
           {" "}
           Log Out
-        </div>
+        </p>
       </div>
     );
   } else{
@@ -80,7 +80,7 @@ function Navbar() {
         <Link className="navBarText" to="/vendor/manageprofile">
           Profile
         </Link>
-        <div
+        <p
           onClick={handleLogout}
           style={{
             width: "6rem",
@@ -89,14 +89,14 @@ function Navbar() {
             padding: "0.2rem 0",
             position: "relative",
             marginLeft: "55%",
-            marginTop: "-1.9%",
+            marginTop: "-25px",
             cursor: "pointer",
           }}
           className="navBarText"
         >
           {" "}
           Log Out
-        </div>
+        </p>
       </div>
     );
   }

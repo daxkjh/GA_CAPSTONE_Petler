@@ -49,26 +49,31 @@ const EditUserProfileForm = ({toggleForm})=>{
             .then((res)=> {
                 setRefresh(!refresh)
                 alert(res.data.msg)
+                toggleForm("profile")
                             })
-            .catch(error => console.log("error", error));
+            .catch(error => {
+                alert("Error Connecting to server... Please Try again")
+                ("error", error)});
         
     }
 
     return (
-        <div className="profilechangeformcontainer">
+        <div className="EditPetFormContainer">
+        <div className="serviceForm">
             <button onClick={()=>toggleForm("profile")}>Close</button>
             <form onSubmit={handleSubmit}>
                 <fieldset>
-                    <legend>Edit Profile</legend>
+                    <legend>Edit Profile</legend><br></br>
                     <label htmlFor="name">Name</label>
-                    <input onChange={handleName} value={name} type="text" name="name" id="name" placeholder="enter new name"/><br></br>
+                    <input onChange={handleName} value={name} type="text" name="name" id="name" placeholder="enter new name"/><br></br><br></br>
                     <label htmlFor="address">Address</label>
                     <input onChange={handleAddress} value={address} type="text" name="address" id="address" placeholder="enter new address"/><br></br>
-                    <label htmlFor="description">Introduce Yourself!</label>
-                    <textarea onChange={handleDesc} value={desc} maxLength="500" cols="30" rows="5" charswidth="23" name="description" id="description" placeholder="Max 500 Characters"/><br></br>
+                    <h3 htmlFor="description">Introduce Yourself!</h3>
+                    <textarea onChange={handleDesc} value={desc} maxLength="500" cols="30" rows="15" charswidth="23" name="description" id="description" placeholder="Max 500 Characters"/><br></br>
                     <button>Submit</button>
                 </fieldset>
             </form>
+        </div>
         </div>
     )
 }

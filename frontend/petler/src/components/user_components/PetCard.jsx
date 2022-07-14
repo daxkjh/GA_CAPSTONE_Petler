@@ -18,7 +18,7 @@ const petSize = { xs :"1 - 5 KG", s : "5 - 10 KG", m : "10 - 20 KG", l : "20 - 4
    
 
     return (
-        <div onClick={()=>setState(!state)} className="petcardactual">
+        <div onClick={()=>setState(!state)} className="petcardactual whitebackground">
             <div>
                 <h1>{data?.name}</h1>
 
@@ -42,7 +42,7 @@ const petSize = { xs :"1 - 5 KG", s : "5 - 10 KG", m : "10 - 20 KG", l : "20 - 4
 
 else {
     return(
-        <div className="emptyPetCard" onClick={()=>toggleForm("createpet")}>
+        <div className="emptyPetCard whitebackground" onClick={()=>toggleForm("createpet")}>
             
             <h1 style={{fontSize:"5rem"}}>&#43;</h1>
             <h1>Add Pet</h1>

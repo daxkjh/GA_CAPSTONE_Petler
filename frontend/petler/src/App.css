@@ -221,7 +221,8 @@ max-width: 500px;
   margin: auto;
   margin-top: 1rem;
   border: solid rgb(40, 127, 130);
-  width: 50rem;
+  width: 55rem;
+  height: 15rem;
   border-radius: 8px;
 }
 
@@ -248,7 +249,7 @@ max-width: 500px;
 .petcontainer{
   display: inline-block;
   position: relative;
-  width: 15rem;
+  width: 12rem;
   height: 20rem;
   margin: .5rem;
   border: 1px black solid;
@@ -302,7 +303,7 @@ height: 100%;
 
 .serviceForm {
   margin: auto;
-  margin-top: 12rem;
+  margin-top: 5rem;
   border: solid white;
   border-radius: 15px;
   width: 360px;
@@ -576,4 +577,12 @@ height: 100%;
 
 ::-webkit-input-placeholder {
   color: #fff;
+}
+
+.profileZone{
+  background-color: MediumPurple;
+}
+
+.whitebackground{
+  background-color: white;
 }

@@ -29,26 +29,29 @@ const EditUserPasswordForm = ({toggleForm})=>{
               }})
             .then((res)=> {
                 alert("password changed")
+                toggleForm("password")
                 console.log(res)} )
             .catch(error => console.log("error", error));
         }
     }
 
     return (
-        <div className="passwordchangeformcontainer">
+        <div className="EditPetFormContainer">
+        <div className="serviceForm">
             <button onClick={()=>toggleForm("password")}>Close</button>
             <form onSubmit={handleSubmit}>
                 <fieldset>
                     <legend>Change Password</legend>
                     {/* <label htmlFor="oldpw">Old Password</label>
                     <input type="text" name="oldpw" id="oldpw" placeholder="enter old password"/><br></br> */}
-                    <label htmlFor="newpw">New Password</label>
-                    <input type="text" name="newpw" id="newpw" placeholder="enter new password"/><br></br>
-                    <label htmlFor="cfmpw">Confirm New Password</label>
+                    <label htmlFor="newpw">New Password </label>
+                    <input type="text" name="newpw" id="newpw" placeholder="enter new password"/><br></br><br></br>
+                    <label htmlFor="cfmpw">Confirm Password </label>
                     <input type="text" name="cfmpw" id="cfmpw" placeholder="re-enter new password"/><span>{(cfmpw)? null : "Password does not match"}</span><br></br>
                     <button>Submit</button>
                 </fieldset>
             </form>
+        </div>
         </div>
     )
 }

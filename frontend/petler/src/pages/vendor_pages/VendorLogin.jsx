@@ -48,9 +48,11 @@ function VendorLogin() {
   return (
     <>
     <div className='form-u'>
+      <h2 className="login-title">log in as vendor</h2>
       <form onSubmit={handleSubmit}> 
       <div className="username">
       <input
+      className='login-input'
         required
         name="email"
         type="email"
@@ -63,6 +65,7 @@ function VendorLogin() {
       <div className="password">
       <input
         required
+        className='login-input'
         name="password"
         type="password"
         placeholder="password"
@@ -76,10 +79,10 @@ function VendorLogin() {
       </div>
       </form>
       {invalid ? <p>Incorrect email or Password</p> : null}
+      <p className="login-title"> don't have an account? </p>
+      <Link className="signuptext" to="/vendor/signup">Signup</Link>
     </div>
     <div>
-      <p> don't have an account? </p>
-      <Link className="signuptext" to="/vendor/signup">Signup</Link>
       </div>
       </>
   );

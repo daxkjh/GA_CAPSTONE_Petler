@@ -12,15 +12,15 @@ const BookingForm = ({ vendor, setBookingForm }) => {
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [dateOrRange, setDateRange] = useState(false); //set by handleSelect
   const Today = new Date();
-// console.log("VENDOR",vendor.data.id)
-console.log(user)
+  // console.log("VENDOR",vendor.data.id)
+  // console.log("USER",user);
   function roundToHour(date) {
     const p = 60 * 60 * 1000; // milliseconds in an hour
-    return new Date(Math.ceil(date.getTime() / p ) * p);
+    return new Date(Math.ceil(date.getTime() / p) * p);
   }
-  const [bookable, setBookable] = useState(false)
+  const [bookable, setBookable] = useState(false);
   const [sameDay, setSameDay] = useState(Today);
-  const [startRange, setStartRange] = useState(Today); 
+  const [startRange, setStartRange] = useState(Today);
   const [endRange, setEndRange] = useState();
   const [bookingInfo, setBookingInfo] = useState({
     servicesId: null,
@@ -28,62 +28,97 @@ console.log(user)
     endDateTime: roundToHour(Today),
   });
 
-useEffect(()=>{
-  if(vendor){
-    let check = 0
-  let acceptableSize = vendor?.data?.details?.petSize
-  if (Object.keys(user).length > 0) 
-  {let arr = user?.pets
-  console.log(arr,acceptableSize)
-  for (const element of arr){
-    if (acceptableSize[element?.size]){
-      check+=1
-    }
-    console.log("CHECK",check)
-    if(check>0){
-      setBookable(true)
-    }
-  }
-  
-  }} else null
-},[vendor])
+  // useEffect(() => {
+  //   let token = localStorage.getItem("token");
+  //   if (token) {
+  //     let decodedToken = jwtDecode(token);
+  //     if (decodedToken.role === "user") {
+  //       let check = 0;
+  //       if (user) {
+  //         console.log("VENDORRRRRR",vendor)
+  //         console.log("USERRRRR",user);
+  //         for (let i = 0; i< user.pets.length; i++) {
+  //           if (vendor.details.petSize[user.pets[i].size]===true) {
+  //             check += 1;
+  //             console.log(check);
+  //           }
+  //         }
+  //         if (check > 0) {
+  //           setBookable(true);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }, [vendor]);
 
-
- 
-
-  const handleSelect = (e) => {          // will set dateRange to true or false
-    if (e.target.value !== "select"){
-      const serviceId = parseInt(e.target.value)
-      setBookingInfo({...bookingInfo,servicesId:serviceId})
-    axios.get(`/api/vendor/services/${serviceId}`)
-    .then((res) => setDateRange(res.data.data.dayService))
-    .catch((error) => console.log("error", error));
+  const handleSelect = (e) => {
+    // will set dateRange to true or false
+    if (e.target.value !== "select") {
+      const serviceId = parseInt(e.target.value);
+      setBookingInfo({ ...bookingInfo, servicesId: serviceId });
+      axios
+        .get(`/api/vendor/services/${serviceId}`)
+        .then((res) => setDateRange(res.data.data.dayService))
+        .catch((error) => console.log("error", error));
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!bookable){
-      alert("Sorry, You do not have a pet that conforms to Vendor Pet Size Limitations")
-    }else{
-    axios
-      .post("/api/booking", {
-        profileId: vendor?.data?.id,
-        userProfileId: user?.id,
-        servicesId: bookingInfo?.servicesId,
-        startDateTime: bookingInfo?.startDateTime,
-        endDateTime: bookingInfo?.endDateTime,
-      },{ headers: {
-        'Authorization': `Bearer ${localStorage.getItem("token")}`
-      }})
-      .then((res) => {
-        alert("Booking has been submitted, awaiting Vendor's confirmation!")
-      console.log("this is the res", res)})
-      .catch((error) => {alert("Please Log in to book")
-      console.log(error)});
-    setRefresh(!refresh);
-  }}
+    let token = localStorage.getItem("token");
+    if (token) {
+      let decodedToken = jwtDecode(token);
+      if (decodedToken.role !== "user") {
+        alert("Log in to Start Booking!")
+      }else {
+
+          let petArr = user.pets
+          let vendorPetSize = vendor.data.details.petSize
+          let check = 0
+          for(const ele of petArr){
+            if(vendorPetSize[ele.size]===true){
+              check+=1
+              console.log(check)
+            } 
+          } if (check>0){
+            postData()
+          } else{
+            alert("Your pet(s) do not conform to Vendor's Size limit")
+          }
+        }
+      } else {
+          alert("Login to Book!")
+        }
+      }
+
+  const postData = ()=>{
+      axios
+        .post(
+          "/api/booking",
+          {
+            profileId: vendor?.data?.id,
+            userProfileId: user?.id,
+            servicesId: bookingInfo.servicesId,
+            startDateTime: bookingInfo.startDateTime,
+            endDateTime: bookingInfo.endDateTime,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((res) => {
+          alert("Booking has been submitted, awaiting Vendor's confirmation!");
+          console.log("this is the res", res);
+        })
+        .catch((error) => {
+          alert("Please Log in to book");
+          console.log(error);
+        });
+      setRefresh(!refresh);
+    
+  };
 
   return (
     <div className="vendorFormContainer">

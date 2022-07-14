@@ -19,7 +19,7 @@ function Navbar() {
   const uId = user?.userId
   
   return (
-    <div className='navBar'>
+    <div style={{backgroundImage:"url('https://media.istockphoto.com/photos/natural-wood-texture-background-picture-id921315052?b=1&k=20&m=921315052&s=170667a&w=0&h=Rrucdn-sdQvbT5wYOG0ckOXt8MWUVjBRd2OSgD2gxdI=')"}} className='navBar'>
       <Link className='navBarText' to="/home">Home</Link>
       <Link className='navBarText' to="/vendor/signup">v-Signup</Link>
       <Link className='navBarText' to="/vendor/login">v-Login</Link>

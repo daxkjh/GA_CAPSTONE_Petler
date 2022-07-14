@@ -18,11 +18,14 @@
 }
 
 .navBarText { 
+  position: relative;
+  left:35%;
   color: #fff;
   border-radius: 4px;
   background-color: rgb(112, 62, 212);;
   font-size: 20px;
   padding: 15px 5px 5px 5px;
+  margin: 10px;
   text-decoration: none;
 }
 
@@ -31,7 +34,7 @@
 }
 
 .homecontainer {
-  margin: auto;
+  margin: 0 auto;
   width: 90%;
 }
 
@@ -47,14 +50,22 @@
 }
 
 .search {
-  margin-top: 2rem;
+position: relative;
+width: 500px;
+left: 50%;
+margin-top: 100px;
+margin-left: -250px; /* Negative half of width. */
+vertical-align: middle;
+
 }
 
 .searchbox {
+  position: relative;
   min-width: 400px;
   height: 30px;
   border-color: rgb(40, 127, 130);
   border-radius: 10px;
+  margin: 0 auto;
 }
 
 .v_profile_container {

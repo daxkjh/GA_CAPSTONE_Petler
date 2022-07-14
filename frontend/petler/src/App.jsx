@@ -80,7 +80,7 @@ axios
             <Route path="/user/profile/" element={<User_Profile/>}/>
             <Route path="/user/signup" element={<User_SignUp/>}/>
             <Route path="/user/login" element={<User_Login/>}/>
-            <Route path="vendor/profile/" element={<VendorProfileShow />}/>
+            <Route path="vendor/profile/:id" element={<VendorProfileShow />}/>
             {/* <Route path="/owner/all"  */}
             
 

@@ -77,7 +77,7 @@ function Navbar() {
         <Link className="logo" to="/home">
           <img src="https://i.imgur.com/QwI6oUK.png" />{" "}
         </Link>
-        <Link className="navBarText" to="/vendor/profile">
+        <Link className="navBarText" to="/vendor/manageprofile">
           Profile
         </Link>
         <div

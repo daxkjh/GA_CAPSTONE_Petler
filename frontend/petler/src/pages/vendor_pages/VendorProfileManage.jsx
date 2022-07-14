@@ -12,6 +12,7 @@ import StyledDropzone from '../../components/uploader/StyledDropzone';
 import BookingCardVendor from '../../components/BookingCardVendor';
 import EditVendorBusiness from '../../components/edit_vendor/EditVendorBusiness';
 import EdtitVendorInfo from '../../components/edit_vendor/EdtitVendorInfo';
+import TestCalendar from '../../components/TestCalendar';
 
 const API_URL =
   process.env.NODE_ENV === "production"
@@ -23,7 +24,7 @@ function VendorProfileManage() {
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [vendor, setVendor] = useState();
   const [PWChange, setPWChange] = useState(false);
-
+  const [days, setDays ] = useState([])
   const [value, onChange] = useState(new Date());
   const [bookings, setBookings] = useState([]);
   const [element, setElement] =useState("")
@@ -54,6 +55,7 @@ function VendorProfileManage() {
 const fetchData = async ()=>{
     const res = await axios.get(`${API_URL}/api/booking/${user.id}`)
      setBookings(res.data)
+     setDays(res.data.data)
     //  setHistory(res.data.data.filter((x)=> new Date(x.startDateTime) < new Date()))
   }
 
@@ -184,7 +186,10 @@ const handleDateClick = (x) => {
       </div>
       </div>
         <div className='c-right'>
+
           <h2>manage your bookings  </h2>
+
+
         <div className='v-calendar'>  
           <Calendar
           className="react-calendar"
@@ -194,7 +199,9 @@ const handleDateClick = (x) => {
             console.log(day)}}
           />
       </div>
-        <h2>your bookings</h2>
+
+
+        <h2>Your Bookings</h2>
         {bookings?.data?.length > 0 ? bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 
@@ -205,6 +212,7 @@ const handleDateClick = (x) => {
         ) 
         : <p>no bookings yet</p> ):null}
         </div>
+        <TestCalendar days={days}/>
     </div>
     </>
   )

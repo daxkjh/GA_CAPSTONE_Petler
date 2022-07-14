@@ -45,13 +45,13 @@ const EditVendorPasswordForm = ( {setPWChange} )=>{
         <div className="vendorFormContainer">
             <div className="serviceForm">
             <form onSubmit={handleSubmit}>
-                    <legend>Change Password</legend>
+                    <h3>Change Password</h3><br></br>
                     {/* <label htmlFor="oldpw">Old Password</label>
                     <input type="text" name="oldpw" id="oldpw" placeholder="enter old password"/><br></br> */}
                     <label htmlFor="newpw">New Password</label>
-                    <input type="text" name="newpw" id="newpw" placeholder="enter new password"/><br></br>
+                    <input type="text" name="newpw" id="newpw" placeholder="enter new password"/><br></br><br></br>
                     <label htmlFor="cfmpw">Confirm New Password</label>
-                    <input type="text" name="cfmpw" id="cfmpw" placeholder="re-enter new password"/><span>{(cfmpw)? null : "Password does not match"}</span><br></br>
+                    <input type="text" name="cfmpw" id="cfmpw" placeholder="re-enter new password"/><span>{(cfmpw)? null : "Password does not match"}</span><br></br><br></br>
                     <button>Submit</button>
             </form>
             <p className="edit" onClick={() => setPWChange(false)}>cancel</p>

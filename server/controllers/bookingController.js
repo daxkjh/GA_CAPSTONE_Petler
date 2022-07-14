@@ -8,6 +8,7 @@ const vendorAuth = require("../middleware/vendorAuth")
 
 // create booking
 router.post("/", userAuth ,async (req, res) =>{
+  console.log(req.body)
     try {
       const booking = await prisma.bookings.create({
         data: { profileId: req.body.profileId,

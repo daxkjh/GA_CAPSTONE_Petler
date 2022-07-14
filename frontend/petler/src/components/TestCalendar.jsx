@@ -10,7 +10,7 @@ import { useState,useEffect } from 'react'
 const TestCalendar = ({days, handleDateClick})=>{
     const [value, setValue] = useState(new Date());
     const [datedDays, setDatedDays] = useState([])
-  console.log("DAY",days)
+  // console.log("DAY",days)
    
 
  
@@ -26,6 +26,17 @@ const TestCalendar = ({days, handleDateClick})=>{
       }}
     }
   }
+
+  function tileContent({ date, view }) {
+    // Add class to tiles in month view only
+    if (view === 'month') {
+      if(days[0]){
+      // Check if a date React-Calendar wants to check is on the list of dates to add class to
+      if (days.find(dDate => isSameDay(dDate, date))) {
+        return (<p>Booking</p>);
+      }
+    }
+  }}
   
 
     return(
@@ -37,7 +48,9 @@ const TestCalendar = ({days, handleDateClick})=>{
           tileClassName={tileClassName}
           onClickDay={(day) => {
             handleDateClick(day);
-            console.log(day)}}
+            console.log("ClickED!",day)}}
+            tileContent={tileContent}
+     
           />
 
         </>

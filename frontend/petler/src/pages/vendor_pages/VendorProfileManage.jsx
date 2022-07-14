@@ -13,6 +13,8 @@ import BookingCardVendor from '../../components/BookingCardVendor';
 import EditVendorBusiness from '../../components/edit_vendor/EditVendorBusiness';
 import EdtitVendorInfo from '../../components/edit_vendor/EdtitVendorInfo';
 import TestCalendar from '../../components/TestCalendar';
+import ShowBooking from '../../components/ShowBooking';
+import {isSameDay} from 'date-fns'
 
 const API_URL =
   process.env.NODE_ENV === "production"
@@ -29,6 +31,8 @@ function VendorProfileManage() {
   const [bookings, setBookings] = useState([]);
   const [element, setElement] =useState("")
   const [history, setHistory]= useState(false)
+  const [specificBooking, setSpecificBooking] = useState([])
+  
   
 
 
@@ -40,7 +44,8 @@ function VendorProfileManage() {
     profile: false,
     service: false,
     prof:false,
-    buz: false
+    buz: false,
+    booking:false
   });
 
   const toggleForm = (x) => {
@@ -81,16 +86,20 @@ const fetchData = async ()=>{
 }, [user.id])
 
 
-const handleDateClick = (x) => {
-  const day = x;
-  const date = day.toISOString();
-  console.log(date)
-  axios.get(`${API_URL}/api/booking/calendar`)
-  .then((res) => {
-    setBookings(res.data);
-  })
-  .catch((error) => console.log("error", error));
-    
+const handleDateClick = (day) => {
+  // const day = x;
+  // const date = day.toISOString();
+  // console.log(date)
+  // axios.get(`${API_URL}/api/booking/calendar`)
+  // .then((res) => {
+  //   setBookings(res.data);
+  // })
+  // .catch((error) => console.log("error", error));
+    if(days[0]){
+     setSpecificBooking(days.filter(dDate => isSameDay(dDate, day)))
+     toggleForm("booking")
+
+    }
 }
 
 
@@ -199,6 +208,7 @@ const handleDateClick = (x) => {
             console.log(day)}}
           /> */}
         <TestCalendar days={days} handleDateClick={handleDateClick}/>
+        {formState.booking&&<ShowBooking bookings={bookings?.data} specificBooking={specificBooking} days={days} toggleForm={toggleForm} arg={"booking"}/>}
 
       </div>
 

@@ -47,7 +47,7 @@ function Navbar() {
     return (
       <div className="navBar">
         <Link className="logo" to="/home">
-          <img src="https://i.imgur.com/QwI6oUK.png" />{" "}
+          <img src="https://i.imgur.com/QwI6oUK.png" width={"300px"}/>{" "}
         </Link>
         <Link className="navBarText" to="/user/profile">
           Profile
@@ -75,7 +75,7 @@ function Navbar() {
     return (
       <div className="navBar">
         <Link className="logo" to="/home">
-          <img src="https://i.imgur.com/QwI6oUK.png" />{" "}
+          <img src="https://i.imgur.com/QwI6oUK.png" width={"300px"}/>{" "}
         </Link>
         <Link className="navBarText" to="/vendor/manageprofile">
           Profile

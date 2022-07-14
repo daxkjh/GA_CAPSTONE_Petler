@@ -91,7 +91,8 @@
 .v-right { 
   margin-top: 1.5rem;
   margin-left: 0.5rem;
-  grid-area: v-right; }
+  grid-area: v-right;
+}
 
 .managebiz {
   margin-top: 1rem;
@@ -130,16 +131,25 @@ textarea {
 }
 
 .userProf {
+  margin-top: 2rem;
+  margin-right: 2.6rem;
   border: solid;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 40% 60%; 
+  grid-template-rows: 100%; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "v-left v-right"; 
   min-width: 600px;
   max-width: 600px;
+  min-height: 280px;
   max-height: 300px;
 }
 
 .userCalendarside {
   justify-content: center;
   text-align: center;
-  /* border: solid; */
   margin-left: 5rem;
   min-width: 500px;
   max-width: 600px;
@@ -152,6 +162,12 @@ border: thin rgb(40, 127, 130);
 max-height: 350px;
 max-width: 500px; 
 }
+
+.u-calendar {
+  margin-left: 2rem;
+  max-height: 350px;
+  max-width: 500px; 
+  }
 
 .menu {
   display: flex;
@@ -409,4 +425,15 @@ height: 100%;
 .by {
   text-align: right;
   margin-right: 4rem;
+}
+
+.user-p {
+  float: right;
+  margin-right: 1.5rem;
+}
+
+.user-pw {
+  float: right ;
+  position: bottom;
+  margin-right: 1.5rem;
 }

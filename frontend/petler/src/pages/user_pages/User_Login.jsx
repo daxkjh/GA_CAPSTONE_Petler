@@ -39,17 +39,18 @@ const navigate = useNavigate();
   }
 
   return (
-<div>
+<div className='form-u'>
      <form onSubmit={handleSubmit} >
-      <label htmlFor="email">email</label>
-      <input
+        <div className="username">
+            <input
               required
               name="email"
               type="email"
               placeholder="email"
               onChange={() => {setInvalid(false)}}
             />
-     <label htmlFor="password">Password</label>
+            </div>
+      <div className="password">
       <input
               required
               name="password"
@@ -57,9 +58,13 @@ const navigate = useNavigate();
               placeholder="password"
               onChange={() => {setInvalid(false)}}
               />
-      <button>Login!</button>
+      </div>
+      <div className="login">
+      <button className='loginButton'>log in!</button>
+      </div>
       </form>
       {invalid ? <p>Incorrect email or Password</p>: null }
+      
     </div>
   )
 }

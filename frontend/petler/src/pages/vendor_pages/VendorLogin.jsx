@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { userAtom } from "../../App";
 import { atom, useAtom } from "jotai";
@@ -42,9 +42,10 @@ function VendorLogin() {
 
   // console.log("ここ", vendor)
   return (
-    <div>
+    <>
+    <div className='form-u'>
       <form onSubmit={handleSubmit}> 
-      <label htmlFor="email">email</label>
+      <div className="username">
       <input
         required
         name="email"
@@ -54,7 +55,8 @@ function VendorLogin() {
           setInvalid(false);
         }}
       />
-      <label htmlFor="password">Password</label>
+      </div>
+      <div className="password">
       <input
         required
         name="password"
@@ -64,11 +66,20 @@ function VendorLogin() {
           setInvalid(false);
         }}
       />
-      <button>Login!</button>
+      </div>
+      <div className="login">
+      <button className='loginButton'>log in</button>
+      </div>
       </form>
       {invalid ? <p>Incorrect email or Password</p> : null}
     </div>
+    <div>
+      <p> don't have an account? </p>
+      <Link className="signuptext" to="/vendor/signup">Signup</Link>
+      </div>
+      </>
   );
 }
+
 
 export default VendorLogin;

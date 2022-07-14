@@ -2,21 +2,28 @@
   text-align: center;
 }
 
+.logo {
+  width:400px;
+  height: 200px;
+  float: left;
+
+}
+
 .navBar { 
-  /* background-color: 	SaddleBrown; */
+  background-color: black;
   color: aliceblue;
-  min-height: 70px;
+  min-height: 140px;
   margin: auto;
   padding: auto;
-  border-style: solid;
-  border-color: black;
+  /* border-style: solid; */
+  /* background-image: url('https://media.istockphoto.com/photos/natural-wood-texture-background-picture-id921315052?b=1&k=20&m=921315052&s=170667a&w=0&h=Rrucdn-sdQvbT5wYOG0ckOXt8MWUVjBRd2OSgD2gxdI='); */
 }
 
 .navBarText { 
-  background-color: rgb(40, 127, 130);
-  color: aliceblue;
+  color: #fff;
+  border-radius: 4px;
+  background-color: rgb(112, 62, 212);;
   font-size: 20px;
-  margin-top: 2rem;
   padding: 15px 5px 5px 5px;
   text-decoration: none;
 }
@@ -28,6 +35,16 @@
 .homecontainer {
   margin: auto;
   width: 90%;
+}
+
+.topbutton {
+  position: fixed;
+  bottom: 0;
+  right: 5rem;
+  display: flex;
+  float: right;
+  border: none;
+  color: brown;
 }
 
 .search {
@@ -436,4 +453,115 @@ height: 100%;
   float: right ;
   position: bottom;
   margin-right: 1.5rem;
+}
+
+
+/* login&signup  */
+
+* { box-sizing: border-box }
+
+/* .loginContainer {
+  background-color: rgb(15, 14, 14);
+} */
+.form-u {
+  height: 18.75em;
+  width: 25em;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-transform: uppercase;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #fff;
+}
+
+.form-u > div {
+  height: 6.25em;
+  width: 100%;
+}
+
+.username {
+  background-color: #4daf7c;
+  min-height: 100px;
+}
+
+.username::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-style: solid;
+  border-width: 0.5em 0.469em 0 0.469em;
+  border-color: #5dcd93 transparent transparent transparent;
+  top: 6.25em;
+  left: 50%;
+  margin-left: -0.496em;
+}
+
+.password {
+  background-color: #404241;
+  min-height: 100px;
+}
+
+.password::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-style: solid;
+  border-width: 0.5em 0.469em 0 0.469em;
+  border-color: #404241 transparent transparent transparent;
+  top: 12.5em;
+  left: 50%;
+  margin-left: -0.496em;
+}
+
+.login {
+  min-width: 400px;
+  background-color: #fcd450;
+  min-height: 100px;
+  display: table;
+}
+
+.loginButton {
+  vertical-align: middle;
+  margin-top: 1rem;
+  font-size:3em;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+input {
+  height: 1.25em;
+  width: 8.125em;
+  font-size: 2em;
+  text-align:center;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  background: transparent;
+  border:0.033em #fff solid;
+  margin-left: 0.1em;
+  margin-top: 1em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+::placeholder {
+  color: #fff;
+}
+
+::-moz-placeholder {
+  color: #fff;
+}
+
+:-ms-input-placeholder {
+  color: #fff;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
 }

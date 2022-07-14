@@ -19,20 +19,19 @@ function Navbar() {
   const uId = user?.userId
   
   return (
-    <div style={{backgroundImage:"url('https://media.istockphoto.com/photos/natural-wood-texture-background-picture-id921315052?b=1&k=20&m=921315052&s=170667a&w=0&h=Rrucdn-sdQvbT5wYOG0ckOXt8MWUVjBRd2OSgD2gxdI=')"}} className='navBar'>
-      <Link className='navBarText' to="/home">Home</Link>
-      <Link className='navBarText' to="/vendor/signup">v-Signup</Link>
-      <Link className='navBarText' to="/vendor/login">v-Login</Link>
-      <Link className='navBarText' to={`/vendor/manageprofile/`}>v-Profile</Link>
+    <div className='navBar'>
+      <Link className= "logo" to="/home"><img src="https://i.imgur.com/QwI6oUK.png" /> </Link>
+      <Link className='navBarText' to="/vendor/login">Join us as vendor</Link>
+      {/* <Link className='navBarText' to={`/vendor/manageprofile/`}>v-Profile</Link> */}
       {/* <Link className='navBarText' to={`/vendor/profile/:id`}>U-BrowseVendorDetails</Link> */}
     {/* <Link className='navBarText' to={`/vendor/editprofile/${vId}`}>v-Edit</Link> */}
-      <Link className='navBarText' to="/user/signup">u-Signup</Link>
-      <Link className='navBarText' to="/user/login">u-Login</Link>
-      <Link className='navBarText' to={`/user/profile/${uId}`}>u-Profile</Link>
-      <p style={{display:"inline-block"}} onClick={handleLogout}>LogOut</p>
-      <span style={{fontWeight:"bold"}}>
+      <Link className='navBarText' to="/user/signup">Signup</Link>/<Link className='navBarText' to="/user/login">Login</Link>
+      {/* <Link className='navBarText' to={`/user/profile/${uId}`}>u-Profile</Link> */}
+      {(localStorage.getItem("token"))&& <p onClick={handleLogout}>LogOut</p>}
+      {/* <p onClick={handleLogout}>LogOut</p> */}
+      {/* <span style={{fontWeight:"bold"}}>
         {(localStorage.getItem("token"))? user?.name :"Not Login"}
-      </span>
+      </span> */}
       
     </div>
   )

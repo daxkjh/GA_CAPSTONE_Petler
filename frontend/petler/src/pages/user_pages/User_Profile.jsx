@@ -75,22 +75,38 @@ import BookingCardUser from "../../components/BookingCardUser";
 
 
   return (
-    <div className="userProfContainer">
+    <div className="v_profile_container">
+      <div className='c-right'>
       <div className="userProf">
+      <div className="v-left">
       <div onClick={()=>toggleForm("pic")} className='editbutton'><img src='https://i.imgur.com/horiynl.png'></img></div>
       <img src={user?.image} width={"200px"}></img>
-      <button onClick={()=>toggleForm("profile")}>
+      </div>
+      <div className="v-right">
+      <p className="edit user-p" onClick={()=>toggleForm("profile")}>
         edit profile
-      </button>
-      <p>{user?.name}</p>
+      </p>
+      <h2>{user?.name}</h2>
       <p>{user?.description}</p>
-      <button onClick={()=>toggleForm("password")}>
-        edit password
-      </button>
+      <p className="edit user-pw" onClick={()=>toggleForm("password")}>edit password</p>
+      </div>
+      </div>
+      <div>
+        <h2>my furrends </h2>
+      <div className="petcontainer" id="pet1">
+        <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet} data={user?.pets?.[0]}/>
+      </div>
+      <div className="petcontainer" id="pet2">
+      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.pets?.[1]}/>
+      </div>
+      <div className="petcontainer" id="pet3">
+      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.pets?.[2]}/>
+      </div>
+      </div>
       </div>
       <div>
       <div className="userCalendarside">
-        <div className="calendar">
+        <div className="u-calendar">
         <Calendar
           className="react-calendar"
           onChange={onChange} value={value}
@@ -110,18 +126,7 @@ import BookingCardUser from "../../components/BookingCardUser";
         : <p>no bookings yet</p> ):null}
       </div>
       </div>
-     
-      <div>
-      <div className="petcontainer" id="pet1">
-        <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet} data={user?.pets?.[0]}/>
-      </div>
-      <div className="petcontainer" id="pet2">
-      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.pets?.[1]}/>
-      </div>
-      <div className="petcontainer" id="pet3">
-      <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet}  data={user?.pets?.[2]}/>
-      </div>
-      </div>
+    
       
       {formState.password && <EditUserPasswordForm toggleForm={toggleForm}/>}
       {formState.profile&&<EditUserProfileForm toggleForm={toggleForm} />}

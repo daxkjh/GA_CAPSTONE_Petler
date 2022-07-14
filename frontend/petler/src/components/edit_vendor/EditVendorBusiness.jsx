@@ -20,7 +20,7 @@ function EditVendorBusiness( { toggleForm, arg, user, setRefresh }) {
   //   setCheck1(current=>!current)
   //   console.log(check1)
   // };
-console.log("疲れた", user?.vendorId)
+console.log("疲れた", user)
   const handleSubmit = (event) => {
     event.preventDefault();
     const profileData = {
@@ -38,7 +38,7 @@ console.log("疲れた", user?.vendorId)
       east: event.target.elements.east.checked,
       west: event.target.elements.west.checked,
     };
-    console.log("データ",profileData);
+    // console.log("データ",profileData);
     axios
       .put(`/api/vendor/profile/b/${user?.vendorId}`, profileData,{ headers: {
         'Authorization': `Bearer ${localStorage.getItem("token")}`
@@ -101,8 +101,8 @@ console.log("疲れた", user?.vendorId)
         <option value="23">23:00</option>
         </select>
         <br />
-        <label htmlFor="about your service">about your service</label>
-        <input name="svcdsc" type="svcdsc" defaultValue={user?.details?.svcdsc}/>
+        <label htmlFor="about your service">Description of Your Service</label>
+        <textarea name="svcdsc" id="svcdsc" defaultValue={user?.details?.svcdsc}/>
         <br />
         <label htmlFor="Accepted pet type">accepted pet type</label>
         <select name="petType" defaultValue={user?.details?.petType}>
@@ -114,27 +114,27 @@ console.log("疲れた", user?.vendorId)
         <div>
           <p>accepted pet size</p>
           <label htmlFor="Accepted pet size">1-5kg</label>
-          <input defaultValue={true} type="checkbox" name="xs" />
+          <input type="checkbox" name="xs" defaultChecked={user?.details.petSize.xs} />
           <label htmlFor="Accepted pet size">5-10kg</label>
-          <input type="checkbox" name="s" />
+          <input  type="checkbox" name="s" defaultChecked={user?.details.petSize.s}/>
           <label htmlFor="Accepted pet size" >10-20kg</label>
-          <input type="checkbox" name="m" />
+          <input type="checkbox" name="m" defaultChecked={user?.details.petSize.m} />
           <label htmlFor="Accepted pet size" >20-40kg</label>
-          <input type="checkbox" name="l" />
+          <input type="checkbox" name="l" defaultChecked={user?.details.petSize.l}/>
           <label htmlFor="Accepted pet size">over 40kg</label>
-          <input type="checkbox" name="xl" />
+          <input type="checkbox" name="xl" defaultChecked={user?.details.petSize.xl}/>
           <br />
         </div>
         <div>
           <p>operation area</p>
           <label htmlFor="operation area">north</label>
-          <input type="checkbox" name="north" />
+          <input type="checkbox" name="north" defaultChecked={user?.details.area.north}/>
           <label htmlFor="operation area">south</label>
-          <input type="checkbox" name="south" />
+          <input type="checkbox" name="south" defaultChecked={user?.details.area.south}/>
           <label htmlFor="operation area">west</label>
-          <input type="checkbox" name="west" />
+          <input type="checkbox" name="west" defaultChecked={user?.details.area.west}/>
           <label htmlFor="operation area">east</label>
-          <input type="checkbox" name="east" />
+          <input type="checkbox" name="east" defaultChecked={user?.details.area.east}/>
           <br />
         </div>
         <button>submit</button>

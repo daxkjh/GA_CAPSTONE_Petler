@@ -58,8 +58,6 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
 .catch((error) => console.log(error));
 }
 
-
-
   const returnTop = () => {
     window.scrollTo({
       top: 0,
@@ -75,20 +73,21 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
           <button className="searchbutton">search</button>
         </form>
       </div>
-      <div
-        value="cats"
+      <div className="catsanddogs">
+      <div 
+        className="menusec"
         onClick={() => handleFilter("cats")}
-        className="menusec1"
       >
         <p value="cats">services for cats</p>
         <img src="https://i.imgur.com/zEho2MQ.png?1" width={"90px"} /> 
       </div>
-      <div value="dogs" 
+      <div 
+      className="menusec"
       onClick={() => handleFilter("dogs")}
-      className="menusec1">
+      >
         <p value="dogs">services for dogs</p>
-        <img src="https://i.imgur.com/WaxfVbB.png" width={"100px"} /> 
-        
+        <img src="https://i.imgur.com/WaxfVbB.png" width={"90px"} /> 
+      </div>
       </div>
       <div className="menu">
         <div onClick={() => handleFilter("sitter")}
@@ -105,7 +104,7 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
       {(allVendors?.data?.length===0)? <h1>No Results Found</h1> : null}
       {allVendors?.data?.map((ele, index) => (
         <div key={index} className="vendorcard">
-          <section
+          <div
             className="vendorsec"
             onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)}
           >
@@ -113,7 +112,7 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
             <p>{ele.name}</p>
             <p>{ele.intro}</p>
             <p>{ele.type}</p>
-          </section>
+          </div>
         </div>
       ))}
       <button className="topbutton" onClick={returnTop}>

@@ -5,17 +5,16 @@
 .logo {
   position: absolute;
   left:0;
-  width:400px;
+  width:300px;
 }
 
 .navBar { 
-  background-color: black;
+  /* background-color: #252828; */
   color: aliceblue;
   min-height: 140px;
   margin: auto;
   padding: auto;
   /* border-style: solid; */
-  /* background-image: url('https://media.istockphoto.com/photos/natural-wood-texture-background-picture-id921315052?b=1&k=20&m=921315052&s=170667a&w=0&h=Rrucdn-sdQvbT5wYOG0ckOXt8MWUVjBRd2OSgD2gxdI='); */
 }
 
 .navBarText { 
@@ -35,6 +34,7 @@
   margin: auto;
   width: 90%;
 }
+
 
 .topbutton {
   position: fixed;
@@ -194,11 +194,15 @@ max-width: 500px;
 }
 
 .menusec {
+  margin: 2rem 0.5rem 0.5rem 2rem;
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 130px;
+  max-height: 130px;
+  border-radius: 5px;
+  display: inline-block;
+  vertical-align: top;
   border: solid rgb(40, 127, 130);
-  justify-content: center;
-  min-height: 180px;
-  min-width: 180px;
-  margin: 1rem;
 }
 
 .petsize {
@@ -211,6 +215,7 @@ max-width: 500px;
   margin-top: 1rem;
   border: solid rgb(40, 127, 130);
   width: 50rem;
+  border-radius: 8px;
 }
 
 .vendorcard:hover {
@@ -383,14 +388,8 @@ height: 100%;
   width: 80%;
 }
 
-.menusec1 {
-  margin: 2rem 0.5rem 0.5rem 2rem;
-  min-width: 200px;
-  max-width: 200px;
-  min-height: 130px;
-  max-height: 130px;
-  display: inline-block;
-  border: solid rgb(40, 127, 130);
+.catsanddogs {
+  width: auto;
 }
 
 .EditPetFormContainer{

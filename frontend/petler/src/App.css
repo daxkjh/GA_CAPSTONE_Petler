@@ -11,7 +11,7 @@
 .navBar { 
   /* background-color: #252828; */
   color: aliceblue;
-  min-height: 140px;
+  min-height: 80px;
   margin: auto;
   padding: auto;
   /* border-style: solid; */
@@ -34,7 +34,7 @@
 }
 
 .homecontainer {
-  margin: 0 auto;
+  margin: auto;
   width: 90%;
 }
 
@@ -50,13 +50,9 @@
 }
 
 .search {
-position: relative;
-width: 500px;
-left: 50%;
-margin-top: 100px;
-margin-left: -250px; /* Negative half of width. */
+margin: 0 auto;
+margin-top: 2rem; /* Negative half of width. */
 vertical-align: middle;
-
 }
 
 .searchbox {
@@ -205,7 +201,7 @@ max-width: 500px;
 }
 
 .menusec {
-  margin: 2rem 0.5rem 0.5rem 2rem;
+  margin: 1rem 0.5rem 0.5rem 2rem;
   min-width: 200px;
   max-width: 200px;
   min-height: 130px;

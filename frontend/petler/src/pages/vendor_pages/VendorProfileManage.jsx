@@ -78,8 +78,16 @@ const fetchData = async ()=>{
       fetchData()
 }, [user.id])
 
-const handleDateClick = (arg) => {
-  console.log(arg)
+const handleDateClick = (x) => {
+  const day = x;
+  const date = day.toISOString();
+  console.log(date)
+  axios.get(`${API_URL}/api/booking/calendar`)
+  .then((res) => {
+    setBookings(res.data);
+  })
+  .catch((error) => console.log("error", error));
+    
 }
 
 
@@ -180,7 +188,9 @@ const handleDateClick = (arg) => {
           <Calendar
           className="react-calendar"
           onChange={onChange} value={value}
-          onClickDay={(day) => console.log(day)}
+          onClickDay={(day) => {
+            handleDateClick(day);
+            console.log(day)}}
           />
       </div>
         <h2>your bookings</h2>

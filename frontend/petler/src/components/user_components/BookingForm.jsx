@@ -114,6 +114,7 @@ const BookingForm = ({ vendor, setBookingForm }) => {
         )
         .then((res) => {
           alert("Booking has been submitted, awaiting Vendor's confirmation!");
+          setBookingForm(false);
           console.log("this is the res", res);
         })
         .catch((error) => {

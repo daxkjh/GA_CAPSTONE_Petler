@@ -293,9 +293,9 @@ height: 100%;
   text-align: center;
   position: fixed;
   width: 100%;
-  margin: auto;
-  min-height: 100%;
-  max-height: 100%;
+  left: 0;
+  top: 0 ;
+  height:100%;
   background: rgba(101, 99, 99, 0.85);
   z-index: 999;
 }

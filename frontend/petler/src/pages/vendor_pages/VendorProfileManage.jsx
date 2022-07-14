@@ -188,7 +188,7 @@ const handleDateClick = (arg) => {
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 
         : <p>no bookings yet</p> } 
-        <p onClick={()=>setHistory(!history)} className='edit'> view past bookings (TEST)</p>
+        <p onClick={()=>setHistory(!history)} className='edit'> view past bookings</p>
         {history? (bookings?.data?.length > 0 ? bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>
         ) 

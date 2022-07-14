@@ -6,6 +6,11 @@ import { userAtom } from "../../App";
 import { refreshAtom } from "../../App";
 import jwtDecode from "jwt-decode";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 //#######################     DROPZONE STYLING Start  #################################
 
 const baseStyle = {
@@ -173,7 +178,7 @@ const EditUserPetsForm = ({ toggleForm, selectedPet }) => {
     const data = {
       id: selectedPet.id
     }
-    axios.delete(`/api/userprofile/pet/${user?.id}`, {headers, data})
+    axios.delete(`${API_URL}/api/userprofile/pet/${user?.id}`, {headers, data})
     
     .then((res) => {
       setRefresh(!refresh);
@@ -187,7 +192,7 @@ const EditUserPetsForm = ({ toggleForm, selectedPet }) => {
     e.preventDefault();
     axios
       .put(
-        `/api/userprofile/pet/${user?.id}`,
+        `${API_URL}/api/userprofile/pet/${user?.id}`,
         {
           id: selectedPet?.id,
           name: petName,

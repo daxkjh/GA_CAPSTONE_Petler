@@ -6,6 +6,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import jwtDecode from "jwt-decode";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 
 const BookingForm = ({ vendor, setBookingForm }) => {
   const [user, setUser] = useAtom(userAtom);
@@ -57,7 +61,7 @@ const BookingForm = ({ vendor, setBookingForm }) => {
       const serviceId = parseInt(e.target.value);
       setBookingInfo({ ...bookingInfo, servicesId: serviceId });
       axios
-        .get(`/api/vendor/services/${serviceId}`)
+        .get(`${API_URL}/api/vendor/services/${serviceId}`)
         .then((res) => setDateRange(res.data.data.dayService))
         .catch((error) => console.log("error", error));
     }
@@ -94,7 +98,7 @@ const BookingForm = ({ vendor, setBookingForm }) => {
   const postData = ()=>{
       axios
         .post(
-          "/api/booking",
+          `${API_URL}/api/booking`,
           {
             profileId: vendor?.data?.id,
             userProfileId: user?.id,

@@ -1,6 +1,7 @@
 const { json } = require("body-parser");
 const { PrismaClient } = require('@prisma/client');
 const cors = require("cors")
+const path = require("path")
 const bodyParser = require("body-parser");
 const prisma = new PrismaClient();
 module.exports = prisma
@@ -12,16 +13,14 @@ cloudinary.config({
     api_secret: 'utEOWgDrspFvhTwAcOavkTBZY2g' 
 })
 
-
-
 // express init
 const express = require("express");
-require('dotenv').config()
-// const cors = require('cors')
+require('dotenv').config(/*{path: '../.env'}*/)
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const app = express();
-const PORT = process.env.PORT ?? 4000
+const PORT = process.env.PORT //?? 4000
 
 const vendorController = require("./controllers/vendorController");
 const bookingController = require("./controllers/bookingController")
@@ -31,6 +30,7 @@ const bookingController = require("./controllers/bookingController")
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }))
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../client/build')))
 app.use("/api/vendor", vendorController);
 app.use("/api/booking", bookingController);
 app.use("/api/user", require("./controllers/user_Controller"))
@@ -41,6 +41,25 @@ app.use("/api/userprofile", require("./controllers/userProfile_Controller"))
 app.get("/api/", (req, res) => {
     res.send("welcome to Petler");
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+})
+
+
 
 // express init
 app.listen(PORT, () => {

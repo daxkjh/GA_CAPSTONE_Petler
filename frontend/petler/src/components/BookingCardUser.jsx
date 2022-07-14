@@ -3,6 +3,11 @@ import { useAtom } from 'jotai';
 import { userAtom, refreshAtom } from '../App';
 import axios from 'axios';
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 function BookingCardUser( { booking, fetchData } ) {
     const [user, setUser] = useAtom(userAtom);
     const [editBooking, setEditBooking] = useState(false);
@@ -20,7 +25,7 @@ function BookingCardUser( { booking, fetchData } ) {
       const handleSubmit = (event) => {
         event.preventDefault();
          console.log(status)
-      axios.put(`/api/booking/${booking.id}`,
+      axios.put(`${API_URL}/api/booking/${booking.id}`,
         { 
           status: status
         },

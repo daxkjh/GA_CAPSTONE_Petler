@@ -3,6 +3,10 @@ import axios from "axios"
 import { atom, useAtom, Provider } from "jotai";
 import { userAtom } from "../../App";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 
 const EditVendorPasswordForm = ( {setPWChange} )=>{
     const [cfmpw, setCFMPW] = useState(true)
@@ -24,7 +28,7 @@ const EditVendorPasswordForm = ( {setPWChange} )=>{
         } else {
             setCFMPW(true)
             console.log("USERID",user)
-            axios.put(`/api/vendor/signup/${user?.vendorId}/`,{
+            axios.put(`${API_URL}/api/vendor/signup/${user?.vendorId}/`,{
                 password : e.target.elements.newpw.value
             },{ headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`

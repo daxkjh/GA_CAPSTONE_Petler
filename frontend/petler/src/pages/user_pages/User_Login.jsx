@@ -5,6 +5,10 @@ import { atom,useAtom } from 'jotai';
 import { useState } from 'react';
 import { refreshAtom } from '../../App'
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 
 function User_Login() {
 //   const [user, setUser] = useAtom(userAtom);
@@ -19,7 +23,7 @@ const navigate = useNavigate();
     email: event.target.elements.email.value,
     password: event.target.elements.password.value} 
     console.log(loginData)
-    axios.post( "/api/user/login", loginData)
+    axios.post( `${API_URL}/api/user/login`, loginData)
       .then((response)=> 
       {const token = response.data.accessToken;
         localStorage.setItem("token", token);

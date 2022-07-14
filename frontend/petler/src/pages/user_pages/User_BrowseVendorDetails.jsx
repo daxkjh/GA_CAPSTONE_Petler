@@ -7,6 +7,11 @@ import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPassw
 import { useAtom } from 'jotai';
 import BookingForm from '../../components/user_components/BookingForm';
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 function User_BrowseVendorDetails () {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom)
@@ -17,7 +22,7 @@ function User_BrowseVendorDetails () {
     const id = useParams();
   
   useEffect(()=> {
-    axios.get(`/api/vendor/profile/${id.id}`)
+    axios.get(`${API_URL}/api/vendor/profile/${id.id}`)
     .then((res) => setVendor(res.data))
     .catch(error => console.log("error", error));
     // setRefresh(prev=>!prev);

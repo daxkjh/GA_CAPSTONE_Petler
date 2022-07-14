@@ -3,6 +3,11 @@ import axios from 'axios';
 import { useAtom } from 'jotai';
 import { userAtom, refreshAtom } from '../../App';
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
+
 function ServicesForm({ toggleForm, arg }) {
     const [user, setUser] = useAtom(userAtom);
     const [refresh, setRefresh] = useAtom(refreshAtom)
@@ -20,7 +25,7 @@ function ServicesForm({ toggleForm, arg }) {
             profileId: profileId,
             dayService: true,
           }
-        axios.post("/api/vendor/services/", serviceData,{ headers: {
+        axios.post(`${API_URL}/api/vendor/services/`, serviceData,{ headers: {
           'Authorization': `Bearer ${localStorage.getItem("token")}`
         }})
         .then((res) => console.log("れっっす", res.data))

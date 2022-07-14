@@ -120,8 +120,9 @@ CREATE TABLE "Bookings" (
     "id" SERIAL NOT NULL,
     "startDateTime" TIMESTAMP(3),
     "endDateTime" TIMESTAMP(3),
-    "status" TEXT,
+    "status" TEXT DEFAULT 'pending',
     "bookingdesc" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "profileId" INTEGER NOT NULL,
     "userProfileId" INTEGER NOT NULL,
     "servicesId" INTEGER NOT NULL,
@@ -134,6 +135,7 @@ CREATE TABLE "Services" (
     "id" SERIAL NOT NULL,
     "title" TEXT,
     "price" INTEGER,
+    "dayService" BOOLEAN DEFAULT false,
     "active" BOOLEAN NOT NULL DEFAULT true,
     "profileId" INTEGER NOT NULL,
 

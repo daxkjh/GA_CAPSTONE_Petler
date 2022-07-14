@@ -18,7 +18,10 @@ import VendorProfileShow from "./pages/user_pages/User_BrowseVendorDetails"
 
 const SECRET_KEY = import.meta.env.SECRET
 // const SECRET = process.env.SECRET
-
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://petlers.herokuapp.com/"
+    : "http://localhost:3000";
 
 // import { loginAtom } from './pages/user_pages/User_Login'
 
@@ -48,7 +51,7 @@ if(token){
   } 
   else {
 axios
-.get(`/api/${decodedToken?.role}/profile/${decodedToken?.id}`, {
+.get(`${API_URL}/api/${decodedToken?.role}/profile/${decodedToken?.id}`, {
   headers: { 'Authorization' : `Bearer ${localStorage.getItem("token")}` },
 })
 .then((res) =>{ console.log(res)

@@ -18,7 +18,7 @@ function VendorProfileManage() {
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [vendor, setVendor] = useState();
   const [PWChange, setPWChange] = useState(false);
-  const [serviceSetting, setServiceSetting] = useState(false);
+
   const [value, onChange] = useState(new Date());
   const [bookings, setBookings] = useState([]);
   const [element, setElement] =useState("")
@@ -153,7 +153,6 @@ const handleDateClick = (arg) => {
           { user?.details?.petSize?.xl && <img src="https://i.imgur.com/JeZkKL6.png" width={"80px"}/>  }
           </li>
         </ul>
-
         <p>areas:</p>
         { user?.details?.area?.north && <p>north</p> }
         { user?.details?.area?.south && <p>south</p> }

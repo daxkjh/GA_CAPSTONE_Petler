@@ -1,28 +1,30 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useState } from "react";
 
 function EditVendorBusiness( { toggleForm, arg, user, setRefresh }) {
+  const [emptyAlertSize, setElementSize] = useState(false);
+  const [emptyAlertArea, setElementArea] = useState(false);
 
-  const navigate = useNavigate();
-  // const [check1, setCheck1] = useState(false)
   // const access = jwtDecode(localStorage.getItem("token"))
   // const vendorId = access.vendorLogin.id
 
-  // const handleChange1 = event => { 
-  //   if (event.target.checked) {
-  //     console.log("checked");
-  //   } else {
-  //     console.log("not checked");
-  //   }
-  //   setCheck1(current=>!current)
-  //   console.log(check1)
-  // };
-console.log("疲れた", user)
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (event.target.elements.xs.checked === false && 
+      event.target.elements.s.checked === false &&
+      event.target.elements.m.checked === false &&
+      event.target.elements.l.checked === false &&
+      event.target.elements.xl.checked === false ) {
+        setElementSize(true);
+    } else if (event.target.elements.north.checked === false && 
+      event.target.elements.south.checked === false && 
+      event.target.elements.east.checked === false && 
+      event.target.elements.west.checked === false
+      ) {
+        setElementArea(true);
+    } else {
     const profileData = {
       start: event.target.elements.start.value,
       end: event.target.elements.end.value,
@@ -49,11 +51,10 @@ console.log("疲れた", user)
           toggleForm(arg);
       })
       .catch((error) => console.log("error", error));
-  };
+  }};
 
   return (
     <div className="vendorFormContainer">
-    
         <div className="serviceForm">
           <h2>Edit your business info</h2>
         <form onSubmit={handleSubmit}>
@@ -113,6 +114,7 @@ console.log("疲れた", user)
         <br />
         <div>
           <p>accepted pet size</p>
+          {emptyAlertSize&&<p>please select at least one</p>}
           <label htmlFor="Accepted pet size">1-5kg</label>
           <input type="checkbox" name="xs" defaultChecked={user?.details.petSize.xs} />
           <label htmlFor="Accepted pet size">5-10kg</label>
@@ -127,6 +129,7 @@ console.log("疲れた", user)
         </div>
         <div>
           <p>operation area</p>
+          {emptyAlertArea&&<p>please select at least one</p>}
           <label htmlFor="operation area">north</label>
           <input type="checkbox" name="north" defaultChecked={user?.details.area.north}/>
           <label htmlFor="operation area">south</label>

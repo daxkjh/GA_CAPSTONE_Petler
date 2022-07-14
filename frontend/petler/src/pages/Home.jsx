@@ -76,11 +76,14 @@ axios.get(`/api/vendor/profile/search?searchbox=${e.target.elements.searchbox.va
         className="menusec1"
       >
         <p value="cats">services for cats</p>
+        <img src="https://i.imgur.com/zEho2MQ.png?1" width={"90px"} /> 
       </div>
       <div value="dogs" 
       onClick={() => handleFilter("dogs")}
       className="menusec1">
         <p value="dogs">services for dogs</p>
+        <img src="https://i.imgur.com/WaxfVbB.png" width={"100px"} /> 
+        
       </div>
       <div className="menu">
         <div onClick={() => handleFilter("sitter")}

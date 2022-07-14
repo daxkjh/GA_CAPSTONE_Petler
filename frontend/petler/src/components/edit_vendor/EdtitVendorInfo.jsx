@@ -1,5 +1,5 @@
-import React from 'react'
 import axios from "axios";
+import { useState } from 'react';
 
 function EdtitVendorInfo( { user, toggleForm, arg, setRefresh }) {
 
@@ -18,9 +18,7 @@ function EdtitVendorInfo( { user, toggleForm, arg, setRefresh }) {
             setRefresh(prev=>!prev);
             toggleForm(arg);
             })
-            
-            .catch((error) => console.log("error", error));
-            
+            .catch((error) => console.log("error", error));            
         };
 
   return (
@@ -35,10 +33,10 @@ function EdtitVendorInfo( { user, toggleForm, arg, setRefresh }) {
       <input required name="address" type="address" defaultValue={user?.address} />
       <br />
       <label htmlFor="phone">phone</label>
-      <input name="phone" type="phone" defaultValue={user?.phone} />
+      <input required name="phone" type="phone" defaultValue={user?.phone} />
       <br />
       <label htmlFor="intro">introduce yourself</label>
-      <input name="intro" type="intro" defaultValue={user?.intro}/>
+      <input required name="intro" type="intro" defaultValue={user?.intro}/>
       <br />
       <button>Apply</button>
       </form>

@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { atom, useAtom, Provider } from "jotai";
 import { userAtom, refreshAtom } from "../../App";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect } from "react";
+import jwtDecode from "jwt-decode";
 
 
-const BookingForm = ({ vendor }) => {
+const BookingForm = ({ vendor, setBookingForm }) => {
   const [user, setUser] = useAtom(userAtom);
   const [refresh, setRefresh] = useAtom(refreshAtom);
   const [dateOrRange, setDateRange] = useState(false); //set by handleSelect
@@ -23,8 +23,6 @@ console.log(user)
   const [startRange, setStartRange] = useState(Today); 
   const [endRange, setEndRange] = useState();
   const [bookingInfo, setBookingInfo] = useState({
-    // profileId: vendor?.data?.id,
-    // userProfileId: user?.data?.profile?.id,
     servicesId: null,
     startDateTime: roundToHour(Today),
     endDateTime: roundToHour(Today),
@@ -33,11 +31,12 @@ console.log(user)
 useEffect(()=>{
   if(vendor){
     let check = 0
-  let acceptableSize = vendor.data.details.petSize
-  let arr = user.pets
+  let acceptableSize = vendor?.data?.details?.petSize
+  if (Object.keys(user).length > 0) 
+  {let arr = user?.pets
   console.log(arr,acceptableSize)
   for (const element of arr){
-    if (acceptableSize[element.size]){
+    if (acceptableSize[element?.size]){
       check+=1
     }
     console.log("CHECK",check)
@@ -46,7 +45,7 @@ useEffect(()=>{
     }
   }
   
-  }
+  }} else null
 },[vendor])
 
 
@@ -72,9 +71,9 @@ useEffect(()=>{
       .post("/api/booking", {
         profileId: vendor?.data?.id,
         userProfileId: user?.id,
-        servicesId: bookingInfo.servicesId,
-        startDateTime: bookingInfo.startDateTime,
-        endDateTime: bookingInfo.endDateTime,
+        servicesId: bookingInfo?.servicesId,
+        startDateTime: bookingInfo?.startDateTime,
+        endDateTime: bookingInfo?.endDateTime,
       },{ headers: {
         'Authorization': `Bearer ${localStorage.getItem("token")}`
       }})
@@ -87,8 +86,8 @@ useEffect(()=>{
   }}
 
   return (
-    <div className="bookingFormContainer">
-      <div className="bookingFormActual">
+    <div className="vendorFormContainer">
+      <div className="serviceForm">
         <div className="dateForm">
           <form onSubmit={handleSubmit}>
             <label htmlFor="choose service">choose service</label>
@@ -117,7 +116,8 @@ useEffect(()=>{
                 setBookingInfo({...bookingInfo, startDateTime : selectedDate, endDateTime : selectedDate})
                 // console.log(sameDay);
               }}
-            /> : <> <DatePicker
+            /> : <> 
+            <DatePicker
             selected={bookingInfo.startDateTime}
             dateFormat="dd/MM/yyyy"
             minDate={Today}
@@ -139,6 +139,7 @@ useEffect(()=>{
             <br />
             <br />
             <button>book</button>
+            <p className="edit" onClick={()=>setBookingForm(false)}>cancel</p>
           </form>
         </div>
       </div>

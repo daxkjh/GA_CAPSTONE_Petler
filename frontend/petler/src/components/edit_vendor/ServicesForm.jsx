@@ -49,6 +49,7 @@ function ServicesForm({ toggleForm, arg }) {
             <label htmlFor="service">service title</label>
             <br/>
             <input
+            required
             type="text"
             name="title"
             id="title"
@@ -58,6 +59,7 @@ function ServicesForm({ toggleForm, arg }) {
             <label htmlFor="price">price</label>
             <br/>
             <input
+            required
             type="text"
             name="price"
             id="price"

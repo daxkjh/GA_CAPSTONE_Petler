@@ -130,6 +130,7 @@ model Bookings {
   endDateTime   DateTime?
   status        String?     @default("pending")
   bookingdesc   String?
+  ccreatedAt    DateTime    @default(now())
   profileId     Int
   userProfileId Int
   servicesId    Int

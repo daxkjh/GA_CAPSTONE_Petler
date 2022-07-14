@@ -8,8 +8,8 @@ import EditUserPasswordForm from "../../components/edit_user/EditUserPasswordFor
 import EditUserProfileForm from "../../components/edit_user/EditUserProfileForm";
 import PetCard from "../../components/user_components/PetCard";
 import EditUserPetsForm from "../../components/edit_user/EditUserPetForm";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import  Calendar from 'react-calendar'
+import '../../calendar.css'
 import CreatePetForm from "../../components/edit_user/CreateUserPetsForm";
 import EditUserPicForm from "../../components/edit_user/EditUserPicForm";
 import StyledDropzone from "../../components/uploader/StyledDropzone";
@@ -89,8 +89,14 @@ import BookingCardUser from "../../components/BookingCardUser";
       </button>
       </div>
       <div>
-      <div className="userCalendar">
-        <Calendar onChange={onChange} value={value} />
+      <div className="userCalendarside">
+        <div className="calendar">
+        <Calendar
+          className="react-calendar"
+          onChange={onChange} value={value}
+          onClickDay={(day) => console.log(day)}
+          />  
+      </div>  
         <h1>Upcoming Events</h1>
        {bookings?.data?.length > 0 ? 
        bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 

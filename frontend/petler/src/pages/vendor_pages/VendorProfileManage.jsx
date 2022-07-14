@@ -5,9 +5,9 @@ import axios from 'axios';
 import { userAtom, refreshAtom } from '../../App';
 import EditVendorPasswordForm from '../../components/edit_vendor/EditVendorPasswordForm';
 import { useAtom } from 'jotai';
+import  Calendar from 'react-calendar'
+import '../../calendar.css'
 import ServicesForm from '../../components/edit_vendor/ServicesForm';
-import Calendar from 'react-calendar';
-import '../../calendar.css';
 import StyledDropzone from '../../components/uploader/StyledDropzone';
 import BookingCardVendor from '../../components/BookingCardVendor';
 import EditVendorBusiness from '../../components/edit_vendor/EditVendorBusiness';
@@ -72,6 +72,10 @@ const fetchData = async ()=>{
       if(user.id)
       fetchData()
 }, [user.id])
+
+const handleDateClick = (arg) => {
+  console.log(arg)
+}
 
 
 
@@ -168,10 +172,13 @@ const fetchData = async ()=>{
       </div>
         <div className='c-right'>
           <h2>manage your bookings  </h2>
-        <Calendar 
-        className="react-calendar"
-        onChange={onChange} value={value} 
-        onClickDay={(day) => console.log(day) }/>
+        <div className='v-calendar'>  
+          <Calendar
+          className="react-calendar"
+          onChange={onChange} value={value}
+          onClickDay={(day) => console.log(day)}
+          />
+      </div>
         <h2>your bookings</h2>
         {bookings?.data?.length > 0 ? bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardVendor key={index} booking={booking} fetchData={fetchData}/>

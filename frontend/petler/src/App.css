@@ -60,6 +60,7 @@
   text-align: center;
   padding-left: 3.2rem;
   border: solid;
+  border-radius: 10px;
   grid-area: c-right; }
 
 .vendorinfo {
@@ -137,13 +138,21 @@ textarea {
   max-height: 300px;
 }
 
-.userCalendar {
-  border: solid;
+.userCalendarside {
+  justify-content: center;
+  text-align: center;
+  /* border: solid; */
   margin-left: 5rem;
   min-width: 500px;
   max-width: 600px;
   min-height: 600px;
 
+}
+
+.calendar {
+border: thin rgb(40, 127, 130);
+max-height: 350px;
+max-width: 500px; 
 }
 
 .menu {
@@ -260,7 +269,7 @@ height: 100%;
   min-height: 100%;
   max-height: 100%;
   background: rgba(101, 99, 99, 0.85);
-  z-index: 1;
+  z-index: 999;
 }
 
 .serviceForm {

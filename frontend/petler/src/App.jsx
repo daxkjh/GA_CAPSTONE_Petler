@@ -15,6 +15,7 @@ import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 import VendorProfileShow from "./pages/user_pages/User_BrowseVendorDetails"
 
+
 const SECRET_KEY = import.meta.env.SECRET
 // const SECRET = process.env.SECRET
 
@@ -68,6 +69,7 @@ axios
             <Route path="/vendor/login" element={<VendorLogin />} />
             <Route path="/vendor/manageprofile/" element={<VendorProfileManage />} />
             <Route path="/vendor/editprofile/:id" element={<VendorProfileCreation />} />
+
 
 
 

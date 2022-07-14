@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { userAtom, refreshAtom } from '../App';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const API_URL =
   process.env.NODE_ENV === "production"
@@ -18,6 +19,8 @@ function BookingCardVendor({ booking, fetchData }) {
   const bookingDate = date.toLocaleDateString('en-SG',{year: "numeric", month:"long", day:"numeric", time:"numeric"})
   const time = new Date(booking?.startDateTime);
   const bookingTime = time.toLocaleTimeString('en-SG')
+
+  const navigate = useNavigate();
 
   const EditBookingFrom = ({ booking }) => {
     
@@ -51,7 +54,7 @@ function BookingCardVendor({ booking, fetchData }) {
         <p>{bookingDate} </p>
         <p>{bookingTime}</p>
         <br/>
-        <p> booked by : {booking?.user.name}</p>
+        <p> booked by : {booking?.user.name} </p>
         <p> status: </p>
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
           <option>select status</option>

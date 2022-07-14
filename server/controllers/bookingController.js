@@ -34,6 +34,9 @@ router.get("/:id", async (req, res) => {
       where: {
         profileId: idd
       },
+      orderBy: {
+        startDateTime: "asc"
+      },
       include: {
         profile: true,
         services: true,

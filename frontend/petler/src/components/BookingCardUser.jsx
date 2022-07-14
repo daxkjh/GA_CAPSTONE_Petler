@@ -36,7 +36,7 @@ function BookingCardUser( { booking, fetchData } ) {
       })
       .catch((error) => console.log(error));
   };
-  console.log("boooooooking", booking)
+//   console.log("boooooooking", booking)
       return (
         <div className='bookingEdit'>
           <div className='bookingStatus' >

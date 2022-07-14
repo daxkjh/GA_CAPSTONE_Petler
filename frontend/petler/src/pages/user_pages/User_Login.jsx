@@ -33,8 +33,7 @@ const navigate = useNavigate();
           setInvalid(true);
           console.log(response.data);}
       })
-      .catch(error => { alert("Invalid Login Credentials")
-        console.log("error", error)});
+      .catch(error => console.log("error", error));
 
   }
 

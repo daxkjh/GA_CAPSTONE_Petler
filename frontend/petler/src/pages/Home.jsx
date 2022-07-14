@@ -75,7 +75,7 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
       </div>
       <div className="catsanddogs">
       <div 
-       style={{borderColor:"steelblue",borderWidth:"0.6rem"}}
+       style={{borderColor:"steelblue",borderWidth:"0.4rem"}}
         className="menusec"
         onClick={() => handleFilter("cats")}
       >
@@ -83,7 +83,7 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
         <img style={{marginTop:"-15px"}} src="https://i.imgur.com/zEho2MQ.png?1" width={"90px"} /> 
       </div>
       <div 
-      style={{borderColor:"gold", borderWidth:"0.6rem"}}
+      style={{borderColor:"gold", borderWidth:"0.4rem"}}
       className="menusec"
       onClick={() => handleFilter("dogs")}
       >
@@ -92,15 +92,18 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
       </div>
       </div>
       <div className="menu">
-        <div style={{borderColor:"Crimson",borderWidth:"0.6rem"}} onClick={() => handleFilter("sitter")}
+        <div style={{borderColor:"Crimson",borderWidth:"0.4rem"}} onClick={() => handleFilter("sitter")}
         className="menusec">
           <p> sitters </p>
+          <img src="https://illust-imt.jp/archives/004613.smpl.png" width={"80px"} style={{marginTop:"-19px"}} />
         </div>
-        <div style={{borderWidth:"0.6rem"}} onClick={() => handleFilter("hotel")} className="menusec">
+        <div style={{borderWidth:"0.4rem"}} onClick={() => handleFilter("hotel")} className="menusec"> 
           <p> hotels </p>
+          <img src="https://thumb.ac-illust.com/b5/b5f93587cefde4c5155384ad89542bdd_t.jpeg" width={"80px"} style={{marginTop:"0px"}} />
         </div>
-        <div style={{borderColor:"Orchid",borderWidth:"0.6rem"}} onClick={() => handleFilter("groomer")} className="menusec">
+        <div style={{borderColor:"Orchid",borderWidth:"0.4rem"}} onClick={() => handleFilter("groomer")} className="menusec">
           <p> groomers </p>
+          <img src="https://thumb.ac-illust.com/b3/b321746fd793b966ef4d0e99ba559f69_t.jpeg" width={"90px"} style={{marginTop:"-15px"}} />
         </div>
       </div>
       {(allVendors?.data?.length===0)? <h1>No Results Found</h1> : null}

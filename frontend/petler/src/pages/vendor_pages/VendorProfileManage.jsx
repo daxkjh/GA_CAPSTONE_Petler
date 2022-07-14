@@ -78,6 +78,7 @@ const fetchData = async ()=>{
       fetchData()
 }, [user.id])
 
+
 const handleDateClick = (x) => {
   const day = x;
   const date = day.toISOString();

@@ -64,6 +64,12 @@ vertical-align: middle;
   margin: 0 auto;
 }
 
+.searchbutton {
+  background-color: rgb(40, 127, 130);
+  font-size: 20px;
+  border-radius: 4px;
+}
+
 .v_profile_container {
   display: grid;
   grid-template-columns: 1fr 1fr; 
@@ -221,14 +227,27 @@ max-width: 500px;
   margin: auto;
   margin-top: 1rem;
   border: solid rgb(40, 127, 130);
+  display: grid;
   width: 55rem;
   height: 15rem;
+  grid-template-columns: 35% 65%;
   border-radius: 8px;
+  grid-template-areas: 
+  "vendorcard-left vendorcard-right"
 }
 
 .vendorcard:hover {
   cursor: pointer;
 }
+
+.vendorcard-left {
+  margin-top: 3rem;
+}
+
+.vendorcard-right {
+
+}
+
 
 .edit {
   color: rgb(40, 127, 130);
@@ -297,6 +316,7 @@ height: 100%;
   left: 0;
   top: 0 ;
   height:100%;
+  overflow: auto;
   background: rgba(101, 99, 99, 0.85);
   z-index: 999;
 }

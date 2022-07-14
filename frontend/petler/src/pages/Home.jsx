@@ -64,7 +64,7 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
       behavior: "smooth",
     });
   };
-
+console.log(allVendors)
   return (
     <div className="homecontainer">
       <div  className="search">
@@ -108,15 +108,17 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
       </div>
       {(allVendors?.data?.length===0)? <h1>No Results Found</h1> : null}
       {allVendors?.data?.map((ele, index) => (
-        <div key={index} className="vendorcard">
-          <div
-            className="vendorsec"
-            onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)}
-          >
-            <img style={{position:"relative", marginRight:"70%", marginTop:"5%", display:"inline-block", verticalAlign:"top"}} src={ele.profilePic} width={"150px"}></img>
-            <h2  style={{position:"relative", marginTop:"5%", display:"inline-block", verticalAlign:"top"}} >{ele.name}</h2>
-            <p>{ele.type}</p>
-            <p>{ele.intro}</p>
+        <div key={index} className="vendorcard" onClick={() => navigate(`/vendor/profile/${ele?.vendorId}`)} >
+          <div className="vendorcard-left">
+            <img src={ele?.profilePic} width={"150px"}></img>
+            </div>
+            <div className="vendorcard-right">
+              <h2>{ele?.name}</h2>
+            <p>service type: {ele?.type}</p>
+            <p>for: {ele?.details?.petType}</p>
+            <p>{ele?.details.svcdsc}</p>
+            <p></p>
+            <p></p>
           </div>
         </div>
       ))}

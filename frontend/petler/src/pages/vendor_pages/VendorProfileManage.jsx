@@ -55,7 +55,7 @@ function VendorProfileManage() {
 const fetchData = async ()=>{
     const res = await axios.get(`${API_URL}/api/booking/${user.id}`)
      setBookings(res.data)
-     setDays(res.data.data)
+     setDays(res.data.data.map((x)=>new Date(x.startDateTime)))
     //  setHistory(res.data.data.filter((x)=> new Date(x.startDateTime) < new Date()))
   }
 
@@ -191,13 +191,15 @@ const handleDateClick = (x) => {
 
 
         <div className='v-calendar'>  
-          <Calendar
+          {/* <Calendar
           className="react-calendar"
           onChange={onChange} value={value}
           onClickDay={(day) => {
             handleDateClick(day);
             console.log(day)}}
-          />
+          /> */}
+        <TestCalendar days={days} handleDateClick={handleDateClick}/>
+
       </div>
 
 
@@ -212,7 +214,6 @@ const handleDateClick = (x) => {
         ) 
         : <p>no bookings yet</p> ):null}
         </div>
-        <TestCalendar days={days}/>
     </div>
     </>
   )

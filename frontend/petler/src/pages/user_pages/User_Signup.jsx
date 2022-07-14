@@ -87,38 +87,51 @@ const User_SignUp = () => {
   };
 
   return (
-    <div>
-      <h1>User Sign Up Page</h1>
+    <div className="logincontainer">
+      <div className='form-u'>
+      <h2 className="login-title" >Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Sign Up</legend>
-          <label htmlFor="email">Email</label>
+      <div className="username">
           <input
+          className='login-input'
             onChange={handleChange_email}
             type="email"
             name="email"
             id="email"
+            placeholder="email"
           />
           <span>{submit.email && !uniqueEmail ? "Email taken" : null}</span><br></br>
-          <label htmlFor="pw">Password</label>
+          </div>
+          <div className="password">
           <input
+          className='login-input'
             onChange={(e) => setSubmit({ ...submit, password: e.target.value })}
             type="password"
             name="pw"
             id="pw"
-          /><br></br>
-          <label htmlFor="cpw">Confirm Password</label>
+            placeholder="password"
+          />
+          </div>
+          <div className="password">
           <input
+          className='login-input'
             onChange={handleChange_confirmPassword}
             type="password"
             name="cpw"
             id="cpw"
+            placeholder="confirm password"
           />
+          </div>
+          <div className="login">
+          <button className='loginButton' type="submit">Sign Up</button>
+          </div>
+          <div>
           <span>{ passwordCheck && uniqueEmail && submit.email && submit.password ? <h1>&#x2714;</h1> : null}</span>
           <span>{errorPasswordMessage}</span><br></br>
-          <button type="submit">Sign Up</button>
-        </fieldset>
+          
+          </div>
       </form>
+      </div>
     </div>
   );
 };

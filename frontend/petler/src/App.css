@@ -3,10 +3,9 @@
 }
 
 .logo {
+  position: absolute;
+  left:0;
   width:400px;
-  height: 200px;
-  float: left;
-
 }
 
 .navBar { 
@@ -57,6 +56,7 @@
   border-color: rgb(40, 127, 130);
   border-radius: 10px;
 }
+
 .v_profile_container {
   display: grid;
   grid-template-columns: 1fr 1fr; 
@@ -458,22 +458,29 @@ height: 100%;
 
 /* login&signup  */
 
+
+.login-title {
+  color: black;
+}
 * { box-sizing: border-box }
 
 /* .loginContainer {
   background-color: rgb(15, 14, 14);
 } */
 .form-u {
-  height: 18.75em;
+  height: 27;
   width: 25em;
   background: #fff;
-  position: absolute;
+  position: fixed;
+  margin-top: 1rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
   text-transform: uppercase;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #fff;
+  overflow: auto;
+  /* -webkit-overflow-scrolling: touch; */
 }
 
 .form-u > div {
@@ -490,10 +497,10 @@ height: 100%;
   content: "";
   width: 0px;
   height: 0px;
-  position: absolute;
+  position: fixed;
   border-style: solid;
   border-width: 0.5em 0.469em 0 0.469em;
-  border-color: #5dcd93 transparent transparent transparent;
+  border-color: #4daf7c transparent transparent transparent;
   top: 6.25em;
   left: 50%;
   margin-left: -0.496em;
@@ -508,7 +515,7 @@ height: 100%;
   content: "";
   width: 0px;
   height: 0px;
-  position: absolute;
+  position: fixed;
   border-style: solid;
   border-width: 0.5em 0.469em 0 0.469em;
   border-color: #404241 transparent transparent transparent;
@@ -527,15 +534,14 @@ height: 100%;
 .loginButton {
   vertical-align: middle;
   margin-top: 1rem;
-  font-size:3em;
+  font-size:2.5em;
   border: none;
   background-color: transparent;
   color: #fff;
   cursor: pointer;
 }
 
-
-input {
+.login-input {
   height: 1.25em;
   width: 8.125em;
   font-size: 2em;

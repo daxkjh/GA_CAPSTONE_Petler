@@ -31,45 +31,61 @@ function VendorSignUp() {
         
   return (
     <div>
+      <div className='form-u'>
      <form onSubmit={handleSubmit} >
-        <label htmlFor="name">name</label>
-        <input required name="name" type="name" placeholder="name" />
+     <div className="username">
+        <input 
+        className='login-input'
+        required 
+        name="name" 
+        type="name" 
+        placeholder="name" />
         <br />
-      <label htmlFor="email">email</label>
+        </div> 
+        <div className="password">
       <input
               required
+              className='login-input'
               name="email"
               type="email"
               placeholder="email"
               onChange={()=> setEmailTaken(false)}
             />
             {emailTaken? <p>this email is taken</p> : null }
-            <br/>   
-     <label htmlFor="password">password</label>
+            <br/>  
+            </div>
+      <div className="password">
       <input
               required
+              className='login-input'
               name="password"
               type="password"
               placeholder="password"
               />
-              <br/>
-      <label htmlFor="password2"> confirm password</label>
+      </div>
+      <div className="password">
       <input
               required
+              className='login-input'
               name="password2"
               type="password2"
               placeholder="confirm password"
               />
-              <br/>
+         </div>
+         <div className="password">
         <label htmlFor="type of service">type of service</label>
-        <select name="type">
+        <br/>
+        <select className="login-input "name="type">
         <option value="sitter">sitter</option>
         <option value="hotel">hotel</option>
         <option value="groomer">groomer</option>
         </select>
-        <br/>
-      <button>create account</button>
+        </div>
+      <div className="login">
+      <button className='loginButton'>create account</button>
+      </div>
       </form>
+      </div>
     </div>
   )
 }

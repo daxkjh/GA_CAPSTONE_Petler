@@ -40,9 +40,11 @@ const navigate = useNavigate();
 
   return (
 <div className='form-u'>
+<h2 className="login-title" >Log In</h2>
      <form onSubmit={handleSubmit} >
         <div className="username">
             <input
+              className='login-input'
               required
               name="email"
               type="email"
@@ -51,7 +53,7 @@ const navigate = useNavigate();
             />
             </div>
       <div className="password">
-      <input
+      <input  className='login-input'
               required
               name="password"
               type="password"

@@ -19,7 +19,7 @@ function User_BrowseVendorDetails () {
     axios.get(`/api/vendor/profile/${id.id}`)
     .then((res) => setVendor(res.data))
     .catch(error => console.log("error", error));
-    setRefresh(prev=>!prev);
+    // setRefresh(prev=>!prev);
   }, [])
    console.log("vendor detail from BrowseVendorDetails", vendor)
 

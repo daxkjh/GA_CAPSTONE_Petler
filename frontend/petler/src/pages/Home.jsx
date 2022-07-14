@@ -69,10 +69,10 @@ axios.get(`${API_URL}/api/vendor/profile/search?searchbox=${e.target.elements.se
 
   return (
     <div className="homecontainer">
-      <div className="search">
-        <form onSubmit={handleSearch}>
+      <div  className="search">
+        <form  onSubmit={handleSearch}>
           <input className="searchbox" name="searchbox"></input>
-          <button className="searchbutton">search</button>
+          <button style={{verticalAlign:"top"}} className="searchbutton">search</button>
         </form>
       </div>
       <div

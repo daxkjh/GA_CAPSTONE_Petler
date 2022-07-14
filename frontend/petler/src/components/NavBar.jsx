@@ -17,6 +17,8 @@ function Navbar() {
   // const decodedToken = jwtDecode(localStorage.getItem("token"))
   const vId = user?.vendorId
   const uId = user?.userId
+
+  
   
   return (
     <div className='navBar'>
@@ -25,7 +27,7 @@ function Navbar() {
       {/* <Link className='navBarText' to={`/vendor/manageprofile/`}>v-Profile</Link> */}
       {/* <Link className='navBarText' to={`/vendor/profile/:id`}>U-BrowseVendorDetails</Link> */}
     {/* <Link className='navBarText' to={`/vendor/editprofile/${vId}`}>v-Edit</Link> */}
-      <Link className='navBarText' to="/user/signup">Signup</Link>/<Link className='navBarText' to="/user/login">Login</Link>
+      <Link className='navBarText' to="/user/signup">Signup</Link><Link className='navBarText' to="/user/login">Login</Link>
       {/* <Link className='navBarText' to={`/user/profile/${uId}`}>u-Profile</Link> */}
       {(localStorage.getItem("token"))&& <p onClick={handleLogout}>LogOut</p>}
       {/* <p onClick={handleLogout}>LogOut</p> */}

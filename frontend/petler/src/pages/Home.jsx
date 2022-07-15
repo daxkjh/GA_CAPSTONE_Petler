@@ -115,7 +115,7 @@ console.log(allVendors)
             <div className="vendorcard-right">
               <h2>{ele?.name}</h2>
             <p>service type: {ele?.type}</p>
-            <p>for: {ele?.details?.petType}</p>
+            {/* <p>for: {ele?.details?.petType}</p> */}
             <p>{ele?.intro}</p>
             <p></p>
             <p></p>

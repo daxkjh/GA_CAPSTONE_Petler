@@ -42,7 +42,7 @@ const API_URL =
     let token = localStorage.getItem("token")
     if(token){
    let decodedToken = jwtDecode(token)
-    if (!decodedToken || decodedToken.role !== "user") {
+    if (decodedToken.role !== "user") {
       alert("Not Logged In As User")
      navigate("/user/login")
     } else{
@@ -68,6 +68,7 @@ const API_URL =
   const fetchData = async ()=>{
     const res = await axios.get(`${API_URL}/api/booking/${user.id}`)
      setBookings(res.data)
+     console.log("RES DATA", res.data)
   }
  
 
@@ -96,7 +97,7 @@ const API_URL =
       </div>
       </div>
       <div>
-        <h2>my furrends </h2>
+        <h2>My Furrends </h2>
       <div className="petcontainer" id="pet1">
         <PetCard toggleForm={toggleForm} setSelectedPet={setSelectedPet} data={user?.pets?.[0]}/>
       </div>

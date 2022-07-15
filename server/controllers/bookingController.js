@@ -50,6 +50,18 @@ router.get("/:id", async (req, res) => {
   }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
 // read booking from calendar
 router.get("/calendar", async (req, res) => {
   console.log("hi")

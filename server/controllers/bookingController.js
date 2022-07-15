@@ -30,6 +30,7 @@ router.post("/", userAuth ,async (req, res) =>{
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   const idd = parseInt(id)
+  console.log(idd)
   try {
     const bookings = await prisma.bookings.findMany({
       where: {
@@ -44,6 +45,33 @@ router.get("/:id", async (req, res) => {
         user: true
       }
     })
+    console.log("no more bug please", bookings)
+    res.status(200).json({ status: "success", data: bookings })
+  } catch (error) {
+    res.send({ status: "failed", data: error })
+  }
+})
+
+// read booking user
+router.get("/u/:id", async (req, res) => {
+  const { id } = req.params;
+  const idd = parseInt(id)
+  console.log(idd)
+  try {
+    const bookings = await prisma.bookings.findMany({
+      where: {
+        userProfileId: idd
+      },
+      orderBy: {
+        startDateTime: "asc"
+      },
+      include: {
+        profile: true,
+        services: true,
+        user: true
+      }
+    })
+    console.log("no more bug please", bookings)
     res.status(200).json({ status: "success", data: bookings })
   } catch (error) {
     res.send({ status: "failed", data: error })

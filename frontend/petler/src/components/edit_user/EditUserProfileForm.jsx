@@ -42,7 +42,7 @@ const EditUserProfileForm = ({toggleForm})=>{
                 name : name,
                 address : address,
                 description : desc,
-                image : img
+                // image : img
             },{ headers: {
                 'Authorization': `Bearer ${localStorage.getItem("token")}`
               }})

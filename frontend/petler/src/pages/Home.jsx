@@ -116,7 +116,7 @@ console.log(allVendors)
               <h2>{ele?.name}</h2>
             <p>service type: {ele?.type}</p>
             <p>for: {ele?.details?.petType}</p>
-            <p>{ele?.details?.svcdsc}</p>
+            <p>{ele?.intro}</p>
             <p></p>
             <p></p>
           </div>

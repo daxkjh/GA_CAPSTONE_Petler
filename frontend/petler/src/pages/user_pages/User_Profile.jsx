@@ -47,6 +47,7 @@ const API_URL =
      navigate("/user/login")
     } else{
       fetchData()
+      console.log("FETCHING DATA>>>")
     }
   } else {
     alert("Not Logged In As User")
@@ -63,19 +64,19 @@ const API_URL =
     });
   };
 
-  console.log("in user Profile", user.id)
+  console.log("in user Profile", user?.id)
 
   const fetchData = async ()=>{
-    const res = await axios.get(`${API_URL}/api/booking/${user.id}`)
-     setBookings(res.data)
-     console.log("RES DATA", res.data)
+    const res = await axios.get(`${API_URL}/api/booking/u/${user?.id}`)
+     setBookings(res?.data)
+     console.log("RES DATA",res.data)
   }
  
 
  useEffect(()=> {
-      if(user.id)
+      if(user?.id)
       fetchData()
-}, [user.id])
+}, [user?.id])
 
 
 
@@ -119,7 +120,7 @@ const API_URL =
           />  
       </div>  
         <h1>Upcoming Events</h1>
-       {bookings?.data?.length > 0 ? 
+       {(bookings?.data?.[0]) ? 
        bookings?.data?.filter((x)=> new Date(x.startDateTime) > new Date()).sort((a,b)=> new Date(a.startDateTime) - new Date(b.startDateTime)).map((booking, index) => 
          <BookingCardUser key={index} booking={booking} fetchData={fetchData}/>
         ) 
